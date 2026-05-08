@@ -230,3 +230,8 @@ html {
   color: #0A192F !important; /* Navy color */
   box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
 }
+
+.hero-outline-btn:hover {
+  background-color: #ffffff !important;
+  color: #0A192F !important;
+}
