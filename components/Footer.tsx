@@ -1,9 +1,24 @@
+'use client'; // Required if using the "back to top" onClick function in Next.js App Router
+
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { theme } from '../styles/theme';
+import { theme } from '../styles/theme'; // Adjust path if needed
 
 const Footer = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const pagesLinks = [
+    { name: 'About Us', link: '/about' },
+    { name: 'Our Mission', link: '/mission' },
+    { name: 'Get Involved', link: '/get-involved' },
+    { name: 'Impact', link: '/impact' },
+    { name: 'News', link: '/news' },
+    { name: 'Contact', link: '/contact' },
+  ];
+
   const ministryLinks = [
     { name: 'Casa del Rey', link: '/ministries/casa-del-rey' },
     { name: 'Morada de Gracia', link: '/ministries/morada-de-gracia' },
@@ -15,39 +30,176 @@ const Footer = () => {
   return (
     <footer style={styles.footer}>
       <div style={styles.container}>
+        
+        {/* Column 1: Logo */}
         <div style={styles.column}>
-          <Image src="/logo.webp" alt="Logo" width={150} height={40} />
+          <Link href="/">
+            <Image 
+              src="/logo.webp" 
+              alt="One Way Ministries" 
+              width={200} 
+              height={50} 
+              style={{ objectFit: 'contain' }}
+            />
+          </Link>
         </div>
+
+        {/* Column 2: Headquarters */}
         <div style={styles.column}>
           <h3 style={styles.heading}>Our Headquarters</h3>
-          <p style={styles.text}>Katy, TX 10785<br/>United States</p>
+          <p style={styles.text}>Grace House, 124 Mercy Lane<br/>Katy, TX 10785 United States</p>
+          <p style={styles.text}><br/>1-123-456-7890<br/>contact@onewayministries.co</p>
+          
+          <div style={styles.socialRow}>
+            {/* Placeholder circles for Social Icons - replace text with SVG or FontAwesome later */}
+            <a href="#" style={styles.socialIcon}>f</a>
+            <a href="#" style={styles.socialIcon}>ig</a>
+            <a href="#" style={styles.socialIcon}>X</a>
+          </div>
         </div>
+
+        {/* Column 3: Pages */}
+        <div style={styles.column}>
+          <h3 style={styles.heading}>Pages</h3>
+          <ul style={styles.list}>
+            {pagesLinks.map((item) => (
+              <li key={item.name} style={styles.listItem}>
+                <Link href={item.link} style={styles.link}>{item.name}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 4: Ministries */}
         <div style={styles.column}>
           <h3 style={styles.heading}>Ministries</h3>
           <ul style={styles.list}>
-            {ministryLinks.map((m) => (
-              <li key={m.name}><Link href={m.link} style={styles.link}>{m.name}</Link></li>
+            {ministryLinks.map((item) => (
+              <li key={item.name} style={styles.listItem}>
+                <Link href={item.link} style={styles.link}>{item.name}</Link>
+              </li>
             ))}
           </ul>
         </div>
       </div>
+
+      {/* Bottom Copyright Bar */}
       <div style={styles.bottomBar}>
-        <p style={styles.copyright}>© {new Date().getFullYear()} One Way Ministries – All Rights Reserved</p>
+        <div style={styles.bottomContainer}>
+          <p style={styles.copyrightText}>
+            Sebastian & Paula – webministry © {new Date().getFullYear()} – All Rights Reserved
+          </p>
+          <button onClick={scrollToTop} style={styles.scrollTopBtn} aria-label="Scroll to top">
+            ↑
+          </button>
+        </div>
       </div>
     </footer>
   );
 };
 
-const styles: Record<string, React.CSSProperties> = {
-  footer: { backgroundColor: theme.colors.primary, color: theme.colors.text.inverse, paddingTop: '3rem', marginTop: 'auto' },
-  container: { maxWidth: '1200px', margin: '0 auto', padding: '0 2rem 2rem', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '2rem' },
-  column: { flex: '1 1 200px', display: 'flex', flexDirection: 'column', gap: '1rem' },
-  heading: { fontSize: '1.1rem', fontWeight: 'bold' },
-  text: { fontSize: '0.9rem', color: '#D1D5DB' },
-  list: { listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' },
-  link: { color: '#D1D5DB', textDecoration: 'none', fontSize: '0.9rem' },
-  bottomBar: { borderTop: '1px solid rgba(255,255,255,0.1)', padding: '1.5rem 0', textAlign: 'center' },
-  copyright: { fontSize: '0.8rem', color: '#9CA3AF' }
+const styles = {
+  footer: {
+    backgroundColor: theme.colors.primary, // Deep Navy from your theme
+    color: theme.colors.text.inverse,
+    paddingTop: '4rem',
+    fontFamily: theme.fonts.body,
+  },
+  container: {
+    maxWidth: '1200px',
+    margin: '0 auto',
+    padding: '0 2rem 3rem 2rem',
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap' as const,
+    gap: '2rem',
+  },
+  column: {
+    flex: '1 1 200px', // Ensures responsive wrapping on smaller screens
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: '1rem',
+  },
+  heading: {
+    fontSize: '1.25rem',
+    fontWeight: '600',
+    marginBottom: '0.5rem',
+    color: theme.colors.text.inverse,
+  },
+  text: {
+    fontSize: '0.9rem',
+    lineHeight: '1.5',
+    margin: 0,
+    color: '#D1D5DB', // Slightly dimmed white for readability
+  },
+  list: {
+    listStyle: 'none',
+    padding: 0,
+    margin: 0,
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: '0.75rem',
+  },
+  listItem: {
+    margin: 0,
+  },
+  link: {
+    color: '#D1D5DB',
+    textDecoration: 'none',
+    fontSize: '0.9rem',
+    transition: 'color 0.2s',
+  },
+  socialRow: {
+    display: 'flex',
+    gap: '0.75rem',
+    marginTop: '0.5rem',
+  },
+  socialIcon: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '35px',
+    height: '35px',
+    backgroundColor: theme.colors.text.inverse,
+    color: theme.colors.primary,
+    borderRadius: '50%',
+    textDecoration: 'none',
+    fontWeight: 'bold',
+    fontSize: '0.9rem',
+    transition: 'transform 0.2s',
+  },
+  bottomBar: {
+    borderTop: '1px solid rgba(255,255,255,0.1)',
+    padding: '1.5rem 0',
+  },
+  bottomContainer: {
+    maxWidth: '1200px',
+    margin: '0 auto',
+    padding: '0 2rem',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  copyrightText: {
+    fontSize: '0.85rem',
+    color: '#9CA3AF',
+    margin: 0,
+  },
+  scrollTopBtn: {
+    backgroundColor: theme.colors.text.inverse,
+    color: theme.colors.primary,
+    border: 'none',
+    width: '40px',
+    height: '40px',
+    borderRadius: '50%',
+    cursor: 'pointer',
+    fontSize: '1.2rem',
+    fontWeight: 'bold',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    boxShadow: theme.shadows.card,
+  }
 };
 
 export default Footer;
