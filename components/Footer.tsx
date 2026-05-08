@@ -87,7 +87,7 @@ const Footer = () => {
       <div style={styles.bottomBar}>
         <div style={styles.bottomContainer}>
           <p style={styles.copyrightText}>
-            Sebastian & Paula – webministry © {new Date().getFullYear()} – All Rights Reserved
+            Oneway Ministries © {new Date().getFullYear()} – All Rights Reserved
           </p>
           <button onClick={scrollToTop} style={styles.scrollTopBtn} aria-label="Scroll to top">
             ↑
