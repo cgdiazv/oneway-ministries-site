@@ -1,26 +1,43 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* One Way Ministries Core Palette */
+  --background: #F8F9FA;      /* Off-White (Clean & Modern) */
+  --foreground: #333333;      /* Charcoal (High Readability) */
+  
+  --navy-primary: #0A192F;    /* Deep Navy (Trust & Authority) */
+  --red-accent: #D7263D;      /* Crimson Red (Passion & Action) */
+  
+  --card-surface: #FFFFFF;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  
+  /* Adding our branded colors as Tailwind utilities */
+  --color-navy: var(--navy-primary);
+  --color-crimson: var(--red-accent);
+  --color-surface: var(--card-surface);
+  
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* Removed the @media (prefers-color-scheme: dark) section 
+   to ensure Robert's site stays brand-consistent for all users.
+*/
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+}
+
+/* Smooth scrolling for that premium feel */
+html {
+  scroll-behavior: smooth;
 }
