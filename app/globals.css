@@ -219,3 +219,14 @@ html {
     @apply font-sans;
   }
 }
+
+/* Professional Hover Effect for Donate Button */
+.donate-btn-hover {
+  transition: all 0.3s ease;
+}
+
+.donate-btn-hover:hover {
+  background-color: white !important;
+  color: #0A192F !important; /* Navy color */
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+}

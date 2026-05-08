@@ -3,7 +3,6 @@ import Image from "next/image";
 import { theme } from "@/styles/theme";
 
 export default function Home() {
-  // 1. Updated Menu List
   const menuItems = [
     { name: "About Us", link: "/about" },
     { name: "Our Mission", link: "/mission" },
@@ -17,18 +16,21 @@ export default function Home() {
     <div style={styles.heroSection}>
       <div style={styles.heroOverlay}></div>
 
-      {/* --- Updated Transparent Navbar --- */}
       <header style={styles.integratedNavbar}>
         <div style={styles.navContainer}>
-          <a href="/" style={styles.logoLink}>
-            <Image 
-              src="/logo.webp" 
-              alt="One Way Ministries Logo" 
-              width={160} 
-              height={50}
-              priority
-            />
-          </a>
+          
+          {/* --- The Navy Logo Box --- */}
+          <div style={styles.logoBox}>
+            <a href="/" style={styles.logoLink}>
+              <Image 
+                src="/logo.webp" 
+                alt="One Way Ministries Logo" 
+                width={140} 
+                height={40}
+                priority
+              />
+            </a>
+          </div>
           
           <nav style={styles.navLinksGroup}>
             {menuItems.map((item) => (
@@ -38,11 +40,13 @@ export default function Home() {
             ))}
           </nav>
 
-          <a href="/donate" style={styles.donateAction}>Donate</a>
+          {/* --- Updated Navy Donate Button --- */}
+          <a href="/donate" className="donate-btn-hover" style={styles.donateAction}>
+            Donate
+          </a>
         </div>
       </header>
 
-      {/* --- Hero Content --- */}
       <div style={styles.container}>
         <h1 style={styles.headline}>
           Restoring Hope in Colombia:<br/>One Life at a Time
@@ -77,26 +81,33 @@ const styles = {
   },
   heroOverlay: {
     position: "absolute" as const,
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    backgroundColor: "rgba(0, 0, 0, 0.55)", // Balanced overlay
+    top: 0, left: 0, width: "100%", height: "100%",
+    backgroundColor: "rgba(0, 0, 0, 0.55)",
     zIndex: 1,
   },
   integratedNavbar: {
     position: "relative" as const,
     width: "100%",
     zIndex: 20,
-    padding: "1.5rem 0",
+    padding: 0, // Removed top padding so the logo box hits the edge
   },
   navContainer: {
-    maxWidth: "1400px", // Widened slightly to accommodate more links
+    maxWidth: "1400px",
     margin: "0 auto",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
     padding: "0 3rem",
+    alignItems: "flex-start", // Aligns logo box to the very top
+  },
+  logoBox: {
+    backgroundColor: theme.colors.primary,
+    padding: "1.5rem 2rem 2rem 2rem", // Padding inside the navy box
+    borderRadius: "0 0 15px 15px", // Rounded bottom only
+    boxShadow: "0 4px 10px rgba(0,0,0,0.3)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   logoLink: {
     display: "flex",
@@ -105,7 +116,8 @@ const styles = {
   },
   navLinksGroup: {
     display: "flex",
-    gap: "1.8rem", // Tightened slightly to fit all 6 items
+    gap: "1.8rem",
+    paddingTop: "2.5rem", // Keeps links centered relative to the tall logo box
   },
   navLink: {
     color: theme.colors.text.inverse,
@@ -114,18 +126,18 @@ const styles = {
     fontSize: "0.85rem",
     textTransform: "uppercase" as const,
     letterSpacing: "0.5px",
-    transition: "opacity 0.2s",
   },
   donateAction: {
-    backgroundColor: theme.colors.text.inverse,
-    color: theme.colors.primary,
-    padding: "10px 24px",
+    backgroundColor: theme.colors.primary, // Changed to Navy
+    color: theme.colors.text.inverse,      // White text
+    padding: "12px 28px",
     borderRadius: "25px",
     textDecoration: "none",
     fontWeight: "bold",
     fontSize: "0.85rem",
     textTransform: "uppercase" as const,
-    boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
+    marginTop: "2rem", // Aligns button vertically
+    border: `1px solid ${theme.colors.text.inverse}`, // Optional subtle border
   },
   container: {
     maxWidth: "950px",
@@ -137,7 +149,6 @@ const styles = {
     flexDirection: "column" as const,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: "-50px", // Optical centering
   },
   headline: {
     color: theme.colors.text.inverse,
@@ -154,13 +165,8 @@ const styles = {
     marginBottom: "3rem",
     maxWidth: "780px",
     opacity: 0.95,
-    fontWeight: 300,
   },
-  buttonGroup: {
-    display: "flex",
-    gap: "1.5rem",
-    justifyContent: "center",
-  },
+  buttonGroup: { display: "flex", gap: "1.5rem", justifyContent: "center" },
   primaryOutlineButton: {
     color: theme.colors.text.inverse,
     border: `2px solid ${theme.colors.text.inverse}`,
