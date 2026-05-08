@@ -56,8 +56,8 @@ export default function Home() {
           local hubs like Casa del Rey and Morada de Gracia, and make a lasting impact.
         </p>
         <div style={styles.buttonGroup}>
-          <a href="/about" style={styles.primaryOutlineButton}>Learn More</a>
-          <a href="/donate" style={styles.accentOutlineButton}>Partner With Us</a>
+        <a href="/about" className="hero-outline-btn" style={styles.primaryOutlineButton}>Learn More</a>
+        <a href="/donate" className="hero-outline-btn" style={styles.accentOutlineButton}>Partner With Us</a>
         </div>
       </div>
     </div>
@@ -175,6 +175,7 @@ const styles = {
     fontWeight: "bold",
     fontSize: "0.95rem",
     textTransform: "uppercase" as const,
+    transition: "all 0.3s ease",
   },
   accentOutlineButton: {
     color: theme.colors.text.inverse,
@@ -186,5 +187,6 @@ const styles = {
     fontWeight: "bold",
     fontSize: "0.95rem",
     textTransform: "uppercase" as const,
+    transition: "all 0.3s ease",
   }
 };
