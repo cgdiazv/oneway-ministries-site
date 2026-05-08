@@ -1,47 +1,28 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+// 1. Swap Geist for Inter
+import { Inter } from "next/font/google"; 
 import "./globals.css";
-
-// --- 1. Import your Navigation and Footer components ---
 import Navbar from "@/components/Navbar"; 
 import Footer from "@/components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// 2. Configure Inter
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-sans", // This tells Tailwind to use it automatically!
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-// --- 2. Update Metadata for Robert & the Ministry ---
 export const metadata: Metadata = {
   title: "One Way Ministries | Colombia",
-  description: "Restoring hope and empowering communities in Colombia through faith and action.",
+  description: "Restoring hope in Colombia through faith and action.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
-        {/* --- 3. Place Navbar here so it shows at the top of every page --- */}
+    // 3. Apply the Inter variable to the HTML tag
+    <html lang="en" className={inter.variable} style={{ height: '100%' }}>
+      <body style={{ minHeight: '100%', display: 'flex', flexDirection: 'column' }}>
         <Navbar />
-        
-        {/* Main wraps the content so it pushes the footer down */}
-        <main className="flex-grow">
-          {children}
-        </main>
-
-        {/* --- 4. Place Footer here so it anchors to the bottom --- */}
+        <main style={{ flex: 1 }}>{children}</main>
         <Footer />
       </body>
     </html>
