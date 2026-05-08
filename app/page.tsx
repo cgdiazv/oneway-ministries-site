@@ -49,7 +49,7 @@ export default function Home() {
 
       <div style={styles.container}>
         <h1 style={styles.headline}>
-          Restoring Hope in Colombia:<br/>One Life at a Time
+          Sharing Hope in Colombia:<br/>One Life at a Time
         </h1>
         <p style={styles.subtext}>
           Partner with One Way Ministries to empower communities, support our<br/>
@@ -136,7 +136,6 @@ const styles = {
     fontSize: "0.85rem",
     textTransform: "uppercase" as const,
     marginTop: "2rem", // Aligns button vertically
-    border: `1px solid ${theme.colors.text.inverse}`, // Optional subtle border
   },
   container: {
     maxWidth: "950px",
@@ -180,7 +179,7 @@ const styles = {
   accentOutlineButton: {
     color: theme.colors.text.inverse,
     backgroundColor: "transparent",
-    border: `2px solid ${theme.colors.accent}`,
+    border: `2px solid ${theme.colors.text.inverse}`,
     padding: "14px 32px",
     borderRadius: "30px",
     textDecoration: "none",
