@@ -96,9 +96,8 @@ const styles = {
     margin: "0 auto",
     display: "flex",
     justifyContent: "space-between",
-    alignItems: "center",
     padding: "0 3rem",
-    alignItems: "flex-start", // Aligns logo box to the very top
+    alignItems: "flex-start", // Only keep this one!
   },
   logoBox: {
     backgroundColor: theme.colors.primary,
