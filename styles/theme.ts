@@ -10,6 +10,9 @@ export const theme = {
       inverse: "#FFFFFF"   
     }
   },
+  fonts: {
+    body: "var(--font-sans)", // Added this to satisfy the Footer!
+  },
   shadows: {
     card: "0 4px 6px rgba(0, 0, 0, 0.1)"
   }
