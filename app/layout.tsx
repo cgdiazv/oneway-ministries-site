@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-// 1. Swap Geist for Inter
-import { Inter, Figtree } from "next/font/google"; 
+import { Inter } from "next/font/google"; 
 import "./globals.css";
-import Navbar from "@/components/Navbar"; 
+import ConditionalNavbar from "@/components/ConditionalNavbar"; // Import the wrapper
 import Footer from "@/components/Footer";
-import { cn } from "@/lib/utils";
 
-// 2. Configure Inter
-const figtree = Figtree({subsets:['latin'],variable:'--font-sans'});
+const font = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
 export const metadata: Metadata = {
   title: "One Way Ministries | Colombia",
@@ -16,10 +16,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    // 3. Apply the Inter variable to the HTML tag
-    <html lang="en" className={cn("font-sans", figtree.variable)} style={{ height: '100%' }}>
+    <html lang="en" className={font.variable} style={{ height: '100%' }}>
       <body style={{ minHeight: '100%', display: 'flex', flexDirection: 'column' }}>
-        <Navbar />
+        {/* This will now hide itself automatically on the Homepage */}
+        <ConditionalNavbar /> 
+        
         <main style={{ flex: 1 }}>{children}</main>
         <Footer />
       </body>
