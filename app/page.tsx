@@ -274,7 +274,7 @@ const styles = {
   // --- NEW STYLES FOR VIDEO & SIGNUP SECTION ---
   ctaSection: {
     backgroundColor: "#f7f7f7", // Required background
-    padding: "80px 20px 220px", // Extra bottom padding accommodates the overlapping box
+    padding: "80px 20px 260px", // Extra bottom padding accommodates the overlapping box
     display: "flex",
     justifyContent: "center",
   },
@@ -353,7 +353,7 @@ const styles = {
   },
   overlapBox: {
     position: "absolute" as const,
-    bottom: "-160px", // Pulls the box down over the bottom edge
+    bottom: "-220px", // Pulls the box down over the bottom edge
     width: "90%",
     maxWidth: "1050px",
     display: "flex",
