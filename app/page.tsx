@@ -14,22 +14,23 @@ export default function Home() {
   ];
 
   const features = [
-  {
-    icon: <Baby size={32} strokeWidth={1.5} />,
-    title: "ORPHANHOOD",
-    text: "Providing a nurturing family environment and spiritual guidance for children in Colombia who have lost their parents, ensuring they are raised with hope.",
-  },
-  {
-    icon: <HomeIcon size={32} strokeWidth={1.5} />, // Updated to use HomeIcon
-    title: "HOMELESS",
-    text: "Through our local hubs like Casa del Rey and Morada de Gracia, we offer shelter and basic necessities to those in need.",
-  },
-  {
-    icon: <BookOpen size={32} strokeWidth={1.5} />,
-    title: "EDUCATION",
-    text: "Empowering the next generation through academic support and spiritual formation to help break the cycle of poverty in their communities.",
-  },
-];
+    {
+      icon: <Baby size={32} strokeWidth={1.5} />,
+      title: "ORPHANHOOD",
+      text: "Providing a nurturing family environment and spiritual guidance for children in Colombia who have lost their parents, ensuring they are raised with hope.",
+    },
+    {
+      icon: <HomeIcon size={32} strokeWidth={1.5} />,
+      title: "HOMELESS",
+      text: "Through our local hubs like Casa del Rey and Morada de Gracia, we offer shelter and basic necessities to those in need.",
+    },
+    {
+      icon: <BookOpen size={32} strokeWidth={1.5} />,
+      title: "EDUCATION",
+      text: "Empowering the next generation through academic support and spiritual formation to help break the cycle of poverty in their communities.",
+    },
+  ];
+
   return (
     <>
       {/* --- HERO SECTION --- */}
@@ -58,23 +59,21 @@ export default function Home() {
             local hubs like Casa del Rey and Morada de Gracia, and make a lasting impact.
           </p>
           <div style={styles.buttonGroup}>
-            <a href="/about" style={styles.primaryOutlineButton}>Learn More</a>
-            <a href="/donate" style={styles.accentOutlineButton}>Partner With Us</a>
+            <a href="/about" className="hero-outline-btn" style={styles.primaryOutlineButton}>Learn More</a>
+            <a href="/donate" className="hero-outline-btn" style={styles.accentOutlineButton}>Partner With Us</a>
           </div>
         </div>
       </div>
 
-      {/* --- NEW: WHO WE ARE SECTION --- */}
+      {/* --- WHO WE ARE SECTION --- */}
       <section style={styles.aboutSection}>
         <div style={styles.aboutGrid}>
-          
-          {/* Left Column: Text Content */}
           <div style={styles.textContent}>
             <span style={styles.smallLabel}>WHO WE ARE</span>
             <h2 style={styles.sectionHeading}>Serving in Colombia - South America Christ Way</h2>
             <p style={styles.sectionDesc}>
-              We are dedicated to sharing Christ’s love throughout Colombia through strategic service and collaborative partnerships,
-working tirelessly to restore hope and dignity to every family via unwavering, Gospel-centered compassion.
+              We are dedicated to sharing Christ’s love throughout Colombia through strategic service and collaborative partnerships, 
+              working tirelessly to restore hope and dignity to every family via unwavering, Gospel-centered compassion.
             </p>
             <div style={styles.featuresList}>
               {features.map((f, i) => (
@@ -87,15 +86,12 @@ working tirelessly to restore hope and dignity to every family via unwavering, G
                 </div>
               ))}
             </div>
-
             <a href="/about" style={styles.learnMoreBtn}>
               LEARN MORE <ArrowRight size={18} style={{ marginLeft: '8px' }} />
             </a>
           </div>
 
-          {/* Right Column: Image with Floating Box */}
           <div style={styles.imageContainer}>
-             {/* Replace with your actual image asset */}
             <Image 
               src="/missionaries.webp" 
               alt="Community Worship" 
@@ -108,7 +104,6 @@ working tirelessly to restore hope and dignity to every family via unwavering, G
               </p>
             </div>
           </div>
-
         </div>
       </section>
     </>
@@ -116,7 +111,6 @@ working tirelessly to restore hope and dignity to every family via unwavering, G
 }
 
 const styles = {
-  // ... Keep existing heroSection, heroOverlay, etc. from your previous code ...
   heroSection: {
     backgroundColor: theme.colors.primary,
     backgroundImage: "url(/header.webp)",
@@ -161,84 +155,52 @@ const styles = {
     flex: 1, display: "flex", flexDirection: "column" as const, alignItems: "center", justifyContent: "center",
   },
   headline: { color: theme.colors.text.inverse, fontSize: "4.2rem", fontWeight: 800, marginBottom: "1.5rem", lineHeight: "1.1" },
-  subtext: { color: theme.colors.text.inverse, fontSize: "1.3rem", lineHeight: "1.6", marginBottom: "3rem", maxWidth: "780px", opacity: 0.95 },
+  subtext: { 
+    color: theme.colors.text.inverse, 
+    fontSize: "1.25rem", 
+    lineHeight: "1.8", 
+    marginBottom: "3rem", 
+    maxWidth: "850px", 
+    opacity: 0.95, 
+    fontWeight: 300 
+  },
   buttonGroup: { display: "flex", gap: "1.5rem", justifyContent: "center" },
-  primaryOutlineButton: { color: theme.colors.text.inverse, border: `2px solid ${theme.colors.text.inverse}`, padding: "14px 32px", borderRadius: "30px", textDecoration: "none", fontWeight: "bold" },
-  accentOutlineButton: { color: theme.colors.text.inverse, border: `2px solid ${theme.colors.accent}`, padding: "14px 32px", borderRadius: "30px", textDecoration: "none", fontWeight: "bold" },
-
-  // --- NEW STYLES FOR ABOUT SECTION ---
-  aboutSection: {
-    padding: "100px 20px",
-    backgroundColor: "#ffffff",
-    display: "flex",
-    justifyContent: "center",
-  },
-  aboutGrid: {
-    maxWidth: "1200px",
-    width: "100%",
-    display: "grid",
-    gridTemplateColumns: "1.1fr 0.9fr",
-    gap: "60px",
-    alignItems: "center",
-  },
-  textContent: {
-    textAlign: "left" as const,
-  },
-  smallLabel: {
-    fontSize: "0.75rem",
-    fontWeight: 700,
-    letterSpacing: "2px",
-    color: "#888",
-    display: "block",
-    marginBottom: "15px",
-  },
-  sectionHeading: {
-    fontSize: "2.8rem",
-    fontWeight: 800,
-    color: theme.colors.primary,
-    marginBottom: "20px",
-    lineHeight: "1.2",
-  },
-  sectionDesc: {
-    fontSize: "1.05rem",
-    lineHeight: "1.7",
-    color: "#555",
-    marginBottom: "40px",
-    borderBottom: "1px solid #eee",
-    paddingBottom: "30px",
-  },
-  featuresList: {
-    display: "flex",
-    flexDirection: "column" as const,
-    gap: "30px",
-    marginBottom: "50px",
-  },
-  featureItem: {
-    display: "flex",
-    gap: "20px",
-    alignItems: "flex-start",
-  },
-  featureIcon: {
-    color: theme.colors.primary,
-    paddingTop: "5px",
-  },
-  featureText: {
-    flex: 1,
-  },
-  featureTitle: {
-    fontSize: "0.8rem",
-    fontWeight: 700,
-    letterSpacing: "1px",
-    marginBottom: "8px",
-    color: theme.colors.primary,
-  },
-  featureDesc: {
+  primaryOutlineButton: { 
+    color: theme.colors.text.inverse, 
+    border: `2px solid ${theme.colors.text.inverse}`, 
+    padding: "14px 32px", 
+    borderRadius: "30px", 
+    textDecoration: "none", 
+    fontWeight: "bold",
+    transition: "all 0.3s ease",
     fontSize: "0.95rem",
-    lineHeight: "1.6",
-    color: "#666",
+    textTransform: "uppercase" as const,
   },
+  accentOutlineButton: { 
+    color: theme.colors.text.inverse, 
+    border: `2px solid ${theme.colors.text.inverse}`, 
+    padding: "14px 32px", 
+    borderRadius: "30px", 
+    textDecoration: "none", 
+    fontWeight: "bold",
+    transition: "all 0.3s ease",
+    fontSize: "0.95rem",
+    textTransform: "uppercase" as const,
+  },
+  aboutSection: { padding: "100px 20px", backgroundColor: "#ffffff", display: "flex", justifyContent: "center" },
+  aboutGrid: { maxWidth: "1200px", width: "100%", display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: "60px", alignItems: "center" },
+  textContent: { textAlign: "left" as const },
+  smallLabel: { fontSize: "0.75rem", fontWeight: 700, letterSpacing: "2px", color: "#888", display: "block", marginBottom: "15px" },
+  sectionHeading: { fontSize: "2.8rem", fontWeight: 800, color: theme.colors.primary, marginBottom: "20px", lineHeight: "1.2" },
+  sectionDesc: { fontSize: "1.05rem", lineHeight: "1.7", color: "#555", marginBottom: "40px", borderBottom: "1px solid #eee", paddingBottom: "30px" },
+  featuresList: { display: "flex", flexDirection: "column" as const, gap: "30px", marginBottom: "50px" },
+  featureItem: { display: "flex", gap: "20px", alignItems: "flex-start" },
+  featureIcon: { color: theme.colors.primary, paddingTop: "5px" },
+  featureText: { flex: 1 },
+  featureTitle: { fontSize: "0.8rem", fontWeight: 700, letterSpacing: "1px", marginBottom: "8px", color: theme.colors.primary },
+  featureDesc: { fontSize: "0.95rem", lineHeight: "1.6", color: "#666" },
   learnMoreBtn: {
-    backgroundColor: "#4a5d58", // Muted green/gray from sample
+    backgroundColor: theme.colors.primary, 
     color: "#fff",
     padding: "15px 35px",
     borderRadius: "30px",
@@ -249,60 +211,17 @@ const styles = {
     alignItems: "center",
     transition: "background 0.3s",
   },
-  imageContainer: {
-    position: "relative" as const,
-    height: "700px",
-    width: "100%",
-  },
+  imageContainer: { position: "relative" as const, height: "700px", width: "100%" },
   floatingBox: {
     position: "absolute" as const,
     top: "40px",
     left: "20px",
-    backgroundColor: "rgba(47, 62, 58, 0.9)", // Muted dark green overlay
+    backgroundColor: "rgba(10, 25, 47, 0.9)",
     padding: "40px",
     width: "320px",
     borderRadius: "4px",
     zIndex: 5,
+    boxShadow: "0 10px 30px rgba(0,0,0,0.3)",
   },
-  floatingText: {
-    color: "#fff",
-    fontSize: "1.15rem",
-    lineHeight: "1.6",
-    fontWeight: 500,
-  },
-  
-  // ... other styles like subtext and buttonGroup ...
-  primaryOutlineButton: {
-    color: theme.colors.text.inverse,
-    border: `2px solid ${theme.colors.text.inverse}`,
-    backgroundColor: "transparent",
-    padding: "14px 32px",
-    borderRadius: "30px",
-    textDecoration: "none",
-    fontWeight: "bold",
-    fontSize: "0.95rem",
-    textTransform: "uppercase" as const,
-    transition: "all 0.3s ease",
-  },
-  accentOutlineButton: {
-    color: theme.colors.text.inverse,
-    backgroundColor: "transparent",
-    border: `2px solid ${theme.colors.text.inverse}`,
-    padding: "14px 32px",
-    borderRadius: "30px",
-    textDecoration: "none",
-    fontWeight: "bold",
-    fontSize: "0.95rem",
-    textTransform: "uppercase" as const,
-    transition: "all 0.3s ease",
-  }, // End of styles object
-  subtext: {
-    color: theme.colors.text.inverse,
-    fontSize: "1.25rem",
-    lineHeight: "1.8", // Increased for readability with longer text
-    marginBottom: "3rem",
-    maxWidth: "850px", // Widened to accommodate the longer lines
-    opacity: 0.95,
-    fontWeight: 300,
-  },
+  floatingText: { color: "#fff", fontSize: "1.15rem", lineHeight: "1.6", fontWeight: 500 },
 };
