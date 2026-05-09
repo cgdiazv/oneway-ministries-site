@@ -2,10 +2,12 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { theme } from "@/styles/theme";
 import { Baby, Home as HomeIcon, BookOpen, ArrowRight, Play, Calendar, Folder, Lock, Menu, X } from "lucide-react";
 
 export default function Home() {
+  const router = useRouter();
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -212,7 +214,13 @@ export default function Home() {
               <h3 className="overlap-text" style={styles.overlapText}>
                 Stay connected, pray with us, and discover how God may be calling you to be part of this mission.
               </h3>
-              <form className="cta-form-group" style={styles.formGroup} onSubmit={(e) => e.preventDefault()}>
+              <form className="cta-form-group" style={styles.formGroup} onSubmit={(e) => {
+                e.preventDefault();
+                const emailInput = e.currentTarget.querySelector('input[type="email"]') as HTMLInputElement;
+                if (emailInput && emailInput.value) {
+                  router.push(`/contact?email=${encodeURIComponent(emailInput.value)}`);
+                }
+              }}>
                 <input 
                   type="email" 
                   placeholder="YOUR EMAIL ADDRESS" 
@@ -308,6 +316,7 @@ export default function Home() {
       {/* --- NEW: PARTNER & SPONSOR SECTION --- */}
       <section style={styles.partnerSection}>
         <div style={styles.partnerContainer}>
+          <span style={styles.initiativesOverline}>Our Impact</span>
           <h2 className="partner-title" style={styles.partnerTitle}>With grateful hearts<br/> to our partners</h2>
           <p style={styles.partnerSubtitle}>
             Our work wouldn't be possible without the faithful support of our partners and sponsors around the globe.
