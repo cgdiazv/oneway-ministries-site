@@ -380,6 +380,8 @@ html {
     margin-top: 2rem !important;
     width: 100% !important;
     text-align: center;
+    background-color: var(--navy-primary) !important;
+    color: #ffffff !important;
   }
   .donate-action.donate-btn-hover:hover {
     background-color: #0A192F !important;

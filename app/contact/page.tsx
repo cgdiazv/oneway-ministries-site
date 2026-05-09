@@ -1,14 +1,96 @@
 import React from "react";
 import { theme } from "@/styles/theme";
 
+const countries = [
+  "United States", "Canada", "United Kingdom", "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czechia", "Democratic Republic of the Congo", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Palestine State", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
+];
+
 export default function ContactPage() {
+  const labelStyle = { display: "block", textAlign: "left", marginBottom: "8px", fontWeight: "600", color: "#333" };
+  const inputStyle = { width: "100%", padding: "12px", marginBottom: "20px", borderRadius: "8px", border: "1px solid #ddd", fontSize: "1rem" };
+
   return (
-    <div style={{ padding: "120px 20px", textAlign: "center", minHeight: "60vh", backgroundColor: "#f7f7f7" }}>
-      <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-        <h1 style={{ color: theme.colors.primary, fontSize: "3rem", marginBottom: "20px", fontWeight: 800 }}>Contact Us</h1>
-        <p style={{ color: "#555", fontSize: "1.2rem", lineHeight: "1.8" }}>
-          This is a placeholder for your new Contact Us page. We can start adding a contact form, phone numbers, and location details here next!
-        </p>
+    <div style={{ padding: "120px 20px", minHeight: "80vh", backgroundColor: "#f9f9f9" }}>
+      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+        
+        {/* Header Section */}
+        <div style={{ textAlign: "center", maxWidth: "700px", margin: "0 auto 60px" }}>
+          <span style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "2px", color: "#888", display: "block", marginBottom: "15px", textTransform: "uppercase" }}>
+            Connect and support
+          </span>
+          <h1 style={{ color: theme.colors.primary, fontSize: "3rem", marginBottom: "15px", fontWeight: 800 }}>
+            Be Part Of The Story
+          </h1>
+          <p style={{ color: "#666", fontSize: "1.1rem" }}>
+            Lives are being touched through the love of Christ in Colombia. Stay connected, pray with us, and discover how God may be calling you to be part of this mission.
+          </p>
+        </div>
+
+        {/* Main Content: Form */}
+        <div style={{ 
+          display: "flex", 
+          justifyContent: "center" 
+        }}>
+          
+          {/* Contact Form */}
+          <div style={{ width: "100%", maxWidth: "700px", backgroundColor: "#fff", padding: "40px", borderRadius: "12px", boxShadow: "0 4px 15px rgba(0,0,0,0.05)" }}>
+            <form>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
+                <div>
+                  <label style={labelStyle}>Full Name</label>
+                  <input type="text" placeholder="Your Name" style={inputStyle} required />
+                </div>
+
+                <div>
+                  <label style={labelStyle}>Email Address</label>
+                  <input type="email" placeholder="email@example.com" style={inputStyle} required />
+                </div>
+
+                <div>
+                  <label style={labelStyle}>Phone Number</label>
+                  <input type="tel" placeholder="+1 (555) 000-0000" style={inputStyle} required />
+                </div>
+
+                <div>
+                  <label style={labelStyle}>Country</label>
+                  <select defaultValue="" style={{ ...inputStyle, backgroundColor: "#fff", cursor: "pointer" }} required>
+                    <option value="" disabled>Select your country</option>
+                    {countries.map((country) => (
+                      <option key={country} value={country}>{country}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <label style={labelStyle}>How do you want to get involved?</label>
+              <select defaultValue="" style={{ ...inputStyle, backgroundColor: "#fff", cursor: "pointer" }} required>
+                <option value="" disabled>Select an area of interest</option>
+                <option value="Youth & Families">Youth & Families</option>
+                <option value="People with Disabilities">People with Disabilities</option>
+                <option value="Food & Housing">Food & Housing</option>
+                <option value="Immigrants & Refugees">Immigrants & Refugees</option>
+              </select>
+
+              <label style={labelStyle}>Additional Notes</label>
+              <textarea rows="5" placeholder="Is there anything else you’d like to share with us?" style={{ ...inputStyle, resize: "vertical" }}></textarea>
+
+              <button type="submit" style={{
+                backgroundColor: theme.colors.primary,
+                color: "#fff",
+                padding: "15px 30px",
+                border: "none",
+                borderRadius: "8px",
+                fontSize: "1rem",
+                fontWeight: "bold",
+                cursor: "pointer",
+                transition: "opacity 0.2s"
+              }}>
+                Get Involved Now
+              </button>
+            </form>
+          </div>
+
+        </div>
       </div>
     </div>
   );

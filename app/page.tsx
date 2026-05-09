@@ -218,6 +218,7 @@ export default function Home() {
                   placeholder="YOUR EMAIL ADDRESS" 
                   className="cta-input"
                   style={styles.input} 
+                  required
                 />
                 <button type="submit" className="cta-submit-btn" style={styles.submitBtn}>Sign Up</button>
               </form>
@@ -877,7 +878,7 @@ const styles = {
     zIndex: 10,
   },
   donateHeader: {
-    padding: "25px 20px",
+    padding: "15px 20px",
     borderBottom: "4px solid #E2E8F0", // Thick top border like the image
     textAlign: "center" as const,
   },
@@ -888,13 +889,13 @@ const styles = {
     margin: 0,
   },
   donateBody: {
-    padding: "30px",
+    padding: "20px 30px",
   },
   donateText: {
     fontSize: "0.95rem",
     color: "#555",
     lineHeight: "1.6",
-    marginBottom: "25px",
+    marginBottom: "15px",
   },
   donateLabelRow: {
     display: "flex",
@@ -922,7 +923,7 @@ const styles = {
     marginBottom: "15px",
   },
   amountBtn: {
-    padding: "15px",
+    padding: "12px",
     backgroundColor: "#fff",
     border: "1px solid #CBD5E1",
     borderRadius: "6px",
@@ -940,13 +941,13 @@ const styles = {
   },
   customInput: {
     width: "100%",
-    padding: "15px",
+    padding: "12px",
     border: "1px solid #CBD5E1",
     borderRadius: "6px",
     fontSize: "0.95rem",
     textAlign: "center" as const,
     outline: "none",
-    marginBottom: "25px",
+    marginBottom: "20px",
     color: theme.colors.text.main,
   },
   donateSubmitBtn: {
