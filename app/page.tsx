@@ -98,28 +98,28 @@ export default function Home() {
       <div style={styles.heroSection}>
         <div style={styles.heroOverlay}></div>
         <header style={styles.integratedNavbar}>
-          <div style={styles.navContainer}>
-            <div style={styles.logoBox}>
+          <div className="nav-container" style={styles.navContainer}>
+            <div className="logo-box" style={styles.logoBox}>
               <a href="/" style={styles.logoLink}>
                 <Image src="/logo.webp" alt="Logo" width={140} height={40} priority />
               </a>
             </div>
-            <nav style={styles.navLinksGroup}>
+            <nav className="nav-links" style={styles.navLinksGroup}>
               {menuItems.map((item) => (
                 <a key={item.name} href={item.link} className="nav-link-hover" style={styles.navLink}>{item.name}</a>
               ))}
             </nav>
-            <button onClick={(e) => { e.preventDefault(); setIsDonateOpen(true); }} className="donate-btn-hover" style={styles.donateAction}>Donate</button>
+            <button onClick={(e) => { e.preventDefault(); setIsDonateOpen(true); }} className="donate-btn-hover donate-action" style={styles.donateAction}>Donate</button>
           </div>
         </header>
 
         <div style={styles.container}>
-          <h1 style={styles.headline}>Sharing Hope in Colombia:<br/>One Life at a Time</h1>
-          <p style={styles.subtext}>
+          <h1 className="hero-headline" style={styles.headline}>Sharing Hope in Colombia:<br/>One Life at a Time</h1>
+          <p className="hero-subtext" style={styles.subtext}>
             Partner with One Way Ministries to empower communities, support our<br/>
             local hubs like Casa del Rey and Morada de Gracia, and make a lasting impact.
           </p>
-          <div style={styles.buttonGroup}>
+          <div className="button-group" style={styles.buttonGroup}>
             <a href="/about" className="hero-outline-btn" style={styles.primaryOutlineButton}>Learn More</a>
             <button onClick={(e) => { e.preventDefault(); setIsDonateOpen(true); }} className="hero-outline-btn" style={styles.accentOutlineButton}>
               Partner With Us
@@ -130,10 +130,10 @@ export default function Home() {
 
       {/* --- WHO WE ARE SECTION --- */}
       <section style={styles.aboutSection}>
-        <div style={styles.aboutGrid}>
+        <div className="about-grid" style={styles.aboutGrid}>
           <div style={styles.textContent}>
             <span style={styles.smallLabel}>WHO WE ARE</span>
-            <h2 style={styles.sectionHeading}>Serving in Colombia - South America Christ Way</h2>
+            <h2 className="section-heading" style={styles.sectionHeading}>Serving in Colombia - South America Christ Way</h2>
             <p style={styles.sectionDesc}>
               We are dedicated to sharing Christ’s love throughout Colombia through strategic service and collaborative partnerships, 
               working tirelessly to restore hope and dignity to every family via unwavering, Gospel-centered compassion.
@@ -154,14 +154,14 @@ export default function Home() {
             </a>
           </div>
 
-          <div style={styles.imageContainer}>
+          <div className="about-image" style={styles.imageContainer}>
             <Image 
               src="/missionaries.webp" 
               alt="Community Worship" 
               fill 
               style={{ objectFit: 'cover', borderRadius: '8px' }} 
             />
-            <div style={styles.floatingBox}>
+            <div className="floating-box" style={styles.floatingBox}>
               <p style={styles.floatingText}>
                 We believe that faith is not only something to be practiced, but something to be lived daily, through acts of kindness, generosity, and understanding.
               </p>
@@ -171,15 +171,15 @@ export default function Home() {
       </section>
 
       {/* --- CTA: VIDEO & SIGNUP SECTION --- */}
-      <section style={styles.ctaSection}>
+      <section className="cta-section" style={styles.ctaSection}>
         <div style={styles.ctaContainer}>
           
           {/* Main Image Banner */}
-          <div style={styles.ctaBanner}>
+          <div className="cta-banner" style={styles.ctaBanner}>
             <div style={styles.ctaOverlay}></div>
             <div style={styles.ctaContent}>
               <p style={styles.ctaSub}>One of our ministries</p>
-              <h2 style={styles.ctaHeading}>The Guainia Trans-cultural Mission</h2>
+              <h2 className="cta-heading" style={styles.ctaHeading}>The Guainia Trans-cultural Mission</h2>
               <div style={styles.ctaDivider}></div>
               <p style={styles.ctaDesc}>
                 Supports Alfa & Omega church planting among indigenous communities in Colombia’s Amazon region, providing Gospel outreach, leadership training, Bible translation support, and practical resources to strengthen local churches and pastors serving diverse ethnic groups.
@@ -191,23 +191,24 @@ export default function Home() {
           </div>
 
           {/* Overlapping Bottom Box */}
-          <div style={styles.overlapBox}>
-            <div style={styles.overlapLeft}>
-              <h3 style={styles.overlapText}>
+          <div className="overlap-box" style={styles.overlapBox}>
+            <div className="overlap-left" style={styles.overlapLeft}>
+              <h3 className="overlap-text" style={styles.overlapText}>
                 Stay connected, pray with us, and discover how God may be calling you to be part of this mission.
               </h3>
-              <form style={styles.formGroup} onSubmit={(e) => e.preventDefault()}>
+              <form className="cta-form-group" style={styles.formGroup} onSubmit={(e) => e.preventDefault()}>
                 <input 
                   type="email" 
                   placeholder="YOUR EMAIL ADDRESS" 
+                  className="cta-input"
                   style={styles.input} 
                 />
-                <button type="submit" style={styles.submitBtn}>Sign Up</button>
+                <button type="submit" className="cta-submit-btn" style={styles.submitBtn}>Sign Up</button>
               </form>
             </div>
             
             {/* Image Halves for the right side */}
-            <div style={styles.overlapImages}>
+            <div className="overlap-images" style={styles.overlapImages}>
               <div style={styles.overlapImg1}></div>
               <div style={styles.overlapImg2}></div>
             </div>
@@ -241,10 +242,10 @@ export default function Home() {
         <div style={styles.initiativesContainer}>
           
           {/* Header Row */}
-          <div style={styles.initiativesHeader}>
+          <div className="initiatives-header" style={styles.initiativesHeader}>
             <div style={styles.initiativesHeaderLeft}>
               <span style={styles.initiativesOverline}>OUR FUNDRAISERS</span>
-              <h2 style={styles.initiativesTitle}>Ongoing Projects & Ministries Involved</h2>
+              <h2 className="initiatives-title" style={styles.initiativesTitle}>Ongoing Projects & Ministries Involved</h2>
             </div>
             <div style={styles.initiativesHeaderRight}>
               <p style={styles.initiativesIntro}>
@@ -254,7 +255,7 @@ export default function Home() {
           </div>
 
           {/* 4-Column Grid */}
-          <div style={styles.initiativesGrid}>
+          <div className="initiatives-grid" style={styles.initiativesGrid}>
             {projectsData.map((project, index) => (
               <div key={index} style={styles.projectCard}>
                 <div style={styles.projectImageContainer}>
@@ -290,7 +291,7 @@ export default function Home() {
       {/* --- NEW: PARTNER & SPONSOR SECTION --- */}
       <section style={styles.partnerSection}>
         <div style={styles.partnerContainer}>
-          <h2 style={styles.partnerTitle}>With grateful hearts<br/> to our partners</h2>
+          <h2 className="partner-title" style={styles.partnerTitle}>With grateful hearts<br/> to our partners</h2>
           <p style={styles.partnerSubtitle}>
             Our work wouldn't be possible without the faithful support of our partners and sponsors around the globe.
           </p>
@@ -300,6 +301,7 @@ export default function Home() {
                 <img 
                   src={logo.svgSrc} 
                   alt={`${logo.name} logo`} 
+                  className="partner-logo-image"
                   style={styles.partnerLogoImage}
                 />
               </div>
@@ -311,7 +313,7 @@ export default function Home() {
       {/* --- DONATE MODAL --- */}
       {isDonateOpen && (
         <div style={styles.lightboxOverlay} onClick={() => setIsDonateOpen(false)}>
-          <div style={styles.donateModalContent} onClick={(e) => e.stopPropagation()}>
+          <div className="donate-modal-content" style={styles.donateModalContent} onClick={(e) => e.stopPropagation()}>
             <button style={styles.closeDonateBtn} onClick={() => setIsDonateOpen(false)}>✕</button>
             
             <div style={styles.donateHeader}>
@@ -339,7 +341,7 @@ export default function Home() {
                 <input type="hidden" name="no_shipping" value="1" />
 
                 {/* Preset Amount Grid */}
-                <div style={styles.amountGrid}>
+                <div className="amount-grid" style={styles.amountGrid}>
                   {[10, 25, 50, 100, 250, 500].map((amount) => (
                     <button
                       key={amount}
