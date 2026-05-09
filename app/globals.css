@@ -318,9 +318,9 @@ html {
   }
   .logo-and-menu {
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding-right: 1.5rem;
+    position: relative;
   }
   .logo-box {
     padding: 1rem 1.5rem !important;
@@ -328,6 +328,8 @@ html {
   }
   .mobile-menu-btn {
     display: block;
+    position: absolute;
+    right: 1.5rem;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -377,6 +379,11 @@ html {
     width: 100% !important;
     text-align: center;
   }
+  .donate-action.donate-btn-hover:hover {
+    background-color: #0A192F !important;
+    color: #ffffff !important;
+    box-shadow: none !important;
+  }
   .nav-overlay {
     display: block;
     position: fixed;
@@ -396,6 +403,7 @@ html {
   }
   .hero-headline {
     font-size: 2.5rem !important;
+    margin-top: 4rem !important;
   }
   .hero-subtext {
     font-size: 1.1rem !important;
