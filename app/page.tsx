@@ -858,7 +858,7 @@ const styles = {
     width: "90%",
     maxWidth: "550px",
     maxHeight: "90vh",
-    overflowY: "auto",
+    overflowY: "auto" as const,
     backgroundColor: "#fff",
     borderRadius: "24px",
     boxShadow: "0 10px 40px rgba(0,0,0,0.2)",
