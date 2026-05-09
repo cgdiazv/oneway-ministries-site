@@ -116,10 +116,10 @@ export default function Home() {
             <div style={styles.ctaOverlay}></div>
             <div style={styles.ctaContent}>
               <p style={styles.ctaSub}>One of our ministries</p>
-              <h2 style={styles.ctaHeading}>The Guainia Trans-cultural Mission<br/>supports Alfa & Omega church planting</h2>
+              <h2 style={styles.ctaHeading}>The Guainia Trans-cultural Mission</h2>
               <div style={styles.ctaDivider}></div>
               <p style={styles.ctaDesc}>
-                among indigenous communities in Colombia’s Amazon region, providing Gospel outreach, leadership training, Bible translation support, and practical resources to strengthen local churches and pastors serving diverse ethnic groups.
+                Supports Alfa & Omega church planting among indigenous communities in Colombia’s Amazon region, providing Gospel outreach, leadership training, Bible translation support, and practical resources to strengthen local churches and pastors serving diverse ethnic groups.
               </p>
               <button style={styles.playButton} className="play-btn-hover">
                 <Play fill="#fff" size={24} style={{ marginLeft: '4px' }} />
@@ -385,16 +385,21 @@ const styles = {
   input: {
     flex: 1,
     padding: "0 15px",
-    border: "none",
+    border: "1px solid #fff",
+    borderRight: "none",
+    borderRadius: "25px 0 0 25px",
+    backgroundColor: "transparent",
+    color: "#fff",
     fontSize: "0.85rem",
     outline: "none",
     fontWeight: 500,
   },
   submitBtn: {
     padding: "0 25px",
-    backgroundColor: theme.colors.accent, // Using your Crimson brand color
-    color: "#fff",
-    border: "none",
+    backgroundColor: "#fff",
+    color: theme.colors.primary,
+    border: "1px solid #fff",
+    borderRadius: "0 25px 25px 0",
     fontWeight: "bold",
     fontSize: "0.85rem",
     cursor: "pointer",
