@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { theme } from "@/styles/theme";
-import { Baby, Home as HomeIcon, BookOpen, ArrowRight } from "lucide-react";
+import { Baby, Home as HomeIcon, BookOpen, ArrowRight, Play } from "lucide-react";
 
 export default function Home() {
   const menuItems = [
@@ -104,6 +104,53 @@ export default function Home() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* --- NEW: VIDEO & SIGNUP SECTION --- */}
+      <section style={styles.ctaSection}>
+        <div style={styles.ctaContainer}>
+          
+          {/* Main Image Banner */}
+          <div style={styles.ctaBanner}>
+            <div style={styles.ctaOverlay}></div>
+            <div style={styles.ctaContent}>
+              <p style={styles.ctaSub}>A place, a church, and a community committed to</p>
+              <h2 style={styles.ctaHeading}>Living with simplicity,<br/>joy, and caring</h2>
+              <div style={styles.ctaDivider}></div>
+              <p style={styles.ctaDesc}>
+                We are a ministry that confesses and proclaims the Risen Christ 
+                and God's unconditional grace, love, and forgiveness for all.
+              </p>
+              <button style={styles.playButton} className="play-btn-hover">
+                <Play fill="#fff" size={24} style={{ marginLeft: '4px' }} />
+              </button>
+            </div>
+          </div>
+
+          {/* Overlapping Bottom Box */}
+          <div style={styles.overlapBox}>
+            <div style={styles.overlapLeft}>
+              <h3 style={styles.overlapText}>
+                Whether you are seeking answers, looking for community, or wanting to grow spiritually, there is a place for you here.
+              </h3>
+              <form style={styles.formGroup} onSubmit={(e) => e.preventDefault()}>
+                <input 
+                  type="email" 
+                  placeholder="YOUR EMAIL ADDRESS" 
+                  style={styles.input} 
+                />
+                <button type="submit" style={styles.submitBtn}>Sign Up</button>
+              </form>
+            </div>
+            
+            {/* Image Halves for the right side */}
+            <div style={styles.overlapImages}>
+              <div style={styles.overlapImg1}></div>
+              <div style={styles.overlapImg2}></div>
+            </div>
+          </div>
+
         </div>
       </section>
     </>
@@ -224,4 +271,151 @@ const styles = {
     boxShadow: "0 10px 30px rgba(0,0,0,0.3)",
   },
   floatingText: { color: "#fff", fontSize: "1.15rem", lineHeight: "1.6", fontWeight: 500 },
+  
+  // --- NEW STYLES FOR VIDEO & SIGNUP SECTION ---
+  ctaSection: {
+    backgroundColor: "#f7f7f7", // Required background
+    padding: "80px 20px 140px", // Extra bottom padding accommodates the overlapping box
+    display: "flex",
+    justifyContent: "center",
+  },
+  ctaContainer: {
+    maxWidth: "1200px",
+    width: "100%",
+    position: "relative" as const,
+    display: "flex",
+    flexDirection: "column" as const,
+    alignItems: "center",
+  },
+  ctaBanner: {
+    position: "relative" as const,
+    width: "100%",
+    height: "650px",
+    backgroundImage: "url(/banner-worship.webp)", // Placeholder for your main image
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    display: "flex",
+    flexDirection: "column" as const,
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center" as const,
+    padding: "40px",
+    color: "#fff",
+  },
+  ctaOverlay: {
+    position: "absolute" as const,
+    top: 0, left: 0, right: 0, bottom: 0,
+    backgroundColor: "rgba(0, 0, 0, 0.65)", // Darkens the image so white text pops
+    zIndex: 1,
+  },
+  ctaContent: {
+    position: "relative" as const,
+    zIndex: 2,
+    maxWidth: "750px",
+  },
+  ctaSub: {
+    fontSize: "0.8rem",
+    fontWeight: 700,
+    letterSpacing: "2px",
+    textTransform: "uppercase" as const,
+    marginBottom: "15px",
+    color: "#e2e2e2",
+  },
+  ctaHeading: {
+    fontSize: "3.5rem",
+    fontWeight: 800,
+    lineHeight: "1.1",
+    marginBottom: "25px",
+  },
+  ctaDivider: {
+    width: "40px",
+    height: "2px",
+    backgroundColor: "#fff",
+    margin: "0 auto 25px",
+  },
+  ctaDesc: {
+    fontSize: "1.1rem",
+    lineHeight: "1.6",
+    marginBottom: "40px",
+  },
+  playButton: {
+    background: "transparent",
+    border: "2px solid #fff",
+    borderRadius: "50%",
+    width: "65px",
+    height: "65px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    cursor: "pointer",
+    margin: "0 auto",
+    color: "#fff",
+    transition: "all 0.3s ease",
+  },
+  overlapBox: {
+    position: "absolute" as const,
+    bottom: "-80px", // Pulls the box down over the bottom edge
+    width: "90%",
+    maxWidth: "1050px",
+    display: "flex",
+    minHeight: "260px",
+    boxShadow: "0 15px 35px rgba(0,0,0,0.15)",
+    zIndex: 10,
+    backgroundColor: "#fff",
+  },
+  overlapLeft: {
+    flex: "1.3",
+    backgroundColor: theme.colors.primary, // Using your Navy brand color
+    padding: "50px",
+    display: "flex",
+    flexDirection: "column" as const,
+    justifyContent: "center",
+  },
+  overlapText: {
+    color: "#fff",
+    fontSize: "1.4rem",
+    fontWeight: 600,
+    lineHeight: "1.4",
+    marginBottom: "25px",
+  },
+  formGroup: {
+    display: "flex",
+    width: "100%",
+    height: "45px",
+  },
+  input: {
+    flex: 1,
+    padding: "0 15px",
+    border: "none",
+    fontSize: "0.85rem",
+    outline: "none",
+    fontWeight: 500,
+  },
+  submitBtn: {
+    padding: "0 25px",
+    backgroundColor: theme.colors.accent, // Using your Crimson brand color
+    color: "#fff",
+    border: "none",
+    fontWeight: "bold",
+    fontSize: "0.85rem",
+    cursor: "pointer",
+    textTransform: "uppercase" as const,
+    transition: "background 0.3s ease",
+  },
+  overlapImages: {
+    flex: "1",
+    display: "flex",
+  },
+  overlapImg1: {
+    flex: 1,
+    backgroundImage: "url(/overlap-1.webp)", // Left small image
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  },
+  overlapImg2: {
+    flex: 1,
+    backgroundImage: "url(/overlap-2.webp)", // Right small image
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  }
 };
