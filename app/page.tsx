@@ -134,7 +134,7 @@ export default function Home() {
               <h3 style={styles.overlapText}>
                 Whether you are seeking answers, looking for community, or wanting to grow spiritually, there is a place for you here.
               </h3>
-              <form style={styles.formGroup} onSubmit={(e) => e.preventDefault()}>
+              <form style={styles.formGroup}>
                 <input 
                   type="email" 
                   placeholder="YOUR EMAIL ADDRESS" 
@@ -271,7 +271,7 @@ const styles = {
     boxShadow: "0 10px 30px rgba(0,0,0,0.3)",
   },
   floatingText: { color: "#fff", fontSize: "1.15rem", lineHeight: "1.6", fontWeight: 500 },
-  
+
   // --- NEW STYLES FOR VIDEO & SIGNUP SECTION ---
   ctaSection: {
     backgroundColor: "#f7f7f7", // Required background
