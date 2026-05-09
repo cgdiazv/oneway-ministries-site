@@ -270,9 +270,11 @@ const styles = {
     lineHeight: "1.6",
     fontWeight: 500,
   },
+  
+  // ... other styles like subtext and buttonGroup ...
   primaryOutlineButton: {
     color: theme.colors.text.inverse,
-    border: `2px solid ${theme.colors.text.inverse}`, // White outline
+    border: `2px solid ${theme.colors.text.inverse}`,
     backgroundColor: "transparent",
     padding: "14px 32px",
     borderRadius: "30px",
@@ -285,7 +287,7 @@ const styles = {
   accentOutlineButton: {
     color: theme.colors.text.inverse,
     backgroundColor: "transparent",
-    border: `2px solid ${theme.colors.text.inverse}`, // Force this to white
+    border: `2px solid ${theme.colors.text.inverse}`,
     padding: "14px 32px",
     borderRadius: "30px",
     textDecoration: "none",
@@ -293,7 +295,7 @@ const styles = {
     fontSize: "0.95rem",
     textTransform: "uppercase" as const,
     transition: "all 0.3s ease",
-  },
+  }, // End of styles object
   subtext: {
     color: theme.colors.text.inverse,
     fontSize: "1.25rem",
