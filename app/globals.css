@@ -225,6 +225,10 @@ html {
   transition: all 0.3s ease;
 }
 
+.donate-submit-hover:hover { 
+  opacity: 0.9;
+ }
+
 .donate-btn-hover:hover {
   background-color: white !important;
   color: #0A192F !important; /* Navy color */

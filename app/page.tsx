@@ -3,10 +3,24 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { theme } from "@/styles/theme";
-import { Baby, Home as HomeIcon, BookOpen, ArrowRight, Play, Calendar, Folder } from "lucide-react";
+import { Baby, Home as HomeIcon, BookOpen, ArrowRight, Play, Calendar, Folder, Lock } from "lucide-react";
 
 export default function Home() {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+
+  const [isDonateOpen, setIsDonateOpen] = useState(false);
+  const [selectedAmount, setSelectedAmount] = useState<number | string>(50); // Default $50
+  const [customAmount, setCustomAmount] = useState("");
+
+  const handlePresetClick = (amount: number) => {
+    setSelectedAmount(amount);
+    setCustomAmount("");
+  };
+
+  const handleCustomChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCustomAmount(e.target.value);
+    setSelectedAmount("");
+  };
 
   const menuItems = [
     { name: "About Us", link: "/about" },
@@ -95,7 +109,7 @@ export default function Home() {
                 <a key={item.name} href={item.link} className="nav-link-hover" style={styles.navLink}>{item.name}</a>
               ))}
             </nav>
-            <a href="/donate" className="donate-btn-hover" style={styles.donateAction}>Donate</a>
+            <button onClick={(e) => { e.preventDefault(); setIsDonateOpen(true); }} className="donate-btn-hover" style={styles.donateAction}>Donate</button>
           </div>
         </header>
 
@@ -107,7 +121,9 @@ export default function Home() {
           </p>
           <div style={styles.buttonGroup}>
             <a href="/about" className="hero-outline-btn" style={styles.primaryOutlineButton}>Learn More</a>
-            <a href="/donate" className="hero-outline-btn" style={styles.accentOutlineButton}>Partner With Us</a>
+            <button onClick={(e) => { e.preventDefault(); setIsDonateOpen(true); }} className="hero-outline-btn" style={styles.accentOutlineButton}>
+              Partner With Us
+            </button>
           </div>
         </div>
       </div>
@@ -291,6 +307,77 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* --- DONATE MODAL --- */}
+      {isDonateOpen && (
+        <div style={styles.lightboxOverlay} onClick={() => setIsDonateOpen(false)}>
+          <div style={styles.donateModalContent} onClick={(e) => e.stopPropagation()}>
+            <button style={styles.closeDonateBtn} onClick={() => setIsDonateOpen(false)}>✕</button>
+            
+            <div style={styles.donateHeader}>
+              <h3 style={styles.donateTitle}>How much would you like to donate today?</h3>
+            </div>
+            
+            <div style={styles.donateBody}>
+              <p style={styles.donateText}>
+                All donations directly impact our organization and help us further our mission.
+              </p>
+
+              <div style={styles.donateLabelRow}>
+                <span style={styles.donateLabel}>Donation Amount <span style={{color: theme.colors.accent}}>*</span></span>
+                <span style={styles.currencyBadge}>USD $</span>
+              </div>
+
+              {/* PayPal Form */}
+              <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+                {/* PayPal Configuration Hidden Fields */}
+                <input type="hidden" name="cmd" value="_donations" />
+                <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL@EXAMPLE.COM" />
+                <input type="hidden" name="item_name" value="Donation to One Way Ministries" />
+                <input type="hidden" name="currency_code" value="USD" />
+                <input type="hidden" name="amount" value={customAmount || selectedAmount} />
+                <input type="hidden" name="no_shipping" value="1" />
+
+                {/* Preset Amount Grid */}
+                <div style={styles.amountGrid}>
+                  {[10, 25, 50, 100, 250, 500].map((amount) => (
+                    <button
+                      key={amount}
+                      type="button"
+                      onClick={() => handlePresetClick(amount)}
+                      style={{
+                        ...styles.amountBtn,
+                        ...(selectedAmount === amount ? styles.amountBtnSelected : {}),
+                      }}
+                    >
+                      ${amount}.00
+                    </button>
+                  ))}
+                </div>
+
+                {/* Custom Amount Input */}
+                <input
+                  type="number"
+                  placeholder="Enter custom amount"
+                  value={customAmount}
+                  onChange={handleCustomChange}
+                  style={styles.customInput}
+                  min="1"
+                />
+
+                <button type="submit" style={styles.donateSubmitBtn} className="donate-submit-hover">
+                  Donate now <ArrowRight size={16} style={{ marginLeft: '8px' }} />
+                </button>
+              </form>
+
+              <div style={styles.secureFooter}>
+                <Lock size={12} style={{ marginRight: '6px' }} />
+                100% Secure Donation
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
@@ -745,5 +832,125 @@ const styles = {
     maxHeight: "75px", 
     maxWidth: "180px", 
     objectFit: "contain" as const,
+  },
+
+  // --- DONATE MODAL STYLES ---
+  donateModalContent: {
+    position: "relative" as const,
+    width: "90%",
+    maxWidth: "550px",
+    backgroundColor: "#fff",
+    borderRadius: "24px",
+    boxShadow: "0 10px 40px rgba(0,0,0,0.2)",
+    display: "flex",
+    flexDirection: "column" as const,
+  },
+  closeDonateBtn: {
+    position: "absolute" as const,
+    top: "15px",
+    right: "20px",
+    background: "none",
+    border: "none",
+    fontSize: "1.5rem",
+    color: "#666",
+    cursor: "pointer",
+    zIndex: 10,
+  },
+  donateHeader: {
+    padding: "25px 20px",
+    borderBottom: "4px solid #E2E8F0", // Thick top border like the image
+    textAlign: "center" as const,
+  },
+  donateTitle: {
+    fontSize: "1.1rem",
+    fontWeight: 600,
+    color: theme.colors.text.main,
+    margin: 0,
+  },
+  donateBody: {
+    padding: "30px",
+  },
+  donateText: {
+    fontSize: "0.95rem",
+    color: "#555",
+    lineHeight: "1.6",
+    marginBottom: "25px",
+  },
+  donateLabelRow: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: "15px",
+  },
+  donateLabel: {
+    fontWeight: 600,
+    fontSize: "0.95rem",
+    color: theme.colors.text.main,
+  },
+  currencyBadge: {
+    backgroundColor: "#E2E8F0",
+    padding: "4px 10px",
+    borderRadius: "4px",
+    fontSize: "0.8rem",
+    fontWeight: 600,
+    color: "#475569",
+  },
+  amountGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(2, 1fr)",
+    gap: "15px",
+    marginBottom: "15px",
+  },
+  amountBtn: {
+    padding: "15px",
+    backgroundColor: "#fff",
+    border: "1px solid #CBD5E1",
+    borderRadius: "6px",
+    fontSize: "1rem",
+    fontWeight: 500,
+    color: theme.colors.text.main,
+    cursor: "pointer",
+    transition: "all 0.2s ease",
+  },
+  amountBtnSelected: {
+    backgroundColor: "rgba(10, 25, 47, 0.05)", // Very light Navy tint
+    border: `2px solid ${theme.colors.primary}`, // Navy border
+    fontWeight: 700,
+    color: theme.colors.primary,
+  },
+  customInput: {
+    width: "100%",
+    padding: "15px",
+    border: "1px solid #CBD5E1",
+    borderRadius: "6px",
+    fontSize: "0.95rem",
+    textAlign: "center" as const,
+    outline: "none",
+    marginBottom: "25px",
+    color: theme.colors.text.main,
+  },
+  donateSubmitBtn: {
+    width: "100%",
+    backgroundColor: theme.colors.primary, // Using your brand Navy instead of muted green
+    color: "#fff",
+    padding: "16px",
+    borderRadius: "6px",
+    border: "none",
+    fontSize: "1rem",
+    fontWeight: 700,
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    transition: "background 0.3s ease",
+  },
+  secureFooter: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: "20px",
+    fontSize: "0.75rem",
+    color: "#64748B",
+    fontWeight: 600,
   },
 };
