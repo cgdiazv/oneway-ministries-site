@@ -115,12 +115,11 @@ export default function Home() {
           <div style={styles.ctaBanner}>
             <div style={styles.ctaOverlay}></div>
             <div style={styles.ctaContent}>
-              <p style={styles.ctaSub}>A place, a church, and a community committed to</p>
-              <h2 style={styles.ctaHeading}>Living with simplicity,<br/>joy, and caring</h2>
+              <p style={styles.ctaSub}>One of our ministries</p>
+              <h2 style={styles.ctaHeading}>The Guainia Trans-cultural Mission<br/>supports Alfa & Omega church planting</h2>
               <div style={styles.ctaDivider}></div>
               <p style={styles.ctaDesc}>
-                We are a ministry that confesses and proclaims the Risen Christ 
-                and God's unconditional grace, love, and forgiveness for all.
+                among indigenous communities in Colombia’s Amazon region, providing Gospel outreach, leadership training, Bible translation support, and practical resources to strengthen local churches and pastors serving diverse ethnic groups.
               </p>
               <button style={styles.playButton} className="play-btn-hover">
                 <Play fill="#fff" size={24} style={{ marginLeft: '4px' }} />
@@ -132,7 +131,7 @@ export default function Home() {
           <div style={styles.overlapBox}>
             <div style={styles.overlapLeft}>
               <h3 style={styles.overlapText}>
-                Whether you are seeking answers, looking for community, or wanting to grow spiritually, there is a place for you here.
+                Stay connected, pray with us, and discover how God may be calling you to be part of this mission.
               </h3>
               <form style={styles.formGroup}>
                 <input 
