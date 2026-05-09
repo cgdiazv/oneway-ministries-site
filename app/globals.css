@@ -292,8 +292,9 @@ html {
 .nav-wrapper {
   display: flex;
   flex: 1;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
+  gap: 3rem;
 }
 
 /* --- RESPONSIVE OVERRIDES --- */
@@ -347,6 +348,7 @@ html {
     transition: left 0.3s ease;
     padding: 2rem 1.5rem;
     box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    gap: 0 !important;
   }
   .nav-wrapper.open {
     left: 0;
@@ -496,6 +498,10 @@ html {
     width: 95% !important;
   }
   .amount-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+  .donate-body {
+    padding: 20px !important;
   }
 }

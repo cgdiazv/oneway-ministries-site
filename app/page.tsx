@@ -336,7 +336,7 @@ export default function Home() {
               <h3 style={styles.donateTitle}>How much would you like to donate today?</h3>
             </div>
             
-            <div style={styles.donateBody}>
+            <div className="donate-body" style={styles.donateBody}>
               <p style={styles.donateText}>
                 All donations directly impact our organization and help us further our mission.
               </p>
@@ -857,6 +857,8 @@ const styles = {
     position: "relative" as const,
     width: "90%",
     maxWidth: "550px",
+    maxHeight: "90vh",
+    overflowY: "auto",
     backgroundColor: "#fff",
     borderRadius: "24px",
     boxShadow: "0 10px 40px rgba(0,0,0,0.2)",
