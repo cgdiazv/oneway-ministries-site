@@ -3,10 +3,11 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { theme } from "@/styles/theme";
-import { Baby, Home as HomeIcon, BookOpen, ArrowRight, Play, Calendar, Folder, Lock } from "lucide-react";
+import { Baby, Home as HomeIcon, BookOpen, ArrowRight, Play, Calendar, Folder, Lock, Menu, X } from "lucide-react";
 
 export default function Home() {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const [isDonateOpen, setIsDonateOpen] = useState(false);
   const [selectedAmount, setSelectedAmount] = useState<number | string>(50); // Default $50
@@ -99,17 +100,32 @@ export default function Home() {
         <div style={styles.heroOverlay}></div>
         <header style={styles.integratedNavbar}>
           <div className="nav-container" style={styles.navContainer}>
-            <div className="logo-box" style={styles.logoBox}>
-              <a href="/" style={styles.logoLink}>
-                <Image src="/logo.webp" alt="Logo" width={140} height={40} priority />
-              </a>
+            <div className="logo-and-menu">
+              <div className="logo-box" style={styles.logoBox}>
+                <a href="/" style={styles.logoLink}>
+                  <Image src="/logo.webp" alt="Logo" width={140} height={40} priority />
+                </a>
+              </div>
+              <button className="mobile-menu-btn" onClick={() => setIsMenuOpen(true)}>
+                <Menu size={32} color="#fff" />
+              </button>
             </div>
-            <nav className="nav-links" style={styles.navLinksGroup}>
-              {menuItems.map((item) => (
-                <a key={item.name} href={item.link} className="nav-link-hover" style={styles.navLink}>{item.name}</a>
-              ))}
-            </nav>
-            <button onClick={(e) => { e.preventDefault(); setIsDonateOpen(true); }} className="donate-btn-hover donate-action" style={styles.donateAction}>Donate</button>
+
+            <div className={`nav-wrapper ${isMenuOpen ? "open" : ""}`}>
+              <div className="drawer-header">
+                <button className="close-menu-btn" onClick={() => setIsMenuOpen(false)}>
+                  <X size={32} color={theme.colors.primary} />
+                </button>
+              </div>
+              <nav className="nav-links" style={styles.navLinksGroup}>
+                {menuItems.map((item) => (
+                  <a key={item.name} href={item.link} className="nav-link-hover" style={styles.navLink} onClick={() => setIsMenuOpen(false)}>{item.name}</a>
+                ))}
+              </nav>
+              <button onClick={(e) => { e.preventDefault(); setIsMenuOpen(false); setIsDonateOpen(true); }} className="donate-btn-hover donate-action" style={styles.donateAction}>Donate</button>
+            </div>
+            
+            <div className={`nav-overlay ${isMenuOpen ? "open" : ""}`} onClick={() => setIsMenuOpen(false)}></div>
           </div>
         </header>
 
@@ -184,7 +200,7 @@ export default function Home() {
               <p style={styles.ctaDesc}>
                 Supports Alfa & Omega church planting among indigenous communities in Colombia’s Amazon region, providing Gospel outreach, leadership training, Bible translation support, and practical resources to strengthen local churches and pastors serving diverse ethnic groups.
               </p>
-              <button style={styles.playButton} className="play-btn-hover" onClick={() => setIsVideoOpen(true)}>
+            <button style={styles.playButton} className="play-btn-hover cta-play-btn" onClick={() => setIsVideoOpen(true)}>
                 <Play fill="#fff" size={24} style={{ marginLeft: '4px' }} />
               </button>
             </div>
