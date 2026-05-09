@@ -6,8 +6,8 @@ const countries = [
 ];
 
 export default function ContactPage() {
-  const labelStyle = { display: "block", textAlign: "left", marginBottom: "8px", fontWeight: "600", color: "#333" };
-  const inputStyle = { width: "100%", padding: "12px", marginBottom: "20px", borderRadius: "8px", border: "1px solid #ddd", fontSize: "1rem" };
+  const labelStyle: React.CSSProperties = { display: "block", textAlign: "left", marginBottom: "8px", fontWeight: 600, color: "#333" };
+  const inputStyle: React.CSSProperties = { width: "100%", padding: "12px", marginBottom: "20px", borderRadius: "8px", border: "1px solid #ddd", fontSize: "1rem" };
 
   return (
     <div style={{ padding: "120px 20px", minHeight: "80vh", backgroundColor: "#f9f9f9" }}>
