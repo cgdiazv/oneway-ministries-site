@@ -270,7 +270,7 @@ const styles = {
     fontSize: "1.15rem",
     lineHeight: "1.6",
     fontWeight: 500,
-  }
+  },
   primaryOutlineButton: {
     color: theme.colors.text.inverse,
     border: `2px solid ${theme.colors.text.inverse}`, // White outline
