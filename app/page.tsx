@@ -247,7 +247,7 @@ const styles = {
   featureTitle: { fontSize: "0.8rem", fontWeight: 700, letterSpacing: "1px", marginBottom: "8px", color: theme.colors.primary },
   featureDesc: { fontSize: "0.95rem", lineHeight: "1.6", color: "#666" },
   learnMoreBtn: {
-    backgroundColor: theme.colors.primary, 
+    backgroundColor: theme.colors.primary,
     color: "#fff",
     padding: "15px 35px",
     borderRadius: "30px",
