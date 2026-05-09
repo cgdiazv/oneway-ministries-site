@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { theme } from "@/styles/theme";
-import { Baby, Home, BookOpen, ArrowRight } from "lucide-react";
+import { Baby, Home as HomeIcon, BookOpen, ArrowRight } from "lucide-react";
 
 export default function Home() {
   const menuItems = [
@@ -17,20 +17,19 @@ export default function Home() {
   {
     icon: <Baby size={32} strokeWidth={1.5} />,
     title: "ORPHANHOOD",
-    text: "We provide a family environment and spiritual guidance for children in Colombia who have lost their parents, ensuring they are raised with love and a hopeful future.",
+    text: "Providing a nurturing family environment and spiritual guidance for children in Colombia who have lost their parents, ensuring they are raised with hope.",
   },
   {
-    icon: <Home size={32} strokeWidth={1.5} />,
+    icon: <HomeIcon size={32} strokeWidth={1.5} />, // Updated to use HomeIcon
     title: "HOMELESS",
-    text: "Through our local hubs like Casa del Rey and Morada de Gracia, we offer shelter, basic necessities, and the dignity of Christ's love to those living on the streets.",
+    text: "Through our local hubs like Casa del Rey and Morada de Gracia, we offer shelter and basic necessities to those in need.",
   },
   {
     icon: <BookOpen size={32} strokeWidth={1.5} />,
     title: "EDUCATION",
-    text: "Empowering the next generation through spiritual formation and academic support, giving children the tools they need to break the cycle of poverty.",
+    text: "Empowering the next generation through academic support and spiritual formation to help break the cycle of poverty in their communities.",
   },
 ];
-
   return (
     <>
       {/* --- HERO SECTION --- */}
