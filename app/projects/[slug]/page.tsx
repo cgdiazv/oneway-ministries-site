@@ -2,15 +2,23 @@
 
 import React from "react";
 import Image from "next/image";
+// 1. Import the Link component
+import Link from "next/link"; 
 import { useParams } from "next/navigation";
 import { theme } from "@/styles/theme";
 import { ArrowLeft } from "lucide-react";
+
+const projectImages: Record<string, string> = {
+  "casa-del-rey": "/images/casa-del-rey.webp",
+  "united-for-life": "/images/united-for-life.webp",
+  "funcifunac": "/images/funcifunac.webp",
+  "impacto-biblico": "/images/impacto-biblico.webp", 
+};
 
 export default function SingleProjectPage() {
   const params = useParams();
   const slug = params.slug as string;
 
-  // We can format the URL slug back into a readable title (e.g. "casa-del-rey" -> "Casa Del Rey")
   const formatTitle = (str: string) => {
     if (!str) return "Project Details";
     return str.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
@@ -18,14 +26,16 @@ export default function SingleProjectPage() {
 
   const projectTitle = formatTitle(slug);
 
+  const imageUrl = projectImages[slug] || "/images/default-placeholder.webp";
+
   return (
     <div style={styles.pageWrapper}>
       <div style={styles.container}>
         
-        {/* Back Button */}
-        <a href="/" style={styles.backButton}>
+        {/* 2. Replace <a> with <Link> for client-side routing */}
+        <Link href="/" style={styles.backButton}>
           <ArrowLeft size={16} style={{ marginRight: '8px' }} /> Back to Home
-        </a>
+        </Link>
 
         {/* Project Header */}
         <div style={styles.header}>
@@ -33,10 +43,15 @@ export default function SingleProjectPage() {
           <h1 style={styles.title}>{projectTitle}</h1>
         </div>
 
-        {/* Placeholder Image Banner */}
+        {/* Replaced Placeholder with Next.js Image */}
         <div style={styles.imageBanner}>
-           {/* When you have real images, you can render them dynamically based on the slug here */}
-           <div style={styles.imagePlaceholderText}>Image for {projectTitle}</div>
+          <Image 
+            src={imageUrl} 
+            alt={`Banner for ${projectTitle}`} 
+            fill
+            style={{ objectFit: "cover" }}
+            priority 
+          />
         </div>
 
         {/* Project Content Body */}
@@ -50,7 +65,10 @@ export default function SingleProjectPage() {
           
           <div style={styles.ctaBox}>
             <h3 style={styles.ctaTitle}>Want to support this ministry?</h3>
-            <a href="/donate" className="project-donate-btn-hover" style={styles.donateBtn}>Make a Donation</a>
+            {/* 3. Replace the donate <a> with <Link> */}
+            <Link href="/donate" className="project-donate-btn-hover" style={styles.donateBtn}>
+              Make a Donation
+            </Link>
           </div>
         </div>
 
@@ -60,6 +78,7 @@ export default function SingleProjectPage() {
 }
 
 const styles = {
+  // ... (keep your other styles exactly the same)
   pageWrapper: {
     backgroundColor: "#f7f7f7",
     minHeight: "100vh",
@@ -102,21 +121,19 @@ const styles = {
     margin: 0,
     lineHeight: 1.1,
   },
+  
+  // 4. Update the imageBanner styles
   imageBanner: {
     width: "100%",
     height: "400px",
     backgroundColor: "#e2e8f0",
     borderRadius: "8px",
     marginBottom: "40px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
+    // CRITICAL ADDITIONS FOR NEXT/IMAGE:
+    position: "relative" as const, 
+    overflow: "hidden", 
   },
-  imagePlaceholderText: {
-    color: "#94a3b8",
-    fontSize: "1.2rem",
-    fontWeight: 500,
-  },
+  
   contentBody: {
     maxWidth: "750px",
   },
