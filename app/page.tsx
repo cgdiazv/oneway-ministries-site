@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { theme } from "@/styles/theme";
-import { Church, Users, Heart, ArrowRight } from "lucide-react"; // Icons for the new section
+import { Baby, Home, BookOpen, ArrowRight } from "lucide-react";
 
 export default function Home() {
   const menuItems = [
@@ -14,22 +14,22 @@ export default function Home() {
   ];
 
   const features = [
-    {
-      icon: <Church size={32} strokeWidth={1.5} />,
-      title: "WORSHIP",
-      text: "When we speak of 'worship,' we are referring to the life of our congregation: attending worship services, creating music, honoring life.",
-    },
-    {
-      icon: <Users size={32} strokeWidth={1.5} />,
-      title: "CONNECT",
-      text: "Church life means faith, relationship, discipline, service, responsibilities of church leaders and members, and much more.",
-    },
-    {
-      icon: <Heart size={32} strokeWidth={1.5} />,
-      title: "GOD'S LOVE",
-      text: "Love is a key attribute in Christianity. The love of God is a prevalent concept both in the Old Testament and the New Testament.",
-    },
-  ];
+  {
+    icon: <Baby size={32} strokeWidth={1.5} />,
+    title: "ORPHANHOOD",
+    text: "We provide a family environment and spiritual guidance for children in Colombia who have lost their parents, ensuring they are raised with love and a hopeful future.",
+  },
+  {
+    icon: <Home size={32} strokeWidth={1.5} />,
+    title: "HOMELESS",
+    text: "Through our local hubs like Casa del Rey and Morada de Gracia, we offer shelter, basic necessities, and the dignity of Christ's love to those living on the streets.",
+  },
+  {
+    icon: <BookOpen size={32} strokeWidth={1.5} />,
+    title: "EDUCATION",
+    text: "Empowering the next generation through spiritual formation and academic support, giving children the tools they need to break the cycle of poverty.",
+  },
+];
 
   return (
     <>
@@ -72,12 +72,11 @@ export default function Home() {
           {/* Left Column: Text Content */}
           <div style={styles.textContent}>
             <span style={styles.smallLabel}>WHO WE ARE</span>
-            <h2 style={styles.sectionHeading}>A Ministry Rooted in Faith and Service</h2>
+            <h2 style={styles.sectionHeading}>Serving in Colombia - South America Christ Way</h2>
             <p style={styles.sectionDesc}>
-              We are a church community dedicated to living out the teachings of Christianity through love, humility, and service. 
-              Our foundation is built on timeless spiritual values that guide us in supporting one another and reaching out to those in need.
+              We are dedicated to sharing Christ’s love throughout Colombia through strategic service and collaborative partnerships,
+working tirelessly to restore hope and dignity to every family via unwavering, Gospel-centered compassion.
             </p>
-
             <div style={styles.featuresList}>
               {features.map((f, i) => (
                 <div key={i} style={styles.featureItem}>
@@ -272,4 +271,37 @@ const styles = {
     lineHeight: "1.6",
     fontWeight: 500,
   }
+  primaryOutlineButton: {
+    color: theme.colors.text.inverse,
+    border: `2px solid ${theme.colors.text.inverse}`, // White outline
+    backgroundColor: "transparent",
+    padding: "14px 32px",
+    borderRadius: "30px",
+    textDecoration: "none",
+    fontWeight: "bold",
+    fontSize: "0.95rem",
+    textTransform: "uppercase" as const,
+    transition: "all 0.3s ease",
+  },
+  accentOutlineButton: {
+    color: theme.colors.text.inverse,
+    backgroundColor: "transparent",
+    border: `2px solid ${theme.colors.text.inverse}`, // Force this to white
+    padding: "14px 32px",
+    borderRadius: "30px",
+    textDecoration: "none",
+    fontWeight: "bold",
+    fontSize: "0.95rem",
+    textTransform: "uppercase" as const,
+    transition: "all 0.3s ease",
+  },
+  subtext: {
+    color: theme.colors.text.inverse,
+    fontSize: "1.25rem",
+    lineHeight: "1.8", // Increased for readability with longer text
+    marginBottom: "3rem",
+    maxWidth: "850px", // Widened to accommodate the longer lines
+    opacity: 0.95,
+    fontWeight: 300,
+  },
 };

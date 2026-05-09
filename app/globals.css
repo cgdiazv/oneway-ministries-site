@@ -231,7 +231,13 @@ html {
   box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
 }
 
+/* Specific hover for the Partner/Hero outline buttons */
+.hero-outline-btn {
+  transition: all 0.3s ease;
+}
+
 .hero-outline-btn:hover {
-  background-color: #ffffff !important;
-  color: #0A192F !important;
+  background-color: white !important;
+  color: #0A192F !important; /* Your brand Navy */
+  border-color: white !important;
 }
