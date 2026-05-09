@@ -59,7 +59,7 @@ export default function Home() {
       category: "FOUNDATION",
       excerpt: "Holistic development through evangelism, music, sports, and education to empower local leaders and youth, fostering spiritual growth and community development.",
       image: "/project-1.webp", // Replace with your actual images
-      link: "#",
+      link: "/projects/united-for-life",
     },
     {
       title: "Funcifunac Foundation Ministry",
@@ -67,7 +67,7 @@ export default function Home() {
       category: "FOUNDATION",
       excerpt: "Partnering with local contractors to install modern water filtration systems in underserved local neighborhoods.",
       image: "/project-2.webp",
-      link: "#",
+      link: "/projects/funcifunac",
     },
     {
       title: "Impacto Biblico Church Planting",
@@ -75,7 +75,7 @@ export default function Home() {
       category: "MINISTRY",
       excerpt: "Christ-centered ministry in Santa Marta, Colombia, commited to faithfuly preaching the Gospel.",
       image: "/project-3.webp",
-      link: "#",
+      link: "/projects/impacto-biblico",
     },
     {
       title: "Casa del Rey",
@@ -83,7 +83,7 @@ export default function Home() {
       category: "MINISTRY",
       excerpt: "Casa del Rey, together with Shalom Mision Xtrema Church, is a Christ-centered ministry in Bogota, Colombia.",
       image: "/project-4.webp",
-      link: "#",
+      link: "/projects/casa-del-rey",
     },
   ];
 

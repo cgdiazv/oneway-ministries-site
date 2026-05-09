@@ -272,12 +272,14 @@ html {
 
 /* Button hover scale effect */
 .learn-more-btn-hover,
-.read-more-btn-hover {
+.read-more-btn-hover,
+.project-donate-btn-hover {
   transition: transform 0.3s ease !important;
 }
 
 .learn-more-btn-hover:hover,
-.read-more-btn-hover:hover {
+.read-more-btn-hover:hover,
+.project-donate-btn-hover:hover {
   transform: scale(1.05) !important;
 }
 
