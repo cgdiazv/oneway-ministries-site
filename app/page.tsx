@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import { theme } from "@/styles/theme";
-import { Baby, Home as HomeIcon, BookOpen, ArrowRight, Play } from "lucide-react";
+import { Baby, Home as HomeIcon, BookOpen, ArrowRight, Play, Calendar, Folder } from "lucide-react";
+import { text } from "stream/consumers";
 
 export default function Home() {
   const menuItems = [
@@ -28,6 +29,41 @@ export default function Home() {
       icon: <BookOpen size={32} strokeWidth={1.5} />,
       title: "EDUCATION",
       text: "Empowering the next generation through academic support and spiritual formation to help break the cycle of poverty in their communities.",
+    },
+  ];
+
+  const projectsData = [
+    {
+      title: "United For Life Foundation",
+      date: "MAY 15, 2026",
+      category: "FOUNDATION",
+      excerpt: "Holistic development through evangelism, music, sports, and education to empower local leaders and youth, fostering spiritual growth and community development.",
+      image: "/project-1.webp", // Replace with your actual images
+      link: "#",
+    },
+    {
+      title: "Funcifunac Foundation Ministry",
+      date: "JUNE 02, 2026",
+      category: "FOUNDATION",
+      excerpt: "Partnering with local contractors to install modern water filtration systems in underserved local neighborhoods.",
+      image: "/project-2.webp",
+      link: "#",
+    },
+    {
+      title: "Impacto Biblico Church Planting",
+      date: "JULY 10, 2026",
+      category: "MINISTRY",
+      excerpt: "Christ-centered ministry in Santa Marta, Colombia, commited to faithfuly preaching the Gospel.",
+      image: "/project-3.webp",
+      link: "#",
+    },
+    {
+      title: "Casa del Rey",
+      date: "AUGUST 05, 2026",
+      category: "MINISTRY",
+      excerpt: "Casa del Rey, together with Shalom Mision Xtrema Church, is a Christ-centered ministry in Bogota, Colombia.",
+      image: "/project-4.webp",
+      link: "#",
     },
   ];
 
@@ -152,6 +188,57 @@ export default function Home() {
 
         </div>
       </section>
+
+      {/* --- INITIATIVES & PROJECTS SECTION --- */}
+      <section style={styles.initiativesSection}>
+        <div style={styles.initiativesContainer}>
+          
+          {/* Header Row */}
+          <div style={styles.initiativesHeader}>
+            <div style={styles.initiativesHeaderLeft}>
+              <span style={styles.initiativesOverline}>OUR FUNDRAISERS</span>
+              <h2 style={styles.initiativesTitle}>Ongoing Projects & Ministries Involved</h2>
+            </div>
+            <div style={styles.initiativesHeaderRight}>
+              <p style={styles.initiativesIntro}>
+                Through dedicated fundraising, ongoing community projects, and the active involvement of our local ministries, we are working to bring hope and essential resources to families in Colombia. Explore our latest efforts below.
+              </p>
+            </div>
+          </div>
+
+          {/* 4-Column Grid */}
+          <div style={styles.initiativesGrid}>
+            {projectsData.map((project, index) => (
+              <div key={index} style={styles.projectCard}>
+                <div style={styles.projectImageContainer}>
+                  <Image 
+                    src={project.image} 
+                    alt={project.title} 
+                    fill 
+                    style={{ objectFit: 'cover' }} 
+                  />
+                </div>
+                <div style={styles.projectCardBody}>
+                  <h3 style={styles.projectCardTitle}>{project.title}</h3>
+                  <div style={styles.projectCardMeta}>
+                    <span style={styles.metaItem}>
+                      <Calendar size={14} style={{ marginRight: '6px' }}/> {project.date}
+                    </span>
+                    <span style={styles.metaItem}>
+                      <Folder size={14} style={{ marginRight: '6px' }}/> {project.category}
+                    </span>
+                  </div>
+                  <p style={styles.projectCardExcerpt}>{project.excerpt}</p>
+                  <a href={project.link} style={styles.projectReadMore}>
+                    READ MORE <ArrowRight size={14} style={{ marginLeft: '6px' }} />
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
     </>
   );
 }
@@ -245,36 +332,15 @@ const styles = {
   featureText: { flex: 1 },
   featureTitle: { fontSize: "0.8rem", fontWeight: 700, letterSpacing: "1px", marginBottom: "8px", color: theme.colors.primary },
   featureDesc: { fontSize: "0.95rem", lineHeight: "1.6", color: "#666" },
-  learnMoreBtn: {
-    backgroundColor: theme.colors.primary,
-    color: "#fff",
-    padding: "15px 35px",
-    borderRadius: "30px",
-    textDecoration: "none",
-    fontWeight: "bold",
-    fontSize: "0.85rem",
-    display: "inline-flex",
-    alignItems: "center",
-    transition: "background 0.3s",
-  },
+  learnMoreBtn: theme.learnMoreBtn,
   imageContainer: { position: "relative" as const, height: "700px", width: "100%" },
-  floatingBox: {
-    position: "absolute" as const,
-    top: "40px",
-    left: "20px",
-    backgroundColor: "rgba(10, 25, 47, 0.9)",
-    padding: "40px",
-    width: "320px",
-    borderRadius: "4px",
-    zIndex: 5,
-    boxShadow: "0 10px 30px rgba(0,0,0,0.3)",
-  },
+  floatingBox: theme.floatingBox,
   floatingText: { color: "#fff", fontSize: "1.15rem", lineHeight: "1.6", fontWeight: 500 },
 
-  // --- NEW STYLES FOR VIDEO & SIGNUP SECTION ---
+  // --- CTA & SIGNUP SECTION ---
   ctaSection: {
-    backgroundColor: "#f7f7f7", // Required background
-    padding: "80px 20px 220px", // Extra bottom padding accommodates the overlapping box
+    backgroundColor: "#f7f7f7", 
+    padding: "100px 20px 280px", 
     display: "flex",
     justifyContent: "center",
   },
@@ -290,7 +356,7 @@ const styles = {
     position: "relative" as const,
     width: "100%",
     height: "650px",
-    backgroundImage: "url(/banner-worship.webp)", // Placeholder for your main image
+    backgroundImage: "url(/banner-worship.webp)", 
     backgroundSize: "cover",
     backgroundPosition: "center",
     display: "flex",
@@ -304,7 +370,7 @@ const styles = {
   ctaOverlay: {
     position: "absolute" as const,
     top: 0, left: 0, right: 0, bottom: 0,
-    backgroundColor: "rgba(0, 0, 0, 0.65)", // Darkens the image so white text pops
+    backgroundColor: "rgba(0, 0, 0, 0.65)", 
     zIndex: 1,
   },
   ctaContent: {
@@ -353,7 +419,7 @@ const styles = {
   },
   overlapBox: {
     position: "absolute" as const,
-    bottom: "-220px", // Pulls the box down over the bottom edge
+    bottom: "-180px", 
     width: "90%",
     maxWidth: "1050px",
     display: "flex",
@@ -364,7 +430,7 @@ const styles = {
   },
   overlapLeft: {
     flex: "1.3",
-    backgroundColor: theme.colors.primary, // Using your Navy brand color
+    backgroundColor: theme.colors.primary, 
     padding: "50px",
     display: "flex",
     flexDirection: "column" as const,
@@ -412,14 +478,128 @@ const styles = {
   },
   overlapImg1: {
     flex: 1,
-    backgroundImage: "url(/overlap-1.webp)", // Left small image
+    backgroundImage: "url(/overlap-1.webp)", 
     backgroundSize: "cover",
     backgroundPosition: "center",
   },
   overlapImg2: {
     flex: 1,
-    backgroundImage: "url(/overlap-2.webp)", // Right small image
+    backgroundImage: "url(/overlap-2.webp)", 
     backgroundSize: "cover",
     backgroundPosition: "center",
-  }
+  },
+
+  // --- NEW STYLES FOR INITIATIVES SECTION ---
+  initiativesSection: {
+    backgroundColor: "#ffffff",
+    padding: "100px 20px",
+    display: "flex",
+    justifyContent: "center",
+  },
+  initiativesContainer: {
+    maxWidth: "1300px", 
+    width: "100%",
+  },
+  initiativesHeader: {
+    display: "flex",
+    gap: "60px",
+    marginBottom: "50px",
+    alignItems: "flex-end",
+  },
+  initiativesHeaderLeft: {
+    flex: "1",
+  },
+  initiativesHeaderRight: {
+    flex: "1",
+    paddingBottom: "10px",
+  },
+  initiativesOverline: {
+    fontSize: "0.75rem",
+    fontWeight: 700,
+    letterSpacing: "2px",
+    color: "#888",
+    display: "block",
+    marginBottom: "15px",
+    textTransform: "uppercase" as const,
+  },
+  initiativesTitle: {
+    fontSize: "3rem",
+    fontWeight: 800,
+    color: theme.colors.primary, 
+    lineHeight: "1.1",
+    margin: 0,
+  },
+  initiativesIntro: {
+    fontSize: "1.05rem",
+    lineHeight: "1.7",
+    color: "#555",
+    margin: 0,
+  },
+  initiativesGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(4, 1fr)",
+    gap: "30px",
+  },
+  projectCard: {
+    border: "1px solid #eaeaea",
+    borderRadius: "4px",
+    overflow: "hidden",
+    backgroundColor: "#fff",
+    display: "flex",
+    flexDirection: "column" as const,
+    transition: "box-shadow 0.3s ease",
+  },
+  projectImageContainer: {
+    position: "relative" as const,
+    width: "100%",
+    height: "220px",
+    backgroundColor: "#f0f0f0", 
+  },
+  projectCardBody: {
+    padding: "30px 25px",
+    display: "flex",
+    flexDirection: "column" as const,
+    flex: 1,
+  },
+  projectCardTitle: {
+    fontSize: "1.25rem",
+    fontWeight: 700,
+    color: theme.colors.primary, 
+    marginBottom: "15px",
+    lineHeight: "1.3",
+  },
+  projectCardMeta: {
+    display: "flex",
+    gap: "15px",
+    color: "#777",
+    fontSize: "0.75rem",
+    fontWeight: 600,
+    marginBottom: "20px",
+    textTransform: "uppercase" as const,
+    flexWrap: "wrap" as const,
+  },
+  metaItem: {
+    display: "flex",
+    alignItems: "center",
+  },
+  projectCardExcerpt: {
+    fontSize: "0.95rem",
+    lineHeight: "1.6",
+    color: "#666",
+    marginBottom: "30px",
+    flex: 1, 
+  },
+  projectReadMore: {
+    alignSelf: "flex-start",
+    display: "inline-flex",
+    alignItems: "center",
+    padding: "10px 20px",
+    border: `2px solid ${theme.colors.primary}`, 
+    color: theme.colors.primary,
+    borderRadius: "30px",
+    fontSize: "0.75rem",
+    fontWeight: 700,
+    textDecoration: "none",
+    transition: "all 0.3s ease",
+  },
 };

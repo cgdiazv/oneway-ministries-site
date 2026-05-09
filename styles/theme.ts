@@ -19,7 +19,6 @@ export const theme = {
   shadows: {
     card: "0 4px 6px rgba(0, 0, 0, 0.1)"
   },
-  // We keep component-specific logic here, but reference the local 'colors' constant
   learnMoreBtn: {
     backgroundColor: colors.primary, 
     color: "#fff",
