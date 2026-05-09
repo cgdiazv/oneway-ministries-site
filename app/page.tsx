@@ -96,6 +96,33 @@ export default function Home() {
     { name: "Christian", svgSrc: "/logos/christian.svg" },
   ];
 
+  const newsData = [
+    {
+      title: "New Community Center Opening",
+      date: "OCTOBER 12, 2026",
+      category: "UPDATE",
+      excerpt: "We are thrilled to announce the opening of our new community center in Bogota, providing more space for education and shelter.",
+      image: "/project-2.webp",
+      link: "/news/new-community-center-opening",
+    },
+    {
+      title: "Annual Fundraising Gala Results",
+      date: "SEPTEMBER 28, 2026",
+      category: "EVENT",
+      excerpt: "Thanks to your generous support, our annual gala exceeded our fundraising goals, allowing us to expand our reach.",
+      image: "/project-4.webp",
+      link: "/news/annual-fundraising-gala-results",
+    },
+    {
+      title: "Mission Trip to Amazon Region",
+      date: "SEPTEMBER 05, 2026",
+      category: "MISSION",
+      excerpt: "A team of volunteers recently returned from a successful mission trip, bringing medical supplies and spiritual support.",
+      image: "/missionaries.webp",
+      link: "/news/mission-trip-to-amazon-region",
+    },
+  ];
+
   return (
     <>
       {/* --- HERO SECTION --- */}
@@ -320,7 +347,7 @@ export default function Home() {
           <span style={styles.initiativesOverline}>Our Impact</span>
           <h2 className="partner-title" style={styles.partnerTitle}>With grateful hearts<br/> to our partners</h2>
           <p style={styles.partnerSubtitle}>
-            Our work wouldn't be possible without the faithful support of our partners and sponsors around the globe.
+            Our work wouldn&apos;t be possible without the faithful support of our partners and sponsors around the globe.
           </p>
           <div style={styles.partnerLogoGrid}>
             {partnerLogos.map((logo, index) => (
@@ -331,6 +358,53 @@ export default function Home() {
                   className="partner-logo-image"
                   style={styles.partnerLogoImage}
                 />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- LATEST NEWS SECTION --- */}
+      <section style={styles.newsSection}>
+        <div style={styles.initiativesContainer}>
+          <div className="initiatives-header" style={styles.initiativesHeader}>
+            <div style={styles.initiativesHeaderLeft}>
+              <span style={styles.initiativesOverline}>STAY UPDATED</span>
+              <h2 className="initiatives-title" style={styles.initiativesTitle}>Latest News & Updates</h2>
+            </div>
+            <div style={styles.initiativesHeaderRight}>
+              <p style={styles.initiativesIntro}>
+                Read about our recent events, ongoing ministries, and the stories of hope coming out of Colombia.
+              </p>
+            </div>
+          </div>
+
+          <div className="news-grid" style={styles.newsGrid}>
+            {newsData.map((news, index) => (
+              <div key={index} style={styles.newsCard}>
+                <div style={styles.projectImageContainer}>
+                  <Image 
+                    src={news.image} 
+                    alt={news.title} 
+                    fill 
+                    style={{ objectFit: 'cover' }} 
+                  />
+                </div>
+                <div style={styles.projectCardBody}>
+                  <h3 style={styles.projectCardTitle}>{news.title}</h3>
+                  <div style={styles.projectCardMeta}>
+                    <span style={styles.metaItem}>
+                      <Calendar size={14} style={{ marginRight: '6px' }}/> {news.date}
+                    </span>
+                    <span style={styles.metaItem}>
+                      <Folder size={14} style={{ marginRight: '6px' }}/> {news.category}
+                    </span>
+                  </div>
+                  <p style={styles.projectCardExcerpt}>{news.excerpt}</p>
+                  <a href={news.link} className="read-more-btn-hover" style={styles.projectReadMore}>
+                    READ ARTICLE <ArrowRight size={14} style={{ marginLeft: '6px' }} />
+                  </a>
+                </div>
               </div>
             ))}
           </div>
@@ -531,7 +605,7 @@ const styles = {
     textAlign: "center" as const,
     padding: "40px",
     color: "#fff",
-    borderRadius: "10px",
+    borderRadius: "8px",
     overflow: "hidden",
   },
   ctaOverlay: {
@@ -709,7 +783,7 @@ const styles = {
   },
   projectCard: {
     border: "1px solid #eaeaea",
-    borderRadius: "4px",
+    borderRadius: "8px",
     overflow: "hidden",
     backgroundColor: "#fff",
     display: "flex",
@@ -820,7 +894,7 @@ const styles = {
   // --- PARTNER & SPONSOR STYLES ---
   partnerSection: {
     backgroundColor: "#FFFFFF", 
-    padding: "80px 20px",
+    padding: "20px 20px 80px",
     display: "flex",
     justifyContent: "center",
   },
@@ -861,6 +935,28 @@ const styles = {
     maxHeight: "75px", 
     maxWidth: "180px", 
     objectFit: "contain" as const,
+  },
+
+  // --- LATEST NEWS STYLES ---
+  newsSection: {
+    backgroundColor: "#f9fafb",
+    padding: "100px 20px",
+    display: "flex",
+    justifyContent: "center",
+  },
+  newsGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
+    gap: "30px",
+  },
+  newsCard: {
+    border: "1px solid #eaeaea",
+    borderRadius: "8px",
+    overflow: "hidden",
+    backgroundColor: "#fff",
+    display: "flex",
+    flexDirection: "column" as const,
+    transition: "transform 0.3s ease, box-shadow 0.3s ease",
   },
 
   // --- UPDATED DONATE MODAL STYLES ---
