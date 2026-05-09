@@ -76,7 +76,7 @@ export default function ContactPage() {
               </select>
 
               <label style={labelStyle}>Additional Notes</label>
-              <textarea name="message" rows="5" placeholder="Is there anything else you’d like to share with us?" style={{ ...inputStyle, resize: "vertical" }}></textarea>
+              <textarea name="message" rows={5} placeholder="Is there anything else you’d like to share with us?" style={{ ...inputStyle, resize: "vertical" }}></textarea>
 
               <button type="submit" style={{
                 backgroundColor: theme.colors.primary,
