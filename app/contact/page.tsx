@@ -34,26 +34,30 @@ export default function ContactPage() {
           
           {/* Contact Form */}
           <div style={{ width: "100%", maxWidth: "700px", backgroundColor: "#fff", padding: "40px", borderRadius: "12px", boxShadow: "0 4px 15px rgba(0,0,0,0.05)" }}>
-            <form>
+            <form action="https://formsubmit.co/contact@onewayministries.co" method="POST">
+              {/* FormSubmit Configuration (Optional) */}
+              <input type="hidden" name="_subject" value="New Contact Form Submission - One Way Ministries" />
+              <input type="hidden" name="_template" value="table" />
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
                 <div>
                   <label style={labelStyle}>Full Name</label>
-                  <input type="text" placeholder="Your Name" style={inputStyle} required />
+                  <input type="text" name="name" placeholder="Your Name" style={inputStyle} required />
                 </div>
 
                 <div>
                   <label style={labelStyle}>Email Address</label>
-                  <input type="email" placeholder="email@example.com" style={inputStyle} required />
+                  <input type="email" name="email" placeholder="email@example.com" style={inputStyle} required />
                 </div>
 
                 <div>
                   <label style={labelStyle}>Phone Number</label>
-                  <input type="tel" placeholder="+1 (555) 000-0000" style={inputStyle} required />
+                  <input type="tel" name="phone" placeholder="+1 (555) 000-0000" style={inputStyle} required />
                 </div>
 
                 <div>
                   <label style={labelStyle}>Country</label>
-                  <select defaultValue="" style={{ ...inputStyle, backgroundColor: "#fff", cursor: "pointer" }} required>
+                  <select name="country" defaultValue="" style={{ ...inputStyle, backgroundColor: "#fff", cursor: "pointer" }} required>
                     <option value="" disabled>Select your country</option>
                     {countries.map((country) => (
                       <option key={country} value={country}>{country}</option>
@@ -63,7 +67,7 @@ export default function ContactPage() {
               </div>
 
               <label style={labelStyle}>How do you want to get involved?</label>
-              <select defaultValue="" style={{ ...inputStyle, backgroundColor: "#fff", cursor: "pointer" }} required>
+              <select name="interest" defaultValue="" style={{ ...inputStyle, backgroundColor: "#fff", cursor: "pointer" }} required>
                 <option value="" disabled>Select an area of interest</option>
                 <option value="Youth & Families">Youth & Families</option>
                 <option value="People with Disabilities">People with Disabilities</option>
@@ -72,7 +76,7 @@ export default function ContactPage() {
               </select>
 
               <label style={labelStyle}>Additional Notes</label>
-              <textarea rows="5" placeholder="Is there anything else you’d like to share with us?" style={{ ...inputStyle, resize: "vertical" }}></textarea>
+              <textarea name="message" rows="5" placeholder="Is there anything else you’d like to share with us?" style={{ ...inputStyle, resize: "vertical" }}></textarea>
 
               <button type="submit" style={{
                 backgroundColor: theme.colors.primary,
