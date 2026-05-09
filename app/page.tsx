@@ -11,8 +11,9 @@ export default function Home() {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // Updated state to match the SingleProjectPage logic
   const [isDonateOpen, setIsDonateOpen] = useState(false);
-  const [selectedAmount, setSelectedAmount] = useState<number | string>(50); // Default $50
+  const [selectedAmount, setSelectedAmount] = useState<number | null>(50); // Default $50
   const [customAmount, setCustomAmount] = useState("");
 
   const handlePresetClick = (amount: number) => {
@@ -22,7 +23,7 @@ export default function Home() {
 
   const handleCustomChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCustomAmount(e.target.value);
-    setSelectedAmount("");
+    setSelectedAmount(null);
   };
 
   const menuItems = [
@@ -58,7 +59,7 @@ export default function Home() {
       date: "MAY 15, 2026",
       category: "FOUNDATION",
       excerpt: "Holistic development through evangelism, music, sports, and education to empower local leaders and youth, fostering spiritual growth and community development.",
-      image: "/project-1.webp", // Replace with your actual images
+      image: "/project-1.webp",
       link: "/projects/united-for-life",
     },
     {
@@ -336,7 +337,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- DONATE MODAL --- */}
+      {/* --- UPDATED DONATE MODAL --- */}
       {isDonateOpen && (
         <div style={styles.lightboxOverlay} onClick={() => setIsDonateOpen(false)}>
           <div className="donate-modal-content" style={styles.donateModalContent} onClick={(e) => e.stopPropagation()}>
@@ -358,15 +359,13 @@ export default function Home() {
 
               {/* PayPal Form */}
               <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-                {/* PayPal Configuration Hidden Fields */}
                 <input type="hidden" name="cmd" value="_donations" />
                 <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL@EXAMPLE.COM" />
                 <input type="hidden" name="item_name" value="Donation to One Way Ministries" />
                 <input type="hidden" name="currency_code" value="USD" />
-                <input type="hidden" name="amount" value={customAmount || selectedAmount} />
+                <input type="hidden" name="amount" value={customAmount || selectedAmount || ""} />
                 <input type="hidden" name="no_shipping" value="1" />
 
-                {/* Preset Amount Grid */}
                 <div className="amount-grid" style={styles.amountGrid}>
                   {[10, 25, 50, 100, 250, 500].map((amount) => (
                     <button
@@ -383,7 +382,6 @@ export default function Home() {
                   ))}
                 </div>
 
-                {/* Custom Amount Input */}
                 <input
                   type="number"
                   placeholder="Enter custom amount"
@@ -656,7 +654,7 @@ const styles = {
     backgroundPosition: "center",
   },
 
-  // --- NEW STYLES FOR INITIATIVES SECTION ---
+  // --- INITIATIVES SECTION STYLES ---
   initiativesSection: {
     backgroundColor: "#ffffff",
     padding: "100px 20px",
@@ -782,6 +780,7 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    padding: "20px",
   },
   lightboxContent: {
     position: "relative" as const,
@@ -862,125 +861,114 @@ const styles = {
     objectFit: "contain" as const,
   },
 
-  // --- DONATE MODAL STYLES ---
+  // --- UPDATED DONATE MODAL STYLES ---
   donateModalContent: {
-    position: "relative" as const,
-    width: "90%",
-    maxWidth: "550px",
-    maxHeight: "90vh",
-    overflowY: "auto" as const,
     backgroundColor: "#fff",
-    borderRadius: "24px",
-    boxShadow: "0 10px 40px rgba(0,0,0,0.2)",
-    display: "flex",
-    flexDirection: "column" as const,
+    borderRadius: "16px",
+    width: "100%",
+    maxWidth: "480px",
+    position: "relative" as const,
+    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+    overflow: "hidden",
   },
   closeDonateBtn: {
     position: "absolute" as const,
-    top: "15px",
-    right: "20px",
+    top: "16px", right: "16px",
     background: "none",
     border: "none",
-    fontSize: "1.5rem",
-    color: "#666",
+    fontSize: "1.2rem",
     cursor: "pointer",
-    zIndex: 10,
+    color: "#64748b",
   },
   donateHeader: {
-    padding: "15px 20px",
-    borderBottom: "4px solid #E2E8F0", // Thick top border like the image
-    textAlign: "center" as const,
+    backgroundColor: "#f8fafc",
+    padding: "24px 32px",
+    borderBottom: "1px solid #e2e8f0",
   },
   donateTitle: {
-    fontSize: "1.1rem",
-    fontWeight: 600,
-    color: theme.colors.text.main,
     margin: 0,
+    fontSize: "1.25rem",
+    color: theme.colors.primary,
+    fontWeight: 700,
   },
   donateBody: {
-    padding: "20px 30px",
+    padding: "32px",
   },
   donateText: {
+    color: "#64748b",
     fontSize: "0.95rem",
-    color: "#555",
-    lineHeight: "1.6",
-    marginBottom: "15px",
+    marginBottom: "24px",
+    lineHeight: 1.5,
   },
   donateLabelRow: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: "15px",
+    marginBottom: "12px",
   },
   donateLabel: {
     fontWeight: 600,
-    fontSize: "0.95rem",
-    color: theme.colors.text.main,
+    fontSize: "0.9rem",
+    color: theme.colors.primary,
   },
   currencyBadge: {
-    backgroundColor: "#E2E8F0",
-    padding: "4px 10px",
+    fontSize: "0.85rem",
+    color: "#64748b",
+    backgroundColor: "#f1f5f9",
+    padding: "4px 8px",
     borderRadius: "4px",
-    fontSize: "0.8rem",
-    fontWeight: 600,
-    color: "#475569",
   },
   amountGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(2, 1fr)",
-    gap: "15px",
-    marginBottom: "15px",
+    gridTemplateColumns: "repeat(3, 1fr)",
+    gap: "10px",
+    marginBottom: "20px",
   },
   amountBtn: {
     padding: "12px",
+    border: "1px solid #cbd5e1",
     backgroundColor: "#fff",
-    border: "1px solid #CBD5E1",
-    borderRadius: "6px",
-    fontSize: "1rem",
-    fontWeight: 500,
-    color: theme.colors.text.main,
+    borderRadius: "8px",
     cursor: "pointer",
+    fontWeight: 600,
+    color: "#475569",
     transition: "all 0.2s ease",
   },
   amountBtnSelected: {
-    backgroundColor: "rgba(10, 25, 47, 0.05)", // Very light Navy tint
-    border: `2px solid ${theme.colors.primary}`, // Navy border
-    fontWeight: 700,
+    borderColor: theme.colors.primary,
+    backgroundColor: "rgba(10, 25, 47, 0.05)",
     color: theme.colors.primary,
   },
   customInput: {
     width: "100%",
-    padding: "12px",
-    border: "1px solid #CBD5E1",
-    borderRadius: "6px",
-    fontSize: "0.95rem",
-    textAlign: "center" as const,
-    outline: "none",
-    marginBottom: "20px",
-    color: theme.colors.text.main,
+    padding: "14px",
+    border: "1px solid #cbd5e1",
+    borderRadius: "8px",
+    fontSize: "1rem",
+    marginBottom: "24px",
+    boxSizing: "border-box" as const,
   },
   donateSubmitBtn: {
     width: "100%",
-    backgroundColor: theme.colors.primary, // Using your brand Navy instead of muted green
-    color: "#fff",
     padding: "16px",
-    borderRadius: "6px",
+    backgroundColor: theme.colors.accent, 
+    color: "#fff",
     border: "none",
-    fontSize: "1rem",
+    borderRadius: "8px",
+    fontSize: "1.05rem",
     fontWeight: 700,
     cursor: "pointer",
     display: "flex",
-    alignItems: "center",
     justifyContent: "center",
-    transition: "background 0.3s ease",
+    alignItems: "center",
+    marginBottom: "20px",
   },
   secureFooter: {
     display: "flex",
-    alignItems: "center",
     justifyContent: "center",
-    marginTop: "20px",
-    fontSize: "0.75rem",
-    color: "#64748B",
-    fontWeight: 600,
-  },
+    alignItems: "center",
+    color: "#94a3b8",
+    fontSize: "0.8rem",
+    fontWeight: 500,
+  }
 };

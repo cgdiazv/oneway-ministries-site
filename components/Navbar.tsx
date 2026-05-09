@@ -8,8 +8,10 @@ import { Menu, X, ArrowRight, Lock } from 'lucide-react';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+  // 1. Updated state typing to perfectly match your other components
   const [isDonateOpen, setIsDonateOpen] = useState(false);
-  const [selectedAmount, setSelectedAmount] = useState<number | string>(50); // Default $50
+  const [selectedAmount, setSelectedAmount] = useState<number | null>(50); 
   const [customAmount, setCustomAmount] = useState("");
 
   const handlePresetClick = (amount: number) => {
@@ -19,7 +21,7 @@ const Navbar = () => {
 
   const handleCustomChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCustomAmount(e.target.value);
-    setSelectedAmount("");
+    setSelectedAmount(null); // Clears the preset when typing
   };
 
   const menuItems = [
@@ -98,7 +100,7 @@ const Navbar = () => {
               <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL@EXAMPLE.COM" />
               <input type="hidden" name="item_name" value="Donation to One Way Ministries" />
               <input type="hidden" name="currency_code" value="USD" />
-              <input type="hidden" name="amount" value={customAmount || selectedAmount} />
+              <input type="hidden" name="amount" value={customAmount || selectedAmount || ""} />
               <input type="hidden" name="no_shipping" value="1" />
 
               {/* Preset Amount Grid */}
@@ -163,11 +165,12 @@ const styles: Record<string, React.CSSProperties> = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    padding: "20px",
   },
   donateModalContent: {
     position: "relative",
     width: "90%",
-    maxWidth: "550px",
+    maxWidth: "480px", // Reduced from 550px to match standard
     maxHeight: "90vh",
     overflowY: "auto",
     backgroundColor: "#fff",
@@ -178,68 +181,71 @@ const styles: Record<string, React.CSSProperties> = {
   },
   closeDonateBtn: {
     position: "absolute",
-    top: "15px",
-    right: "20px",
+    top: "16px",
+    right: "16px",
     background: "none",
     border: "none",
-    fontSize: "1.5rem",
-    color: "#666",
+    fontSize: "1.2rem",
+    color: "#64748b",
     cursor: "pointer",
     zIndex: 10,
   },
   donateHeader: {
-    padding: "15px 20px",
-    borderBottom: "4px solid #E2E8F0",
+    padding: "24px 32px",
+    backgroundColor: "#f8fafc",
+    borderBottom: "1px solid #e2e8f0",
     textAlign: "center",
   },
   donateTitle: {
-    fontSize: "1.1rem",
-    fontWeight: 600,
-    color: theme.colors.text?.main || "#333",
+    fontSize: "1.25rem",
+    fontWeight: 700,
+    color: theme.colors.primary,
     margin: 0,
   },
   donateBody: {
-    padding: "20px 30px",
+    padding: "32px",
   },
   donateText: {
     fontSize: "0.95rem",
-    color: "#555",
-    lineHeight: "1.6",
-    marginBottom: "15px",
+    color: "#64748b",
+    lineHeight: "1.5",
+    marginBottom: "24px",
   },
   donateLabelRow: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: "15px",
+    marginBottom: "12px",
   },
   donateLabel: {
     fontWeight: 600,
-    fontSize: "0.95rem",
-    color: theme.colors.text?.main || "#333",
+    fontSize: "0.9rem",
+    color: theme.colors.primary,
   },
   currencyBadge: {
-    backgroundColor: "#E2E8F0",
-    padding: "4px 10px",
+    backgroundColor: "#f1f5f9",
+    padding: "4px 8px",
     borderRadius: "4px",
-    fontSize: "0.8rem",
+    fontSize: "0.85rem",
     fontWeight: 600,
-    color: "#475569",
+    color: "#64748b",
   },
+  
+  // 2. Updated grid to 3 columns to match standard
   amountGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(2, 1fr)",
-    gap: "15px",
-    marginBottom: "15px",
+    gridTemplateColumns: "repeat(3, 1fr)", 
+    gap: "10px",
+    marginBottom: "20px",
   },
   amountBtn: {
     padding: "12px",
     backgroundColor: "#fff",
-    border: "1px solid #CBD5E1",
-    borderRadius: "6px",
+    border: "1px solid #cbd5e1",
+    borderRadius: "8px",
     fontSize: "1rem",
-    fontWeight: 500,
-    color: theme.colors.text?.main || "#333",
+    fontWeight: 600,
+    color: "#475569",
     cursor: "pointer",
     transition: "all 0.2s ease",
   },
@@ -251,38 +257,39 @@ const styles: Record<string, React.CSSProperties> = {
   },
   customInput: {
     width: "100%",
-    padding: "12px",
-    border: "1px solid #CBD5E1",
-    borderRadius: "6px",
-    fontSize: "0.95rem",
+    padding: "14px",
+    border: "1px solid #cbd5e1",
+    borderRadius: "8px",
+    fontSize: "1rem",
     textAlign: "center",
     outline: "none",
-    marginBottom: "20px",
+    marginBottom: "24px",
+    boxSizing: "border-box",
     color: theme.colors.text?.main || "#333",
   },
   donateSubmitBtn: {
     width: "100%",
-    backgroundColor: theme.colors.primary,
+    backgroundColor: theme.colors.accent || theme.colors.primary, 
     color: "#fff",
     padding: "16px",
-    borderRadius: "6px",
+    borderRadius: "8px",
     border: "none",
-    fontSize: "1rem",
+    fontSize: "1.05rem",
     fontWeight: 700,
     cursor: "pointer",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     transition: "background 0.3s ease",
+    marginBottom: "20px",
   },
   secureFooter: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: "20px",
-    fontSize: "0.75rem",
-    color: "#64748B",
-    fontWeight: 600,
+    fontSize: "0.8rem",
+    color: "#94a3b8",
+    fontWeight: 500,
   },
 };
 
