@@ -20,7 +20,7 @@ const Footer = () => {
   ];
 
   const ministryLinks = [
-    { name: 'Casa del Rey', link: '/ministries/casa-del-rey' },
+    { name: 'Casa del Rey', link: '/projects/casa-del-rey' },
     { name: 'Morada de Gracia', link: '/ministries/morada-de-gracia' },
     { name: 'Ambalema', link: '/ministries/ambalema' },
     { name: 'Guainia', link: '/ministries/guainia' },

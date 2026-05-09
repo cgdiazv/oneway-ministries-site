@@ -7,8 +7,15 @@ import { useParams } from "next/navigation";
 import { theme } from "@/styles/theme";
 import { ArrowLeft, Calendar, Folder } from "lucide-react";
 
+interface NewsItem {
+  title: string;
+  date: string;
+  category: string;
+  image: string;
+}
+
 // Mock data to provide specific info based on the URL slug
-const newsData: Record<string, any> = {
+const newsData: Record<string, NewsItem> = {
   "new-community-center-opening": {
     title: "New Community Center Opening",
     date: "OCTOBER 12, 2026",
