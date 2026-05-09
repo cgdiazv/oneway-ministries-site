@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { theme } from "@/styles/theme";
 
 const countries = [
@@ -6,6 +8,56 @@ const countries = [
 ];
 
 export default function ContactPage() {
+  const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      // Using the /ajax/ endpoint prevents FormSubmit from redirecting the browser
+      const response = await fetch("https://formsubmit.co/ajax/web@indevasa.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          ...data,
+          _subject: "New Contact Form Submission - One Way Ministries",
+          _template: "table",
+          _captcha: "false"
+        }),
+      });
+
+      let result;
+      try {
+        result = await response.json();
+      } catch (err) {
+        // Ignore JSON parsing errors
+      }
+
+      if (response.ok) {
+        if (result && result.success === "false") {
+          alert(result.message || "Action required. Please check your email to verify the address.");
+        } else {
+          sessionStorage.setItem("formSubmitted", "true");
+          router.push("/thank-you");
+        }
+      } else {
+        alert(result?.message || "Something went wrong. Please ensure the email is verified.");
+      }
+    } catch (error) {
+      alert("An error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const labelStyle: React.CSSProperties = { display: "block", textAlign: "left", marginBottom: "8px", fontWeight: 600, color: "#333" };
   const inputStyle: React.CSSProperties = { width: "100%", padding: "12px", marginBottom: "20px", borderRadius: "8px", border: "1px solid #ddd", fontSize: "1rem" };
 
@@ -34,10 +86,7 @@ export default function ContactPage() {
           
           {/* Contact Form */}
           <div style={{ width: "100%", maxWidth: "700px", backgroundColor: "#fff", padding: "40px", borderRadius: "12px", boxShadow: "0 4px 15px rgba(0,0,0,0.05)" }}>
-            <form action="https://formsubmit.co/contact@onewayministries.co" method="POST">
-              {/* FormSubmit Configuration (Optional) */}
-              <input type="hidden" name="_subject" value="New Contact Form Submission - One Way Ministries" />
-              <input type="hidden" name="_template" value="table" />
+            <form onSubmit={handleSubmit}>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
                 <div>
@@ -87,9 +136,11 @@ export default function ContactPage() {
                 fontSize: "1rem",
                 fontWeight: "bold",
                 cursor: "pointer",
-                transition: "opacity 0.2s"
-              }}>
-                Get Involved Now
+                transition: "opacity 0.2s",
+                opacity: isSubmitting ? 0.7 : 1
+              }}
+              disabled={isSubmitting}>
+                {isSubmitting ? "Sending..." : "Get Involved Now"}
               </button>
             </form>
           </div>
