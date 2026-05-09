@@ -1,10 +1,13 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
 import { theme } from "@/styles/theme";
 import { Baby, Home as HomeIcon, BookOpen, ArrowRight, Play, Calendar, Folder } from "lucide-react";
-import { text } from "stream/consumers";
 
 export default function Home() {
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+
   const menuItems = [
     { name: "About Us", link: "/about" },
     { name: "Our Mission", link: "/mission" },
@@ -67,6 +70,14 @@ export default function Home() {
     },
   ];
 
+  const partnerLogos = [
+    { name: "Temple of God", svgSrc: "/logos/temple_of_god.svg" }, 
+    { name: "Christian Mission", svgSrc: "/logos/christian_mission.svg" },
+    { name: "Find Faith", svgSrc: "/logos/find_faith.svg" },
+    { name: "Faith Connect", svgSrc: "/logos/faith_connect.svg" },
+    { name: "Christian", svgSrc: "/logos/christian.svg" },
+  ];
+
   return (
     <>
       {/* --- HERO SECTION --- */}
@@ -81,7 +92,7 @@ export default function Home() {
             </div>
             <nav style={styles.navLinksGroup}>
               {menuItems.map((item) => (
-                <a key={item.name} href={item.link} style={styles.navLink}>{item.name}</a>
+                <a key={item.name} href={item.link} className="nav-link-hover" style={styles.navLink}>{item.name}</a>
               ))}
             </nav>
             <a href="/donate" className="donate-btn-hover" style={styles.donateAction}>Donate</a>
@@ -122,7 +133,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <a href="/about" style={styles.learnMoreBtn}>
+            <a href="/about" className="learn-more-btn-hover" style={styles.learnMoreBtn}>
               LEARN MORE <ArrowRight size={18} style={{ marginLeft: '8px' }} />
             </a>
           </div>
@@ -143,7 +154,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- NEW: VIDEO & SIGNUP SECTION --- */}
+      {/* --- CTA: VIDEO & SIGNUP SECTION --- */}
       <section style={styles.ctaSection}>
         <div style={styles.ctaContainer}>
           
@@ -157,7 +168,7 @@ export default function Home() {
               <p style={styles.ctaDesc}>
                 Supports Alfa & Omega church planting among indigenous communities in Colombia’s Amazon region, providing Gospel outreach, leadership training, Bible translation support, and practical resources to strengthen local churches and pastors serving diverse ethnic groups.
               </p>
-              <button style={styles.playButton} className="play-btn-hover">
+              <button style={styles.playButton} className="play-btn-hover" onClick={() => setIsVideoOpen(true)}>
                 <Play fill="#fff" size={24} style={{ marginLeft: '4px' }} />
               </button>
             </div>
@@ -169,7 +180,7 @@ export default function Home() {
               <h3 style={styles.overlapText}>
                 Stay connected, pray with us, and discover how God may be calling you to be part of this mission.
               </h3>
-              <form style={styles.formGroup}>
+              <form style={styles.formGroup} onSubmit={(e) => e.preventDefault()}>
                 <input 
                   type="email" 
                   placeholder="YOUR EMAIL ADDRESS" 
@@ -186,6 +197,26 @@ export default function Home() {
             </div>
           </div>
 
+          {/* --- VIDEO LIGHTBOX MODAL --- */}
+          {isVideoOpen && (
+            <div style={styles.lightboxOverlay} onClick={() => setIsVideoOpen(false)}>
+              <div style={styles.lightboxContent} onClick={(e) => e.stopPropagation()}>
+                <button style={styles.closeLightboxBtn} onClick={() => setIsVideoOpen(false)}>
+                  ✕
+                </button>
+                <div style={styles.videoWrapper}>
+                  <iframe 
+                    style={styles.videoIframe}
+                    src="https://www.youtube-nocookie.com/embed/cOD3iU5oWTU?autoplay=1" 
+                    title="YouTube video player" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
@@ -229,7 +260,7 @@ export default function Home() {
                     </span>
                   </div>
                   <p style={styles.projectCardExcerpt}>{project.excerpt}</p>
-                  <a href={project.link} style={styles.projectReadMore}>
+                  <a href={project.link} className="read-more-btn-hover" style={styles.projectReadMore}>
                     READ MORE <ArrowRight size={14} style={{ marginLeft: '6px' }} />
                   </a>
                 </div>
@@ -237,6 +268,27 @@ export default function Home() {
             ))}
           </div>
 
+        </div>
+      </section>
+
+      {/* --- NEW: PARTNER & SPONSOR SECTION --- */}
+      <section style={styles.partnerSection}>
+        <div style={styles.partnerContainer}>
+          <h2 style={styles.partnerTitle}>With grateful hearts<br/> to our partners</h2>
+          <p style={styles.partnerSubtitle}>
+            Our work wouldn't be possible without the faithful support of our partners and sponsors around the globe.
+          </p>
+          <div style={styles.partnerLogoGrid}>
+            {partnerLogos.map((logo, index) => (
+              <div key={index} style={styles.partnerLogoItem}>
+                <img 
+                  src={logo.svgSrc} 
+                  alt={`${logo.name} logo`} 
+                  style={styles.partnerLogoImage}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </>
@@ -601,5 +653,97 @@ const styles = {
     fontWeight: 700,
     textDecoration: "none",
     transition: "all 0.3s ease",
+  },
+  
+  // --- LIGHTBOX STYLES ---
+  lightboxOverlay: {
+    position: "fixed" as const,
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(0, 0, 0, 0.85)",
+    zIndex: 9999,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  lightboxContent: {
+    position: "relative" as const,
+    width: "90%",
+    maxWidth: "900px",
+    backgroundColor: "#000",
+    borderRadius: "8px",
+    boxShadow: "0 4px 20px rgba(0,0,0,0.5)",
+  },
+  closeLightboxBtn: {
+    position: "absolute" as const,
+    top: "-40px",
+    right: "0",
+    background: "none",
+    border: "none",
+    color: "#fff",
+    fontSize: "2rem",
+    cursor: "pointer",
+  },
+  videoWrapper: {
+    position: "relative" as const,
+    paddingBottom: "56.25%", // 16:9 aspect ratio
+    height: 0,
+    overflow: "hidden" as const,
+    borderRadius: "8px",
+  },
+  videoIframe: {
+    position: "absolute" as const,
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+  },
+
+  // --- PARTNER & SPONSOR STYLES ---
+  partnerSection: {
+    backgroundColor: "#FFFFFF", 
+    padding: "80px 20px",
+    display: "flex",
+    justifyContent: "center",
+  },
+  partnerContainer: {
+    maxWidth: "1200px",
+    width: "100%",
+    textAlign: "center" as const,
+  },
+  partnerTitle: {
+    fontSize: "3rem",
+    fontWeight: 800,
+    color: theme.colors.primary, 
+    marginBottom: "25px",
+    lineHeight: "1.1",
+    fontFamily: theme.fonts.body, 
+  },
+  partnerSubtitle: {
+    fontSize: "1.2rem",
+    lineHeight: "1.6",
+    color: "#555555", 
+    maxWidth: "700px",
+    margin: "0 auto 60px", 
+    fontWeight: 300,
+  },
+  partnerLogoGrid: {
+    display: "flex",
+    justifyContent: "center",
+    gap: "50px", 
+    flexWrap: "wrap" as const, 
+    alignItems: "center",
+  },
+  partnerLogoItem: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  partnerLogoImage: {
+    maxHeight: "75px", 
+    maxWidth: "180px", 
+    objectFit: "contain" as const,
   },
 };

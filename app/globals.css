@@ -241,3 +241,38 @@ html {
   color: #0A192F !important; /* Your brand Navy */
   border-color: white !important;
 }
+
+/* Navbar link underline animation */
+.nav-link-hover {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-link-hover::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: currentColor; /* Matches the text color */
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+
+.nav-link-hover:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Button hover scale effect */
+.learn-more-btn-hover,
+.read-more-btn-hover {
+  transition: transform 0.3s ease !important;
+}
+
+.learn-more-btn-hover:hover,
+.read-more-btn-hover:hover {
+  transform: scale(1.05) !important;
+}
