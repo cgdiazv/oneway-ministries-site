@@ -531,6 +531,8 @@ const styles = {
     textAlign: "center" as const,
     padding: "40px",
     color: "#fff",
+    borderRadius: "10px",
+    overflow: "hidden",
   },
   ctaOverlay: {
     position: "absolute" as const,
