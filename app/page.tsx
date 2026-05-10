@@ -11,9 +11,8 @@ export default function Home() {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Updated state to match the SingleProjectPage logic
   const [isDonateOpen, setIsDonateOpen] = useState(false);
-  const [selectedAmount, setSelectedAmount] = useState<number | null>(50); // Default $50
+  const [selectedAmount, setSelectedAmount] = useState<number | null>(50);
   const [customAmount, setCustomAmount] = useState("");
 
   const handlePresetClick = (amount: number) => {
@@ -307,8 +306,8 @@ export default function Home() {
             </div>
           </div>
 
-          {/* 4-Column Grid */}
-          <div className="initiatives-grid" style={styles.initiativesGrid}>
+          {/* 4-Column Grid Responsivo con Tailwind */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[30px] w-full">
             {projectsData.map((project, index) => (
               <div key={index} style={styles.projectCard}>
                 <div style={styles.projectImageContainer}>
@@ -379,7 +378,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="news-grid" style={styles.newsGrid}>
+          {/* 3-Column Grid Responsivo con Tailwind */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] w-full">
             {newsData.map((news, index) => (
               <div key={index} style={styles.newsCard}>
                 <div style={styles.projectImageContainer}>
@@ -776,11 +776,6 @@ const styles = {
     color: "#555",
     margin: 0,
   },
-  initiativesGrid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(4, 1fr)",
-    gap: "30px",
-  },
   projectCard: {
     border: "1px solid #eaeaea",
     borderRadius: "8px",
@@ -943,11 +938,6 @@ const styles = {
     padding: "100px 20px",
     display: "flex",
     justifyContent: "center",
-  },
-  newsGrid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
-    gap: "30px",
   },
   newsCard: {
     border: "1px solid #eaeaea",

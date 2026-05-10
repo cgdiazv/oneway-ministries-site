@@ -70,7 +70,8 @@ export default function NewsPage() {
 
       <section style={styles.newsSection}>
         <div style={styles.newsContainer}>
-          <div className="news-grid" style={styles.newsGrid}>
+          {/* Implementación de Tailwind: 1 columna en móvil, 3 en escritorio */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] w-full">
             {newsData.map((news, index) => (
               <div key={index} style={styles.newsCard}>
                 <div style={styles.projectImageContainer}>
@@ -144,11 +145,7 @@ const styles = {
     maxWidth: "1300px", 
     width: "100%",
   },
-  newsGrid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
-    gap: "30px",
-  },
+  // Se eliminó newsGrid de aquí, ya que Tailwind maneja el layout ahora
   newsCard: {
     border: "1px solid #eaeaea",
     borderRadius: "8px",

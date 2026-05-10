@@ -54,7 +54,8 @@ export default function GetInvolvedPage() {
 
       <section style={styles.newsSection}>
         <div style={styles.newsContainer}>
-          <div className="news-grid" style={styles.newsGrid}>
+          {/* Aquí aplicamos Tailwind para hacerlo responsivo */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] w-full">
             {projectsData.map((project, index) => (
               <div key={index} style={styles.newsCard}>
                 <div style={styles.projectImageContainer}>
@@ -127,11 +128,6 @@ const styles = {
   newsContainer: {
     maxWidth: "1300px", 
     width: "100%",
-  },
-  newsGrid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
-    gap: "30px",
   },
   newsCard: {
     border: "1px solid #eaeaea",
