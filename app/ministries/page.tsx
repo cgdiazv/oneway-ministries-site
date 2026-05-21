@@ -4,10 +4,44 @@ import React from "react";
 import Image from "next/image";
 import { theme } from "@/styles/theme";
 import { Calendar, Folder, ArrowRight } from "lucide-react";
-// Importamos los datos de ministerios
-import { ministriesData } from "@/lib/data";
 
 export default function MinistriesPage() {
+
+  const projectsData = [
+    {
+      title: "United For Life Foundation",
+      date: "MAY 15, 2026",
+      category: "FOUNDATION",
+      excerpt: "Holistic development through evangelism, music, sports, and education to empower local leaders and youth, fostering spiritual growth and community development.",
+      image: "/project-1.webp",
+      link: "/projects/united-for-life",
+    },
+    {
+      title: "Funcifunac Foundation Ministry",
+      date: "JUNE 02, 2026",
+      category: "FOUNDATION",
+      excerpt: "Partnering with local contractors to install modern water filtration systems in underserved local neighborhoods.",
+      image: "/project-2.webp",
+      link: "/projects/funcifunac",
+    },
+    {
+      title: "Impacto Biblico Church Planting",
+      date: "JULY 10, 2026",
+      category: "MINISTRY",
+      excerpt: "Christ-centered ministry in Santa Marta, Colombia, commited to faithfuly preaching the Gospel.",
+      image: "/project-3.webp",
+      link: "/projects/impacto-biblico",
+    },
+    {
+      title: "Casa del Rey",
+      date: "AUGUST 05, 2026",
+      category: "MINISTRY",
+      excerpt: "Casa del Rey, together with Shalom Mision Xtrema Church, is a Christ-centered ministry in Bogota, Colombia.",
+      image: "/project-4.webp",
+      link: "/projects/casa-del-rey",
+    },
+  ];
+
   return (
     <>
       <div style={styles.heroSection}>
@@ -21,30 +55,30 @@ export default function MinistriesPage() {
 
       <section style={styles.newsSection}>
         <div style={styles.newsContainer}>
+          {/* Aquí aplicamos Tailwind para hacerlo responsivo */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] w-full">
-            {/* Usamos ministriesData y llamamos a cada iteración 'ministry' */}
-            {ministriesData.map((ministry, index) => (
+            {projectsData.map((project, index) => (
               <div key={index} style={styles.newsCard}>
                 <div style={styles.projectImageContainer}>
                   <Image 
-                    src={ministry.image} 
-                    alt={ministry.title} 
+                    src={project.image} 
+                    alt={project.title} 
                     fill 
                     style={{ objectFit: 'cover' }} 
                   />
                 </div>
                 <div style={styles.projectCardBody}>
-                  <h3 style={styles.projectCardTitle}>{ministry.title}</h3>
+                  <h3 style={styles.projectCardTitle}>{project.title}</h3>
                   <div style={styles.projectCardMeta}>
                     <span style={styles.metaItem}>
-                      <Calendar size={14} style={{ marginRight: '6px' }}/> {ministry.date}
+                      <Calendar size={14} style={{ marginRight: '6px' }}/> {project.date}
                     </span>
                     <span style={styles.metaItem}>
-                      <Folder size={14} style={{ marginRight: '6px' }}/> {ministry.category}
+                      <Folder size={14} style={{ marginRight: '6px' }}/> {project.category}
                     </span>
                   </div>
-                  <p style={styles.projectCardExcerpt}>{ministry.excerpt}</p>
-                  <a href={ministry.link} className="read-more-btn-hover" style={styles.projectReadMore}>
+                  <p style={styles.projectCardExcerpt}>{project.excerpt}</p>
+                  <a href={project.link} className="read-more-btn-hover" style={styles.projectReadMore}>
                     READ MORE <ArrowRight size={14} style={{ marginLeft: '6px' }} />
                   </a>
                 </div>
