@@ -4,47 +4,48 @@ import React from "react";
 import Image from "next/image";
 import { theme } from "@/styles/theme";
 import { Calendar, Folder, ArrowRight } from "lucide-react";
-import { newsData } from "@/lib/data";
+// Importamos los datos de ministerios
+import { ministriesData } from "@/lib/data";
 
-export default function NewsPage() {
+export default function MinistriesPage() {
   return (
     <>
       <div style={styles.heroSection}>
         <div style={styles.container}>
-          <h1 style={styles.headline}>Latest News & Updates</h1>
+          <h1 style={styles.headline}>Ministries</h1>
           <p style={styles.subtext}>
-            Stay up to date with our recent events, ongoing ministries, and stories of hope coming out of Colombia.
+            Explore our ongoing projects and ministries. Discover how you can partner with us to bring hope and essential resources to families in Colombia.
           </p>
         </div>
       </div>
 
       <section style={styles.newsSection}>
         <div style={styles.newsContainer}>
-          {/* Implementación de Tailwind: 1 columna en móvil, 3 en escritorio */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] w-full">
-            {newsData.map((news, index) => (
+            {/* Usamos ministriesData y llamamos a cada iteración 'ministry' */}
+            {ministriesData.map((ministry, index) => (
               <div key={index} style={styles.newsCard}>
                 <div style={styles.projectImageContainer}>
                   <Image 
-                    src={news.image} 
-                    alt={news.title} 
+                    src={ministry.image} 
+                    alt={ministry.title} 
                     fill 
                     style={{ objectFit: 'cover' }} 
                   />
                 </div>
                 <div style={styles.projectCardBody}>
-                  <h3 style={styles.projectCardTitle}>{news.title}</h3>
+                  <h3 style={styles.projectCardTitle}>{ministry.title}</h3>
                   <div style={styles.projectCardMeta}>
                     <span style={styles.metaItem}>
-                      <Calendar size={14} style={{ marginRight: '6px' }}/> {news.date}
+                      <Calendar size={14} style={{ marginRight: '6px' }}/> {ministry.date}
                     </span>
                     <span style={styles.metaItem}>
-                      <Folder size={14} style={{ marginRight: '6px' }}/> {news.category}
+                      <Folder size={14} style={{ marginRight: '6px' }}/> {ministry.category}
                     </span>
                   </div>
-                  <p style={styles.projectCardExcerpt}>{news.excerpt}</p>
-                  <a href={news.link} className="read-more-btn-hover" style={styles.projectReadMore}>
-                    READ ARTICLE <ArrowRight size={14} style={{ marginLeft: '6px' }} />
+                  <p style={styles.projectCardExcerpt}>{ministry.excerpt}</p>
+                  <a href={ministry.link} className="read-more-btn-hover" style={styles.projectReadMore}>
+                    READ MORE <ArrowRight size={14} style={{ marginLeft: '6px' }} />
                   </a>
                 </div>
               </div>
@@ -95,7 +96,6 @@ const styles = {
     maxWidth: "1300px", 
     width: "100%",
   },
-  // Se eliminó newsGrid de aquí, ya que Tailwind maneja el layout ahora
   newsCard: {
     border: "1px solid #eaeaea",
     borderRadius: "8px",

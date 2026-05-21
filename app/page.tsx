@@ -4,32 +4,22 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { theme } from "@/styles/theme";
-import { Baby, Home as HomeIcon, BookOpen, ArrowRight, Play, Calendar, Folder, Lock, Menu, X } from "lucide-react";
+// 1. Importamos ministriesData junto con newsData
+import { newsData, ministriesData } from "@/lib/data";
+import { Baby, Home as HomeIcon, BookOpen, ArrowRight, Play, Calendar, Folder, Menu, X } from "lucide-react";
+// Import useDonate hook
+import { useDonate } from "@/context/DonateContext";
 
 export default function Home() {
   const router = useRouter();
+  const { openDonateModal } = useDonate();
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const [isDonateOpen, setIsDonateOpen] = useState(false);
-  const [selectedAmount, setSelectedAmount] = useState<number | null>(50);
-  const [customAmount, setCustomAmount] = useState("");
-
-  const handlePresetClick = (amount: number) => {
-    setSelectedAmount(amount);
-    setCustomAmount("");
-  };
-
-  const handleCustomChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCustomAmount(e.target.value);
-    setSelectedAmount(null);
-  };
-
   const menuItems = [
     { name: "About Us", link: "/about" },
-    { name: "Our Mission", link: "/mission" },
+    { name: "Ministries", link: "/ministries" },
     { name: "Get Involved", link: "/get-involved" },
-    { name: "Impact", link: "/impact" },
     { name: "News", link: "/news" },
     { name: "Contact Us", link: "/contact" },
   ];
@@ -52,40 +42,7 @@ export default function Home() {
     },
   ];
 
-  const projectsData = [
-    {
-      title: "United For Life Foundation",
-      date: "MAY 15, 2026",
-      category: "FOUNDATION",
-      excerpt: "Holistic development through evangelism, music, sports, and education to empower local leaders and youth, fostering spiritual growth and community development.",
-      image: "/project-1.webp",
-      link: "/projects/united-for-life",
-    },
-    {
-      title: "Funcifunac Foundation Ministry",
-      date: "JUNE 02, 2026",
-      category: "FOUNDATION",
-      excerpt: "Partnering with local contractors to install modern water filtration systems in underserved local neighborhoods.",
-      image: "/project-2.webp",
-      link: "/projects/funcifunac",
-    },
-    {
-      title: "Impacto Biblico Church Planting",
-      date: "JULY 10, 2026",
-      category: "MINISTRY",
-      excerpt: "Christ-centered ministry in Santa Marta, Colombia, commited to faithfuly preaching the Gospel.",
-      image: "/project-3.webp",
-      link: "/projects/impacto-biblico",
-    },
-    {
-      title: "Casa del Rey",
-      date: "AUGUST 05, 2026",
-      category: "MINISTRY",
-      excerpt: "Casa del Rey, together with Shalom Mision Xtrema Church, is a Christ-centered ministry in Bogota, Colombia.",
-      image: "/project-4.webp",
-      link: "/projects/casa-del-rey",
-    },
-  ];
+  // ELIMINAMOS projectsData DE AQUÍ
 
   const partnerLogos = [
     { name: "Temple of God", svgSrc: "/logos/temple_of_god.svg" }, 
@@ -95,32 +52,12 @@ export default function Home() {
     { name: "Christian", svgSrc: "/logos/christian.svg" },
   ];
 
-  const newsData = [
-    {
-      title: "New Community Center Opening",
-      date: "OCTOBER 12, 2026",
-      category: "UPDATE",
-      excerpt: "We are thrilled to announce the opening of our new community center in Bogota, providing more space for education and shelter.",
-      image: "/project-2.webp",
-      link: "/news/new-community-center-opening",
-    },
-    {
-      title: "Annual Fundraising Gala Results",
-      date: "SEPTEMBER 28, 2026",
-      category: "EVENT",
-      excerpt: "Thanks to your generous support, our annual gala exceeded our fundraising goals, allowing us to expand our reach.",
-      image: "/project-4.webp",
-      link: "/news/annual-fundraising-gala-results",
-    },
-    {
-      title: "Mission Trip to Amazon Region",
-      date: "SEPTEMBER 05, 2026",
-      category: "MISSION",
-      excerpt: "A team of volunteers recently returned from a successful mission trip, bringing medical supplies and spiritual support.",
-      image: "/missionaries.webp",
-      link: "/news/mission-trip-to-amazon-region",
-    },
-  ];
+  const latestNews = [...newsData]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 3);
+
+  // 2. Extraemos solo los primeros 4 ministerios para el Home
+  const featuredMinistries = ministriesData.slice(0, 4);
 
   return (
     <>
@@ -151,7 +88,7 @@ export default function Home() {
                   <a key={item.name} href={item.link} className="nav-link-hover" style={styles.navLink} onClick={() => setIsMenuOpen(false)}>{item.name}</a>
                 ))}
               </nav>
-              <button onClick={(e) => { e.preventDefault(); setIsMenuOpen(false); setIsDonateOpen(true); }} className="donate-btn-hover donate-action" style={styles.donateAction}>Donate</button>
+              <button onClick={(e) => { e.preventDefault(); setIsMenuOpen(false); openDonateModal(); }} className="donate-btn-hover donate-action" style={styles.donateAction}>Donate</button>
             </div>
             
             <div className={`nav-overlay ${isMenuOpen ? "open" : ""}`} onClick={() => setIsMenuOpen(false)}></div>
@@ -166,7 +103,7 @@ export default function Home() {
           </p>
           <div className="button-group" style={styles.buttonGroup}>
             <a href="/about" className="hero-outline-btn" style={styles.primaryOutlineButton}>Learn More</a>
-            <button onClick={(e) => { e.preventDefault(); setIsDonateOpen(true); }} className="hero-outline-btn" style={styles.accentOutlineButton}>
+            <button onClick={(e) => { e.preventDefault(); openDonateModal(); }} className="hero-outline-btn" style={styles.accentOutlineButton}>
               Partner With Us
             </button>
           </div>
@@ -219,7 +156,6 @@ export default function Home() {
       <section className="cta-section" style={styles.ctaSection}>
         <div style={styles.ctaContainer}>
           
-          {/* Main Image Banner */}
           <div className="cta-banner" style={styles.ctaBanner}>
             <div style={styles.ctaOverlay}></div>
             <div style={styles.ctaContent}>
@@ -235,7 +171,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Overlapping Bottom Box */}
           <div className="overlap-box" style={styles.overlapBox}>
             <div className="overlap-left" style={styles.overlapLeft}>
               <h3 className="overlap-text" style={styles.overlapText}>
@@ -259,14 +194,12 @@ export default function Home() {
               </form>
             </div>
             
-            {/* Image Halves for the right side */}
             <div className="overlap-images" style={styles.overlapImages}>
               <div style={styles.overlapImg1}></div>
               <div style={styles.overlapImg2}></div>
             </div>
           </div>
 
-          {/* --- VIDEO LIGHTBOX MODAL --- */}
           {isVideoOpen && (
             <div style={styles.lightboxOverlay} onClick={() => setIsVideoOpen(false)}>
               <div style={styles.lightboxContent} onClick={(e) => e.stopPropagation()}>
@@ -289,15 +222,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- INITIATIVES & PROJECTS SECTION --- */}
+      {/* --- MINISTRIES SECTION --- */}
       <section style={styles.initiativesSection}>
         <div style={styles.initiativesContainer}>
           
-          {/* Header Row */}
           <div className="initiatives-header" style={styles.initiativesHeader}>
             <div style={styles.initiativesHeaderLeft}>
               <span style={styles.initiativesOverline}>OUR FUNDRAISERS</span>
-              <h2 className="initiatives-title" style={styles.initiativesTitle}>Ongoing Projects & Ministries Involved</h2>
+              <h2 className="initiatives-title" style={styles.initiativesTitle}>Ministries & Projects</h2>
             </div>
             <div style={styles.initiativesHeaderRight}>
               <p style={styles.initiativesIntro}>
@@ -306,30 +238,30 @@ export default function Home() {
             </div>
           </div>
 
-          {/* 4-Column Grid Responsivo con Tailwind */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[30px] w-full">
-            {projectsData.map((project, index) => (
+            {/* 3. Mapeamos la constante local featuredMinistries */}
+            {featuredMinistries.map((ministry, index) => (
               <div key={index} style={styles.projectCard}>
                 <div style={styles.projectImageContainer}>
                   <Image 
-                    src={project.image} 
-                    alt={project.title} 
+                    src={ministry.image} 
+                    alt={ministry.title} 
                     fill 
                     style={{ objectFit: 'cover' }} 
                   />
                 </div>
                 <div style={styles.projectCardBody}>
-                  <h3 style={styles.projectCardTitle}>{project.title}</h3>
+                  <h3 style={styles.projectCardTitle}>{ministry.title}</h3>
                   <div style={styles.projectCardMeta}>
                     <span style={styles.metaItem}>
-                      <Calendar size={14} style={{ marginRight: '6px' }}/> {project.date}
+                      <Calendar size={14} style={{ marginRight: '6px' }}/> {ministry.date}
                     </span>
                     <span style={styles.metaItem}>
-                      <Folder size={14} style={{ marginRight: '6px' }}/> {project.category}
+                      <Folder size={14} style={{ marginRight: '6px' }}/> {ministry.category}
                     </span>
                   </div>
-                  <p style={styles.projectCardExcerpt}>{project.excerpt}</p>
-                  <a href={project.link} className="read-more-btn-hover" style={styles.projectReadMore}>
+                  <p style={styles.projectCardExcerpt}>{ministry.excerpt}</p>
+                  <a href={ministry.link} className="read-more-btn-hover" style={styles.projectReadMore}>
                     READ MORE <ArrowRight size={14} style={{ marginLeft: '6px' }} />
                   </a>
                 </div>
@@ -378,9 +310,8 @@ export default function Home() {
             </div>
           </div>
 
-          {/* 3-Column Grid Responsivo con Tailwind */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] w-full">
-            {newsData.map((news, index) => (
+            {latestNews.map((news, index) => (
               <div key={index} style={styles.newsCard}>
                 <div style={styles.projectImageContainer}>
                   <Image 
@@ -410,74 +341,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* --- UPDATED DONATE MODAL --- */}
-      {isDonateOpen && (
-        <div style={styles.lightboxOverlay} onClick={() => setIsDonateOpen(false)}>
-          <div className="donate-modal-content" style={styles.donateModalContent} onClick={(e) => e.stopPropagation()}>
-            <button style={styles.closeDonateBtn} onClick={() => setIsDonateOpen(false)}>✕</button>
-            
-            <div style={styles.donateHeader}>
-              <h3 style={styles.donateTitle}>How much would you like to donate today?</h3>
-            </div>
-            
-            <div className="donate-body" style={styles.donateBody}>
-              <p style={styles.donateText}>
-                All donations directly impact our organization and help us further our mission.
-              </p>
-
-              <div style={styles.donateLabelRow}>
-                <span style={styles.donateLabel}>Donation Amount <span style={{color: theme.colors.accent}}>*</span></span>
-                <span style={styles.currencyBadge}>USD $</span>
-              </div>
-
-              {/* PayPal Form */}
-              <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-                <input type="hidden" name="cmd" value="_donations" />
-                <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL@EXAMPLE.COM" />
-                <input type="hidden" name="item_name" value="Donation to One Way Ministries" />
-                <input type="hidden" name="currency_code" value="USD" />
-                <input type="hidden" name="amount" value={customAmount || selectedAmount || ""} />
-                <input type="hidden" name="no_shipping" value="1" />
-
-                <div className="amount-grid" style={styles.amountGrid}>
-                  {[10, 25, 50, 100, 250, 500].map((amount) => (
-                    <button
-                      key={amount}
-                      type="button"
-                      onClick={() => handlePresetClick(amount)}
-                      style={{
-                        ...styles.amountBtn,
-                        ...(selectedAmount === amount ? styles.amountBtnSelected : {}),
-                      }}
-                    >
-                      ${amount}.00
-                    </button>
-                  ))}
-                </div>
-
-                <input
-                  type="number"
-                  placeholder="Enter custom amount"
-                  value={customAmount}
-                  onChange={handleCustomChange}
-                  style={styles.customInput}
-                  min="1"
-                />
-
-                <button type="submit" style={styles.donateSubmitBtn} className="donate-submit-hover">
-                  Donate now <ArrowRight size={16} style={{ marginLeft: '8px' }} />
-                </button>
-              </form>
-
-              <div style={styles.secureFooter}>
-                <Lock size={12} style={{ marginRight: '6px' }} />
-                100% Secure Donation
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 }
@@ -947,116 +810,5 @@ const styles = {
     display: "flex",
     flexDirection: "column" as const,
     transition: "transform 0.3s ease, box-shadow 0.3s ease",
-  },
-
-  // --- UPDATED DONATE MODAL STYLES ---
-  donateModalContent: {
-    backgroundColor: "#fff",
-    borderRadius: "16px",
-    width: "100%",
-    maxWidth: "480px",
-    position: "relative" as const,
-    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-    overflow: "hidden",
-  },
-  closeDonateBtn: {
-    position: "absolute" as const,
-    top: "16px", right: "16px",
-    background: "none",
-    border: "none",
-    fontSize: "1.2rem",
-    cursor: "pointer",
-    color: "#64748b",
-  },
-  donateHeader: {
-    backgroundColor: "#f8fafc",
-    padding: "24px 32px",
-    borderBottom: "1px solid #e2e8f0",
-  },
-  donateTitle: {
-    margin: 0,
-    fontSize: "1.25rem",
-    color: theme.colors.primary,
-    fontWeight: 700,
-  },
-  donateBody: {
-    padding: "32px",
-  },
-  donateText: {
-    color: "#64748b",
-    fontSize: "0.95rem",
-    marginBottom: "24px",
-    lineHeight: 1.5,
-  },
-  donateLabelRow: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: "12px",
-  },
-  donateLabel: {
-    fontWeight: 600,
-    fontSize: "0.9rem",
-    color: theme.colors.primary,
-  },
-  currencyBadge: {
-    fontSize: "0.85rem",
-    color: "#64748b",
-    backgroundColor: "#f1f5f9",
-    padding: "4px 8px",
-    borderRadius: "4px",
-  },
-  amountGrid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
-    gap: "10px",
-    marginBottom: "20px",
-  },
-  amountBtn: {
-    padding: "12px",
-    border: "1px solid #cbd5e1",
-    backgroundColor: "#fff",
-    borderRadius: "8px",
-    cursor: "pointer",
-    fontWeight: 600,
-    color: "#475569",
-    transition: "all 0.2s ease",
-  },
-  amountBtnSelected: {
-    borderColor: theme.colors.primary,
-    backgroundColor: "rgba(10, 25, 47, 0.05)",
-    color: theme.colors.primary,
-  },
-  customInput: {
-    width: "100%",
-    padding: "14px",
-    border: "1px solid #cbd5e1",
-    borderRadius: "8px",
-    fontSize: "1rem",
-    marginBottom: "24px",
-    boxSizing: "border-box" as const,
-  },
-  donateSubmitBtn: {
-    width: "100%",
-    padding: "16px",
-    backgroundColor: theme.colors.accent, 
-    color: "#fff",
-    border: "none",
-    borderRadius: "8px",
-    fontSize: "1.05rem",
-    fontWeight: 700,
-    cursor: "pointer",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: "20px",
-  },
-  secureFooter: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    color: "#94a3b8",
-    fontSize: "0.8rem",
-    fontWeight: 500,
   }
 };

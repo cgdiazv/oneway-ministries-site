@@ -1,7 +1,7 @@
 // Define colors first so they can be referenced below safely
 const colors = {
-  primary: "#0A192F",    // Deep Navy
-  accent: "#D7263D",     // Crimson Red
+  primary: "#1F2A44",    // Deep Navy
+  accent: "#C9A24D",     // Gold
   background: "#F8F9FA", // Off-White
   surface: "#FFFFFF",    
   text: {
@@ -35,7 +35,7 @@ export const theme = {
     position: "absolute" as const,
     top: "40px",
     left: "20px",
-    backgroundColor: "rgba(10, 25, 47, 0.9)", 
+    backgroundColor: "rgba(31, 42, 68, 0.9)", 
     padding: "40px",
     width: "320px",
     borderRadius: "4px",

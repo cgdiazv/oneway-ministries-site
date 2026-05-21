@@ -12,9 +12,8 @@ const Footer = () => {
 
   const pagesLinks = [
     { name: 'About Us', link: '/about' },
-    { name: 'Our Mission', link: '/mission' },
+    { name: 'Ministries', link: '/ministries' },
     { name: 'Get Involved', link: '/get-involved' },
-    { name: 'Impact', link: '/impact' },
     { name: 'News', link: '/news' },
     { name: 'Contact', link: '/contact' },
   ];
@@ -48,7 +47,7 @@ const Footer = () => {
         <div style={styles.column}>
           <h3 style={styles.heading}>Our Headquarters</h3>
           <p style={styles.text}>Grace House, 124 Mercy Lane<br/>Katy, TX 10785 United States</p>
-          <p style={styles.text}><br/>1-123-456-7890<br/>contact@onewayministries.co</p>
+          <p style={styles.text}><br/><a href="tel:+18329087487" style={styles.link}>+1 832-908-7487</a><br/><a href="mailto:onewayministriescol@gmail.com" style={styles.link}>onewayministriescol@gmail.com</a></p>
           
           <div style={styles.socialRow}>
             {/* Placeholder circles for Social Icons - replace text with SVG or FontAwesome later */}

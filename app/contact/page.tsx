@@ -29,7 +29,7 @@ function ContactFormContent() {
 
     try {
       // Using the /ajax/ endpoint prevents FormSubmit from redirecting the browser
-      const response = await fetch("https://formsubmit.co/ajax/web@indevasa.com", {
+      const response = await fetch("https://formsubmit.co/ajax/onewayministriescol@gmail.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

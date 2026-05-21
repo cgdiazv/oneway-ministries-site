@@ -7,8 +7,8 @@
 :root {
   /* One Way Ministries Core Palette */      /* Off-White (Clean & Modern) */      /* Charcoal (High Readability) */
 
-  --navy-primary: #0A192F;    /* Deep Navy (Trust & Authority) */
-  --red-accent: #D7263D;      /* Crimson Red (Passion & Action) */
+  --navy-primary: #1F2A44;    /* Deep Navy (Trust & Authority) */
+  --red-accent: #C9A24D;      /* Crimson Red (Passion & Action) */
 
   --card-surface: #FFFFFF;
 
@@ -231,7 +231,7 @@ html {
 
 .donate-btn-hover:hover {
   background-color: white !important;
-  color: #0A192F !important; /* Navy color */
+  color: #1F2A44 !important; /* Navy color */
   box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
 }
 
@@ -242,7 +242,7 @@ html {
 
 .hero-outline-btn:hover {
   background-color: white !important;
-  color: #0A192F !important; /* Your brand Navy */
+  color: #1F2A44 !important; /* Your brand Navy */
   border-color: white !important;
 }
 
@@ -386,7 +386,7 @@ html {
     color: #ffffff !important;
   }
   .donate-action.donate-btn-hover:hover {
-    background-color: #0A192F !important;
+    background-color: #1F2A44 !important;
     color: #ffffff !important;
     box-shadow: none !important;
   }

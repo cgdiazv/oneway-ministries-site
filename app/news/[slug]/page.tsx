@@ -6,53 +6,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { theme } from "@/styles/theme";
 import { ArrowLeft, Calendar, Folder } from "lucide-react";
-
-interface NewsItem {
-  title: string;
-  date: string;
-  category: string;
-  image: string;
-}
-
-// Mock data to provide specific info based on the URL slug
-const newsData: Record<string, NewsItem> = {
-  "new-community-center-opening": {
-    title: "New Community Center Opening",
-    date: "OCTOBER 12, 2026",
-    category: "UPDATE",
-    image: "/project-2.webp",
-  },
-  "annual-fundraising-gala-results": {
-    title: "Annual Fundraising Gala Results",
-    date: "SEPTEMBER 28, 2026",
-    category: "EVENT",
-    image: "/project-4.webp",
-  },
-  "mission-trip-to-amazon-region": {
-    title: "Mission Trip to Amazon Region",
-    date: "SEPTEMBER 05, 2026",
-    category: "MISSION",
-    image: "/missionaries.webp",
-  },
-  "back-to-school-drive-success": {
-    title: "Back to School Drive Success",
-    date: "AUGUST 15, 2026",
-    category: "UPDATE",
-    image: "/project-1.webp",
-  },
-  "partnering-with-local-healthcare-providers": {
-    title: "Partnering with Local Healthcare Providers",
-    date: "JULY 22, 2026",
-    category: "PARTNERSHIP",
-    image: "/project-3.webp",
-  },
-  "youth-soccer-tournament-brings-community-together": {
-    title: "Youth Soccer Tournament Brings Community Together",
-    date: "JUNE 10, 2026",
-    category: "EVENT",
-    image: "/project-2.webp",
-  }
-};
+import { getNewsItemBySlug } from "@/lib/data";
 
 export default function SingleNewsPage() {
   const params = useParams();
@@ -64,7 +18,7 @@ export default function SingleNewsPage() {
   };
 
   // If a predefined match is not found, fallback to auto-formatting
-  const newsItem = newsData[slug] || {
+  const newsItem = getNewsItemBySlug(slug) || {
     title: formatTitle(slug),
     date: "TODAY",
     category: "NEWS",
