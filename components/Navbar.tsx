@@ -17,7 +17,6 @@ const Navbar = () => {
   const menuItems = [
     { name: 'About Us', link: '/about' },
     { name: 'Ministries', link: '/ministries' },
-    { name: 'Get Involved', link: '/get-involved' },
     { name: 'News', link: '/news' },
     { name: 'Contact Us', link: '/contact' },
   ];

@@ -508,4 +508,9 @@ html {
   .donate-body {
     padding: 20px !important;
   }
+  /* app/globals.css */
+  .ministry-content p {
+  margin-bottom: 20px; /* Adjust the space size as needed */
+  line-height: 1.8;    /* Improves readability */
+  }
 }

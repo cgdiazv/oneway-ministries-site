@@ -19,7 +19,6 @@ export default function Home() {
   const menuItems = [
     { name: "About Us", link: "/about" },
     { name: "Ministries", link: "/ministries" },
-    { name: "Get Involved", link: "/get-involved" },
     { name: "News", link: "/news" },
     { name: "Contact Us", link: "/contact" },
   ];
@@ -378,10 +377,10 @@ const styles = {
     display: "flex", alignItems: "center", justifyContent: "center",
   },
   logoLink: { display: "flex", alignItems: "center", textDecoration: "none" },
-  navLinksGroup: { display: "flex", gap: "1.8rem", paddingTop: "2.5rem" },
+  navLinksGroup: { display: "flex", gap: "1.8rem", paddingTop: "2.5rem", margin: "0 auto" },
   navLink: { color: theme.colors.text.inverse, textDecoration: "none", fontWeight: 600, fontSize: "0.85rem", textTransform: "uppercase" as const },
   donateAction: {
-    backgroundColor: theme.colors.primary, color: theme.colors.text.inverse,
+    backgroundColor: theme.colors.accent, color: theme.colors.text.inverse,
     padding: "12px 28px", borderRadius: "25px", textDecoration: "none",
     fontWeight: "bold", fontSize: "0.85rem", textTransform: "uppercase" as const, marginTop: "2rem",
   },
@@ -434,7 +433,10 @@ const styles = {
   featureText: { flex: 1 },
   featureTitle: { fontSize: "0.8rem", fontWeight: 700, letterSpacing: "1px", marginBottom: "8px", color: theme.colors.primary },
   featureDesc: { fontSize: "0.95rem", lineHeight: "1.6", color: "#666" },
-  learnMoreBtn: theme.learnMoreBtn,
+  learnMoreBtn: {
+    ...theme.learnMoreBtn,
+    backgroundColor: theme.colors.accent,
+  },
   imageContainer: { position: "relative" as const, height: "700px", width: "100%" },
   floatingBox: theme.floatingBox,
   floatingText: { color: "#fff", fontSize: "1.15rem", lineHeight: "1.6", fontWeight: 500 },

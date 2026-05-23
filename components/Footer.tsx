@@ -13,17 +13,15 @@ const Footer = () => {
   const pagesLinks = [
     { name: 'About Us', link: '/about' },
     { name: 'Ministries', link: '/ministries' },
-    { name: 'Get Involved', link: '/get-involved' },
     { name: 'News', link: '/news' },
     { name: 'Contact', link: '/contact' },
   ];
 
   const ministryLinks = [
-    { name: 'Casa del Rey', link: '/projects/casa-del-rey' },
+    { name: 'Mision Xtrema', link: '/ministries/shalom-mision-xtrema' },
     { name: 'Morada de Gracia', link: '/ministries/morada-de-gracia' },
-    { name: 'Ambalema', link: '/ministries/ambalema' },
-    { name: 'Guainia', link: '/ministries/guainia' },
-    { name: 'North Coast', link: '/ministries/north-coast' },
+    { name: 'Nuevo Comiezo', link: '/ministries/nuevo-comienzo' },
+    { name: 'Alfa y Omega', link: '/ministries/iglesia-alfa-y-omega' },
   ];
 
   return (

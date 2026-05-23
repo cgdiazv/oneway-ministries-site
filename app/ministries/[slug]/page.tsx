@@ -6,9 +6,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { theme } from "@/styles/theme";
 import { ArrowLeft } from "lucide-react";
-// 1. Importamos la función para buscar en nuestros datos centralizados
 import { getMinistryItemBySlug } from "@/lib/data";
-// Import useDonate hook
 import { useDonate } from "@/context/DonateContext";
 
 export default function SingleProjectPage() {
@@ -16,10 +14,8 @@ export default function SingleProjectPage() {
   const params = useParams();
   const slug = params.slug as string;
 
-  // 2. Buscamos el ministerio específico usando el slug
   const ministry = getMinistryItemBySlug(slug);
 
-  // 3. Manejo de error si la URL no coincide con ningún ministerio
   if (!ministry) {
     return (
       <div style={styles.pageWrapper}>
@@ -56,15 +52,15 @@ export default function SingleProjectPage() {
         </div>
 
         <div style={styles.contentBody}>
-          <p style={styles.paragraph}>
-            This is the detailed page for the <strong>{ministry.title}</strong> project. You can expand on the specific details, add photo galleries, or list the specific needs for this ministry here.
-          </p>
-          <p style={styles.paragraph}>
-            {ministry.excerpt}
-          </p>
+          {/* Renderizado de HTML para respetar las etiquetas <p> de tu data.ts */}
+          <div 
+            className="ministry-content"
+            style={styles.paragraph} 
+            dangerouslySetInnerHTML={{ __html: ministry.fullDescription }} 
+          />
 
           <div style={styles.ctaBox}>
-            <h3 style={styles.ctaTitle}>Want to support this ministry?</h3>
+            <h3 style={styles.ctaTitle}>Want to support {ministry.title}?</h3>
             <button 
               onClick={(e) => { e.preventDefault(); openDonateModal(); }} 
               className="project-donate-btn-hover" 
@@ -79,7 +75,6 @@ export default function SingleProjectPage() {
   );
 }
 
-// Los estilos se mantienen exactamente igual
 const styles = {
   pageWrapper: {
     backgroundColor: "#f7f7f7",
@@ -139,7 +134,7 @@ const styles = {
     fontSize: "1.1rem",
     lineHeight: "1.8",
     color: "#475569",
-    marginBottom: "20px",
+    // Eliminamos whiteSpace para que el HTML se renderice nativamente
   },
   ctaBox: {
     marginTop: "50px",
