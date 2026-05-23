@@ -227,7 +227,7 @@ export default function Home() {
           
           <div className="initiatives-header" style={styles.initiativesHeader}>
             <div style={styles.initiativesHeaderLeft}>
-              <span style={styles.initiativesOverline}>OUR FUNDRAISERS</span>
+              <span style={styles.smallLabel}>OUR FUNDRAISERS</span>
               <h2 className="initiatives-title" style={styles.initiativesTitle}>Ministries & Projects</h2>
             </div>
             <div style={styles.initiativesHeaderRight}>
@@ -274,7 +274,7 @@ export default function Home() {
       {/* --- NEW: PARTNER & SPONSOR SECTION --- */}
       <section style={styles.partnerSection}>
         <div style={styles.partnerContainer}>
-          <span style={styles.initiativesOverline}>Our Impact</span>
+          <span style={styles.smallLabel}>OUR IMPACT</span>
           <h2 className="partner-title" style={styles.partnerTitle}>With grateful hearts<br/> to our partners</h2>
           <p style={styles.partnerSubtitle}>
             Our work wouldn&apos;t be possible without the faithful support of our partners and sponsors around the globe.
@@ -299,7 +299,7 @@ export default function Home() {
         <div style={styles.initiativesContainer}>
           <div className="initiatives-header" style={styles.initiativesHeader}>
             <div style={styles.initiativesHeaderLeft}>
-              <span style={styles.initiativesOverline}>STAY UPDATED</span>
+              <span style={styles.smallLabel}>STAY UPDATED</span>
               <h2 className="initiatives-title" style={styles.initiativesTitle}>Latest News & Updates</h2>
             </div>
             <div style={styles.initiativesHeaderRight}>
@@ -424,7 +424,7 @@ const styles = {
   aboutSection: { padding: "100px 20px", backgroundColor: "#ffffff", display: "flex", justifyContent: "center" },
   aboutGrid: { maxWidth: "1200px", width: "100%", display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: "60px", alignItems: "center" },
   textContent: { textAlign: "left" as const },
-  smallLabel: { fontSize: "0.75rem", fontWeight: 700, letterSpacing: "2px", color: "#888", display: "block", marginBottom: "15px" },
+  smallLabel: { fontSize: "0.75rem", fontWeight: 700, letterSpacing: "2px", color: theme.colors.accent, display: "block", marginBottom: "15px" },
   sectionHeading: { fontSize: "2.8rem", fontWeight: 800, color: theme.colors.primary, marginBottom: "20px", lineHeight: "1.2" },
   sectionDesc: { fontSize: "1.05rem", lineHeight: "1.7", color: "#555", marginBottom: "40px", borderBottom: "1px solid #eee", paddingBottom: "30px" },
   featuresList: { display: "flex", flexDirection: "column" as const, gap: "30px", marginBottom: "50px" },

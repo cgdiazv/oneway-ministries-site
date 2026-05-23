@@ -76,7 +76,7 @@ function ContactFormContent() {
         
         {/* Header Section */}
         <div style={{ textAlign: "center", maxWidth: "700px", margin: "0 auto 60px" }}>
-          <span style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "2px", color: "#888", display: "block", marginBottom: "15px", textTransform: "uppercase" }}>
+          <span style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "2px", color: theme.colors.accent, display: "block", marginBottom: "15px", textTransform: "uppercase" }}>
             Connect and support
           </span>
           <h1 style={{ color: theme.colors.primary, fontSize: "3rem", marginBottom: "15px", fontWeight: 800 }}>
@@ -137,11 +137,11 @@ function ContactFormContent() {
               <textarea name="message" rows={5} placeholder="Is there anything else you’d like to share with us?" style={{ ...inputStyle, resize: "vertical" }}></textarea>
 
               <button type="submit" style={{
-                backgroundColor: theme.colors.primary,
+                backgroundColor: theme.colors.accent,
                 color: "#fff",
                 padding: "15px 30px",
                 border: "none",
-                borderRadius: "8px",
+                borderRadius: "50px",
                 fontSize: "1rem",
                 fontWeight: "bold",
                 cursor: "pointer",
