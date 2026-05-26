@@ -22,7 +22,8 @@ export default function SingleNewsPage() {
     title: formatTitle(slug),
     date: "TODAY",
     category: "NEWS",
-    image: "/missionaries.webp"
+    image: "/missionaries.webp",
+    excerpt: "This is a detailed update. You can expand on the specific details, add photo galleries, or provide the full text of the article right here."
   };
 
   return (
@@ -55,14 +56,13 @@ export default function SingleNewsPage() {
           />
         </div>
 
-        <div style={styles.contentBody}>
-          <p style={styles.paragraph}>
-            This is the detailed page for the <strong>{newsItem.title}</strong> update. You can expand on the specific details, add photo galleries, or provide the full text of the article right here.
-          </p>
-          <p style={styles.paragraph}>
-            By creating this dynamic route, any link that starts with <code>/news/</code> will automatically use this layout!
-          </p>
-        </div>
+        {newsItem.excerpt && (
+          <div style={{ marginBottom: "30px", padding: "20px", backgroundColor: "#f8fafc", borderLeft: `4px solid ${theme.colors.accent}`, borderRadius: "4px" }}>
+            <p style={{ margin: 0, fontSize: "1.1rem", lineHeight: "1.6", color: "#334155", fontStyle: "italic" }}>
+              {newsItem.excerpt}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -132,14 +132,5 @@ const styles = {
     marginBottom: "40px",
     position: "relative" as const, 
     overflow: "hidden", 
-  },
-  contentBody: {
-    maxWidth: "750px",
-  },
-  paragraph: {
-    fontSize: "1.1rem",
-    lineHeight: "1.8",
-    color: "#475569",
-    marginBottom: "20px",
   },
 };

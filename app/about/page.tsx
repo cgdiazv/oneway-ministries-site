@@ -32,15 +32,32 @@ export default function AboutPage() {
       {/* --- CONTENT WRAPPER --- */}
       <div style={styles.pageWrapper}>
         <div style={styles.container}>
-          
-          <section style={styles.section}>
-            <h2 style={styles.subTitle}>Our Story</h2>
-            <p style={styles.text}>[Your story here...]</p>
-          </section>
+          <section style={styles.statementSection}>
+            <p style={styles.text}>
+              We are a non-profit Ministry that seeks to help those most in need by giving them Love and quality of life as JESUS would do. With your donations we support Foundations that work hand in hand with us to fulfill our Vision.
+            </p>
+            <blockquote style={styles.quote}>
+              “And the King will answer and say to them: Truly I say to you, in as much as you did it to one of the least of these my brothers, you did it to me”. (Mt 25;40)
+            </blockquote>
 
-          <section style={styles.section}>
-            <h2 style={styles.subTitle}>Our Vision</h2>
-            <p style={styles.text}>[Your vision here...]</p>
+            <h2 style={styles.subTitle}>One Way Ministries International Statement of Faith and Purpose</h2>
+            <div style={styles.leftAlignText}>
+              <p style={{...styles.text, marginBottom: "20px"}}>
+                The members of One Way Ministries International strive to follow Jesus and do what He did in these areas: sharing the Gospel and assisting our partner organizations as they do the same, aligning our lives with those outside of the Church, and providing assistance to orphans and the destitute.
+              </p>
+              <p style={{...styles.text, marginBottom: "30px"}}>
+                We also want to promote cooperation between partner organizations.
+              </p>
+
+              <ul style={styles.beliefList}>
+                <li><strong>WE BELIEVE</strong> the Bible to be the inspired, the only infallible, authoritative Word of God.</li>
+                <li><strong>WE BELIEVE</strong> that there is one God, eternally existent in three persons: Father, Son and Holy Spirit.</li>
+                <li><strong>WE BELIEVE</strong> in the deity of our Lord Jesus Christ, in His virgin birth, in His sinless life, in His miracles, in His atoning death on the cross, in his bodily resurrection, in His ascension to the right hand of God, and in His personal return in power and glory.</li>
+                <li><strong>WE BELIEVE</strong> that for the salvation of lost and sinful people, regeneration by the Holy Spirit is absolutely essential. This salvation can only be obtained through the grace of God by faith, not by works. Good works are those things we do to live our lives as Jesus did: they do not save us!</li>
+                <li><strong>WE BELIEVE</strong> that the indwelling of the Holy Spirit allows followers of Jesus to unify and live a Godly life.</li>
+                <li><strong>WE BELIEVE</strong> in the resurrection of both the saved and the lost; they that are saved unto the resurrection of life and they that are lost unto the resurrection of damnation.</li>
+              </ul>
+            </div>
           </section>
 
           {/* --- BOARD MEMBERS SECTION --- */}
@@ -85,8 +102,29 @@ const styles = {
   pageWrapper: { padding: "80px 20px", backgroundColor: "#fff" },
   container: { maxWidth: "1000px", margin: "0 auto" },
   section: { marginBottom: "80px", textAlign: "center" as const },
+  statementSection: { marginBottom: "80px", textAlign: "center" as const, backgroundColor: "#f8fafc", padding: "40px", borderRadius: "12px" },
   subTitle: { color: theme.colors.primary, fontSize: "2.2rem", marginBottom: "25px", fontWeight: 700 },
   text: { color: "#475569", fontSize: "1.2rem", lineHeight: "1.8", maxWidth: "800px", margin: "0 auto" },
+  leftAlignText: { textAlign: "left" as const, maxWidth: "800px", margin: "0 auto" },
+  quote: { 
+    fontSize: "1.3rem", 
+    fontStyle: "italic", 
+    color: theme.colors.accent, 
+    borderLeft: `4px solid ${theme.colors.accent}`,
+    padding: "20px",
+    margin: "40px auto",
+    maxWidth: "800px",
+    backgroundColor: "#fff",
+    borderRadius: "4px"
+  },
+  beliefList: {
+    listStyleType: "none",
+    padding: 0,
+    margin: 0,
+    color: "#475569",
+    fontSize: "1.1rem",
+    lineHeight: "1.8",
+  },
   
   // Board Member Styles
   memberCard: {
