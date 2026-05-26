@@ -8,7 +8,7 @@
   /* One Way Ministries Core Palette */      /* Off-White (Clean & Modern) */      /* Charcoal (High Readability) */
 
   --navy-primary: #1F2A44;    /* Deep Navy (Trust & Authority) */
-  --red-accent: #C9A24D;      /* Crimson Red (Passion & Action) */
+  --red-accent: #ee383c;      /* Crimson Red (Passion & Action) */
 
   --card-surface: #FFFFFF;
 
@@ -231,7 +231,7 @@ html {
 
 .donate-btn-hover:hover {
   background-color: white !important;
-  color: #1F2A44 !important; /* Navy color */
+  color: #ee383c !important; /* Red color */
   box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
 }
 
@@ -242,7 +242,7 @@ html {
 
 .hero-outline-btn:hover {
   background-color: white !important;
-  color: #1F2A44 !important; /* Your brand Navy */
+  color: #ee383c !important;
   border-color: white !important;
 }
 

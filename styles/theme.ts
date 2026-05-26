@@ -1,7 +1,7 @@
 // Define colors first so they can be referenced below safely
 const colors = {
   primary: "#1F2A44",    // Deep Navy
-  accent: "#C9A24D",     // Gold
+  accent: "#ee383c",     // Red
   background: "#F8F9FA", // Off-White
   surface: "#FFFFFF",    
   text: {
