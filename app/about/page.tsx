@@ -7,10 +7,10 @@ import { theme } from "@/styles/theme";
 // Lista de miembros organizada
 const boardMembers = [
   { name: "Bridman Alarca", role: "President", img: "bridman-alarca.webp" },
-  { name: "Johnnie Mclin", role: "Treasurer", img: "johnnie-mclin.webp" },
-  { name: "Ada Orozco", role: "Board Member", img: "ada-orozco.webp" },
   { name: "Yulih Alarca", role: "Secretary", img: "yulih-alarca.webp" },
+  { name: "Ada Orozco", role: "Board Member", img: "ada-orozco.webp" },
   { name: "Robert Taylor", role: "Board Member", img: "robert-taylor.webp" },
+  { name: "Johnnie Mclin", role: "Treasurer", img: "johnnie-mclin.webp" },
   { name: "Dawn Franke", role: "Advisory Board Member", img: "dawn-franke.webp" },
   { name: "Sebastian Rodriguez", role: "In-Country Coordinator", img: "sebastian-rodriguez.webp" },
   { name: "Paula Alvarez", role: "In-Country Coordinator", img: "paula-alvarez.webp" },
@@ -99,10 +99,10 @@ const styles = {
   heroSubtext: { color: theme.colors.text.inverse, fontSize: "1.2rem", opacity: 0.9, fontWeight: 300 },
 
   // Content Styles
-  pageWrapper: { padding: "80px 20px", backgroundColor: "#fff" },
+  pageWrapper: { padding: "80px 20px", backgroundColor: "#f9f9f9" },
   container: { maxWidth: "1000px", margin: "0 auto" },
   section: { marginBottom: "80px", textAlign: "center" as const },
-  statementSection: { marginBottom: "80px", textAlign: "center" as const, backgroundColor: "#f8fafc", padding: "40px", borderRadius: "12px" },
+  statementSection: { marginBottom: "80px", textAlign: "center" as const, backgroundColor: "#fff", padding: "40px", borderRadius: "12px" },
   subTitle: { color: theme.colors.primary, fontSize: "2.2rem", marginBottom: "25px", fontWeight: 700 },
   text: { color: "#475569", fontSize: "1.2rem", lineHeight: "1.8", maxWidth: "800px", margin: "0 auto" },
   leftAlignText: { textAlign: "left" as const, maxWidth: "800px", margin: "0 auto" },
@@ -114,7 +114,7 @@ const styles = {
     padding: "20px",
     margin: "40px auto",
     maxWidth: "800px",
-    backgroundColor: "#fff",
+    backgroundColor: "#f1f5f9",
     borderRadius: "4px"
   },
   beliefList: {
@@ -128,7 +128,7 @@ const styles = {
   
   // Board Member Styles
   memberCard: {
-    backgroundColor: "#f9fafb",
+    backgroundColor: "#fff",
     padding: "20px",
     borderRadius: "12px",
     boxShadow: "0 4px 6px rgba(0,0,0,0.05)",

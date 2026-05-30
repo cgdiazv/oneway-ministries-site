@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { theme } from "@/styles/theme";
 // 1. Importamos ministriesData junto con newsData
 import { newsData, ministriesData } from "@/lib/data";
-import { Baby, Home as HomeIcon, BookOpen, ArrowRight, Play, Calendar, Folder, Menu, X } from "lucide-react";
+import { Baby, Home as HomeIcon, BookOpen, ArrowRight, Play, Calendar, Folder, Menu, X, ChevronDown } from "lucide-react";
 // Import useDonate hook
 import { useDonate } from "@/context/DonateContext";
 
@@ -17,7 +17,14 @@ export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = [
-    { name: "About Us", link: "/about" },
+    { 
+      name: "About Us", 
+      link: "/about",
+      subItems: [
+        { name: "Our Story", link: "/about/our-story" },
+        { name: "Vision & Mission", link: "/about/vision-mission" }
+      ]
+    },
     { name: "Ministries", link: "/ministries" },
     { name: "News", link: "/news" },
     { name: "Contact Us", link: "/contact" },
@@ -84,7 +91,31 @@ export default function Home() {
               </div>
               <nav className="nav-links" style={styles.navLinksGroup}>
                 {menuItems.map((item) => (
-                  <a key={item.name} href={item.link} className="nav-link-hover" style={styles.navLink} onClick={() => setIsMenuOpen(false)}>{item.name}</a>
+                  <div key={item.name} className="relative group flex flex-col md:block w-full md:w-auto">
+                    <div className="flex items-center justify-between w-full md:w-auto">
+                      <a href={item.link} className="nav-link-hover flex items-center" style={styles.navLink} onClick={() => setIsMenuOpen(false)}>
+                        {item.name}
+                      </a>
+                      {item.subItems && (
+                        <ChevronDown size={16} color={theme.colors.text.inverse} className="hidden md:block ml-1 transition-transform duration-200 group-hover:rotate-180" />
+                      )}
+                    </div>
+                    {item.subItems && (
+                      <div className="md:absolute md:left-0 md:top-full md:mt-4 md:w-48 md:bg-white md:shadow-lg md:rounded-md md:opacity-0 md:invisible md:group-hover:opacity-100 md:group-hover:visible transition-all duration-300 md:-translate-y-2 md:group-hover:translate-y-0 z-50 flex flex-col mt-3 pl-4 md:pl-0 border-l-2 md:border-0 border-slate-200">
+                        {item.subItems.map((sub) => (
+                          <a 
+                            key={sub.name} 
+                            href={sub.link} 
+                            className="py-2 md:px-4 text-sm hover:bg-slate-50 md:hover:text-blue-900 transition-colors rounded-md font-medium"
+                            style={{ ...styles.navLink, textTransform: 'none', color: theme.colors.primary }}
+                            onClick={() => setIsMenuOpen(false)}
+                          >
+                            {sub.name}
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 ))}
               </nav>
               <button onClick={(e) => { e.preventDefault(); setIsMenuOpen(false); openDonateModal(); }} className="donate-btn-hover donate-action" style={styles.donateAction}>Donate</button>
