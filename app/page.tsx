@@ -75,7 +75,7 @@ export default function Home() {
             <div className="logo-and-menu">
               <div className="logo-box" style={styles.logoBox}>
                 <a href="/" style={styles.logoLink}>
-                  <Image src="/logo.webp" alt="Logo" width={140} height={40} priority />
+                  <Image src="/logo.webp" alt="One Way Ministries" width={140} height={40} priority />
                 </a>
               </div>
               <button className="mobile-menu-btn" onClick={() => setIsMenuOpen(true)}>
@@ -106,7 +106,7 @@ export default function Home() {
                           <a 
                             key={sub.name} 
                             href={sub.link} 
-                            className="py-2 md:px-4 text-sm hover:bg-slate-50 md:hover:text-blue-900 transition-colors rounded-md font-medium"
+                            className="py-2 md:px-4 text-sm hover:bg-slate-50 md:hover:text-blue-900 transition-colors rounded-md font-medium text-left block w-full"
                             style={{ ...styles.navLink, textTransform: 'none', color: theme.colors.primary }}
                             onClick={() => setIsMenuOpen(false)}
                           >

@@ -180,6 +180,17 @@ const styles = {
     fontWeight: 700,
     letterSpacing: "-0.01em"
   },
+  quote: { 
+    fontSize: "1.3rem", 
+    fontStyle: "italic", 
+    color: theme.colors.accent, 
+    borderLeft: `4px solid ${theme.colors.accent}`,
+    padding: "20px",
+    margin: "40px auto",
+    maxWidth: "800px",
+    backgroundColor: "#f1f5f9",
+    borderRadius: "4px"
+  },
   text: { 
     color: "#475569", 
     fontSize: "1.2rem", 

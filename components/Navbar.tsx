@@ -65,7 +65,7 @@ const Navbar = () => {
                       <Link 
                         key={sub.name} 
                         href={sub.link} 
-                        className="py-2 md:px-4 text-sm hover:bg-slate-50 md:hover:text-blue-900 transition-colors rounded-md font-medium"
+                        className="py-2 md:px-4 text-sm hover:bg-slate-50 md:hover:text-blue-900 transition-colors rounded-md font-medium text-left block w-full"
                         style={{ ...styles.link, textTransform: 'none', color: theme.colors.primary }}
                         onClick={() => setIsMenuOpen(false)}
                       >
