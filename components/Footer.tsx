@@ -18,10 +18,18 @@ const Footer = () => {
   ];
 
   const ministryLinks = [
-    { name: 'Mision Xtrema', link: '/ministries/shalom-mision-xtrema' },
-    { name: 'Morada de Gracia', link: '/ministries/morada-de-gracia' },
-    { name: 'Nuevo Comiezo', link: '/ministries/nuevo-comienzo' },
+    { name: 'Nuevo Comienzo', link: '/ministries/nuevo-comienzo' },
+    { name: 'Shalom Mision Xtrema', link: '/ministries/shalom-mision-xtrema' },
     { name: 'Alfa y Omega', link: '/ministries/iglesia-alfa-y-omega' },
+    { name: 'Morada de Gracia', link: '/ministries/morada-de-gracia' },
+    { name: 'Nuevo Amanecer', link: '/ministries/nuevo-amanecer' },
+    { name: 'Pan de Vida', link: '/ministries/pan-de-vida' },
+    { name: 'Amor Inagotable', link: '/ministries/amor-inagotable' },
+    { name: 'Impacto Biblico', link: '/ministries/impacto-biblico' },
+    { name: 'Funcifunac', link: '/ministries/funcifunac' },
+    { name: 'Iglesia Reformada Calvary', link: '/ministries/iglesia-reformada-calvary' },
+    { name: 'Unidos por la Vida', link: '/ministries/unidos-por-la-vida' },
+    { name: 'Luminar Missionary', link: '/ministries/luminar-missionary-foundation' },
   ];
 
   return (
@@ -68,9 +76,9 @@ const Footer = () => {
         </div>
 
         {/* Column 4: Ministries */}
-        <div style={styles.column}>
+        <div style={{ ...styles.column, flex: '2 1 400px' }}>
           <h3 style={styles.heading}>Ministries</h3>
-          <ul style={styles.list}>
+          <ul style={{ ...styles.list, display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.75rem 1rem' }}>
             {ministryLinks.map((item) => (
               <li key={item.name} style={styles.listItem}>
                 <Link href={item.link} style={styles.link}>{item.name}</Link>
