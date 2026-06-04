@@ -123,7 +123,7 @@ export default function OurStoryPage() {
 const styles = {
   heroSection: {
     backgroundColor: theme.colors.primary,
-    padding: "120px 20px 80px",
+    padding: "100px 20px 60px",
     textAlign: "center" as const,
   },
   heroContainer: { 

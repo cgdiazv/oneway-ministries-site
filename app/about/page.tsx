@@ -128,12 +128,13 @@ const styles = {
   
   // Board Member Styles
   memberCard: {
-    backgroundColor: "#fff",
-    padding: "20px",
-    borderRadius: "12px",
-    boxShadow: "0 4px 6px rgba(0,0,0,0.05)",
-    transition: "transform 0.3s ease",
-  },
+  backgroundColor: "#fff",
+  padding: "24px",
+  borderRadius: "20px", // Bordes más suaves
+  boxShadow: "0 10px 25px -5px rgba(0,0,0,0.1)", // Sombra más natural
+  transition: "transform 0.3s ease",
+  textAlign: "center" as const,
+},
   imageWrapper: {
     position: "relative" as const,
     width: "100%",
