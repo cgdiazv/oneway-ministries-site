@@ -1,19 +1,22 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import fs from "fs";
+import path from "path";
 import { theme } from "@/styles/theme";
 import { ArrowLeft } from "lucide-react";
-import { getMinistryItemBySlug } from "@/lib/data";
-import { useDonate } from "@/context/DonateContext";
+import { getMinistryItemBySlug, ministriesData } from "@/lib/data";
+import MinistryDonateButton from "./MinistryDonateButton";
+import Gallery from "./Gallery";
 
-export default function SingleProjectPage() {
-  const { openDonateModal } = useDonate();
-  const params = useParams();
-  const slug = params.slug as string;
+export async function generateStaticParams() {
+  return ministriesData.map((ministry) => ({
+    slug: ministry.id,
+  }));
+}
 
+export default async function SingleProjectPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const ministry = getMinistryItemBySlug(slug);
 
   if (!ministry) {
@@ -27,6 +30,21 @@ export default function SingleProjectPage() {
         </div>
       </div>
     );
+  }
+
+  // Read gallery images
+  const galleryDir = path.join(process.cwd(), "public", "images", "ministries", slug);
+  let galleryImages: string[] = [];
+
+  try {
+    if (fs.existsSync(galleryDir)) {
+      const files = fs.readdirSync(galleryDir);
+      galleryImages = files
+        .filter((file) => /\.(jpg|jpeg|png|webp|gif)$/i.test(file))
+        .map((file) => `/images/ministries/${slug}/${file}`);
+    }
+  } catch (error) {
+    console.error("Error reading gallery directory:", error);
   }
 
   return (
@@ -52,23 +70,15 @@ export default function SingleProjectPage() {
         </div>
 
         <div style={styles.contentBody}>
-          {/* Renderizado de HTML para respetar las etiquetas <p> de tu data.ts */}
           <div 
             className="ministry-content"
             style={styles.paragraph} 
             dangerouslySetInnerHTML={{ __html: ministry.fullDescription }} 
           />
 
-          <div style={styles.ctaBox}>
-            <h3 style={styles.ctaTitle}>Want to support {ministry.title}?</h3>
-            <button 
-              onClick={(e) => { e.preventDefault(); openDonateModal(); }} 
-              className="project-donate-btn-hover" 
-              style={styles.donateBtn}
-            >
-              Make a Donation
-            </button>
-          </div>
+          <Gallery images={galleryImages} title={ministry.title} />
+
+          <MinistryDonateButton title={ministry.title} />
         </div>
       </div>
     </div>
@@ -134,31 +144,5 @@ const styles = {
     fontSize: "1.1rem",
     lineHeight: "1.8",
     color: "#475569",
-    // Eliminamos whiteSpace para que el HTML se renderice nativamente
-  },
-  ctaBox: {
-    marginTop: "50px",
-    padding: "30px",
-    backgroundColor: "rgba(31, 42, 68, 0.03)",
-    borderLeft: `4px solid ${theme.colors.primary}`,
-    borderRadius: "0 8px 8px 0",
-  },
-  ctaTitle: {
-    fontSize: "1.25rem",
-    fontWeight: 700,
-    color: theme.colors.primary,
-    marginBottom: "20px",
-    marginTop: 0,
-  },
-  donateBtn: {
-    display: "inline-block",
-    backgroundColor: theme.colors.primary,
-    color: "#fff",
-    padding: "14px 32px",
-    borderRadius: "30px",
-    border: "none",
-    cursor: "pointer",
-    fontWeight: "bold",
-    fontSize: "0.95rem",
-  },
+  }
 };
