@@ -52,7 +52,7 @@ const Footer = () => {
         {/* Column 2: Headquarters */}
         <div style={styles.column}>
           <h3 style={styles.heading}>Our Headquarters</h3>
-          <p style={styles.text}>Grace House, 124 Mercy Lane<br/>Katy, TX 10785 United States</p>
+          <p style={styles.text}>One Way Ministries International<br/>2311 Oxford brook court<br/>Katy Texas, 77493</p>
           <p style={styles.text}><br/><a href="tel:+18329087487" style={styles.link}>+1 832-908-7487</a><br/><a href="mailto:onewayministriescol@gmail.com" style={styles.link}>onewayministriescol@gmail.com</a></p>
           
           <div style={styles.socialRow}>
