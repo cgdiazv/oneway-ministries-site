@@ -1,7 +1,7 @@
 // components/DonateModal.tsx
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { theme } from "@/styles/theme";
 import { ArrowRight, Lock } from "lucide-react";
 import { useDonate } from "@/context/DonateContext";
@@ -11,6 +11,7 @@ export default function DonateModal() {
   
   const [selectedAmount, setSelectedAmount] = useState<number | null>(50);
   const [customAmount, setCustomAmount] = useState("");
+  const formRef = useRef<HTMLFormElement>(null);
 
   if (!isDonateOpen) return null; // If it's not open, don't render anything
 
@@ -43,7 +44,18 @@ export default function DonateModal() {
             <span style={styles.currencyBadge}>USD $</span>
           </div>
 
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+          <form 
+            ref={formRef}
+            action="https://www.paypal.com/cgi-bin/webscr" 
+            method="post" 
+            target="_blank"
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (formRef.current) {
+                formRef.current.submit();
+              }
+            }}
+          >
             <input type="hidden" name="cmd" value="_donations" />
             <input type="hidden" name="business" value="onewayministriescol@gmail.com" />
             <input type="hidden" name="item_name" value="Donation to One Way Ministries" />
