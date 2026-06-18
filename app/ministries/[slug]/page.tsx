@@ -7,7 +7,7 @@ import { theme } from "@/styles/theme";
 import { ArrowLeft } from "lucide-react";
 import { getMinistryItemBySlug, ministriesData } from "@/lib/data";
 import MinistryDonateButton from "./MinistryDonateButton";
-import Gallery from "./Gallery";
+import Gallery from "../../../components/Gallery";
 
 export async function generateStaticParams() {
   return ministriesData.map((ministry) => ({

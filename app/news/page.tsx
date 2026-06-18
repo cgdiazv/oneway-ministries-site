@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { theme } from "@/styles/theme";
 import { Calendar, Folder, ArrowRight } from "lucide-react";
 import { newsData } from "@/lib/data";
@@ -23,7 +24,12 @@ export default function NewsPage() {
           {/* Implementación de Tailwind: 1 columna en móvil, 3 en escritorio */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] w-full">
             {newsData.map((news, index) => (
-              <div key={index} style={styles.newsCard}>
+              <Link 
+                href={news.link}
+                key={index} 
+                style={{ ...styles.newsCard, textDecoration: 'none' }}
+                className="hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+              >
                 <div style={styles.projectImageContainer}>
                   <Image 
                     src={news.image} 
@@ -43,11 +49,11 @@ export default function NewsPage() {
                     </span>
                   </div>
                   <p style={styles.projectCardExcerpt}>{news.excerpt}</p>
-                  <a href={news.link} className="read-more-btn-hover" style={styles.projectReadMore}>
+                  <div className="read-more-btn-hover" style={styles.projectReadMore}>
                     READ ARTICLE <ArrowRight size={14} style={{ marginLeft: '6px' }} />
-                  </a>
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

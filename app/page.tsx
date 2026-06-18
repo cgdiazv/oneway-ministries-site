@@ -258,7 +258,7 @@ export default function Home() {
           
           <div className="initiatives-header" style={styles.initiativesHeader}>
             <div style={styles.initiativesHeaderLeft}>
-              <span style={styles.smallLabel}>OUR FUNDRAISERS</span>
+              <span style={styles.smallLabel}>OUR MINISTRIES</span>
               <h2 className="initiatives-title" style={styles.initiativesTitle}>Ministries & Projects</h2>
             </div>
             <div style={styles.initiativesHeaderRight}>
@@ -271,7 +271,12 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[30px] w-full">
             {/* 3. Mapeamos la constante local featuredMinistries */}
             {featuredMinistries.map((ministry, index) => (
-              <div key={index} style={styles.projectCard}>
+              <a 
+                href={ministry.link}
+                key={index} 
+                className="hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                style={{ ...styles.projectCard, textDecoration: 'none' }}
+              >
                 <div style={styles.projectImageContainer}>
                   <Image 
                     src={ministry.image} 
@@ -291,11 +296,11 @@ export default function Home() {
                     </span>
                   </div>
                   <p style={styles.projectCardExcerpt}>{ministry.excerpt}</p>
-                  <a href={ministry.link} className="read-more-btn-hover" style={styles.projectReadMore}>
+                  <div className="read-more-btn-hover" style={styles.projectReadMore}>
                     READ MORE <ArrowRight size={14} style={{ marginLeft: '6px' }} />
-                  </a>
+                  </div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
 
@@ -340,9 +345,14 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] w-full">
+          <div className="flex flex-wrap justify-center gap-[30px] w-full">
             {latestNews.map((news, index) => (
-              <div key={index} style={styles.newsCard}>
+              <a 
+                href={news.link}
+                key={index} 
+                className="w-full md:w-[calc(33.333%-20px)] max-w-[400px] hover:shadow-lg hover:-translate-y-1" 
+                style={{ ...styles.newsCard, textDecoration: 'none' }}
+              >
                 <div style={styles.projectImageContainer}>
                   <Image 
                     src={news.image} 
@@ -361,12 +371,11 @@ export default function Home() {
                       <Folder size={14} style={{ marginRight: '6px' }}/> {news.category}
                     </span>
                   </div>
-                  <p style={styles.projectCardExcerpt}>{news.excerpt}</p>
-                  <a href={news.link} className="read-more-btn-hover" style={styles.projectReadMore}>
+                  <div className="read-more-btn-hover" style={styles.projectReadMore}>
                     READ ARTICLE <ArrowRight size={14} style={{ marginLeft: '6px' }} />
-                  </a>
+                  </div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
@@ -724,6 +733,7 @@ const styles = {
   },
   projectReadMore: {
     alignSelf: "flex-start",
+    marginTop: "auto",
     display: "inline-flex",
     alignItems: "center",
     padding: "10px 20px",

@@ -7,6 +7,7 @@ export interface NewsItem {
   excerpt: string;
   image: string;
   link: string;
+  gallery?: string[];
 }
 
 export interface MinistryItem {
@@ -18,6 +19,7 @@ export interface MinistryItem {
   fullDescription: string;
   image: string;
   link: string;
+  gallery?: string[];
 }
 
 // --- DATOS DE NOTICIAS ---
@@ -28,17 +30,12 @@ export const newsData: NewsItem[] = [
     date: "JUNE 06, 2026",
     category: "UPDATE",
     excerpt: "Feed, clothes, and evangelize around 500 homeless people. This event allows One Way to work with five different foundations who are involved in ministry work in Medellin, Colombia.",
-    image: "/medellin-la-mesa-del-rey-project.webp",
+    image: "/images/news/medellin-la-mesa-del-rey-project.webp",
     link: "/news/medellin-la-mesa-del-rey-project",
-  },
-  {
-    id: "conectados-ambalema",
-    title: "Conectados Ambalema",
-    date: "JUNE 13, 2026",
-    category: "UPDATE",
-    excerpt: "This is a special event for the whole family with praise and worship, a sermon by Carlos Amaya and prayer time for the families of Ambalema. The event will be held at the Heperava Neighborhood Sports Centre.",
-    image: "/conectados-ambalema.webp",
-    link: "/news/conectados-ambalema",
+    gallery: [
+      "/images/news/medellin-la-mesa-del-rey-project.webp",
+      // Add more image paths here!
+    ]
   },
   {
     id: "free-dental-clinic",
@@ -46,7 +43,7 @@ export const newsData: NewsItem[] = [
     date: "JUNE 09-10, 2026",
     category: "EVENT",
     excerpt: "A free dental clinic was held in partnership with local healthcare providers, offering essential dental care to underserved communities in Coco Community, Inirida, Colombia. Over 200 individuals will receive free treatment and oral health education during this impactful event.",
-    image: "/free-dental-clinic.webp",
+    image: "/images/news/free-dental-clinic.webp",
     link: "/news/free-dental-clinic",
   },
 ];
@@ -103,6 +100,7 @@ export const ministriesData: MinistryItem[] = [
     image: "/images/ministries/nuevo-amanecer.webp",
     link: "/ministries/nuevo-amanecer",
   },
+  /*
   {
     id: "pan-de-vida",
     title: "Pan De Vida Ministry",
@@ -113,6 +111,7 @@ export const ministriesData: MinistryItem[] = [
     image: "/images/ministries/pan-de-vida.webp",
     link: "/ministries/pan-de-vida",
   },
+  */
   {
     id: "amor-inagotable",
     title: "Amor Inagotable Foundation",

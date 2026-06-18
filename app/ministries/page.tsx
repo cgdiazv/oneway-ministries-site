@@ -22,7 +22,12 @@ export default function MinistriesPage() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] w-full">
             {ministriesData.map((ministry, index) => (
-              <div key={index} style={styles.newsCard}>
+              <Link 
+                href={ministry.link} 
+                key={index} 
+                style={{ ...styles.newsCard, textDecoration: 'none' }}
+                className="hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+              >
                 <div style={styles.projectImageContainer}>
                   <Image src={ministry.image} alt={ministry.title} fill style={{ objectFit: 'cover' }} />
                 </div>
@@ -33,11 +38,11 @@ export default function MinistriesPage() {
                     <span style={styles.metaItem}><Folder size={14} style={{ marginRight: '6px' }}/> {ministry.category}</span>
                   </div>
                   <p style={styles.projectCardExcerpt}>{ministry.excerpt}</p>
-                  <Link href={ministry.link} style={styles.projectReadMore}>
+                  <div style={styles.projectReadMore}>
                     READ MORE <ArrowRight size={14} style={{ marginLeft: '6px' }} />
-                  </Link>
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

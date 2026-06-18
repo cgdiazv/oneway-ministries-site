@@ -1,16 +1,15 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import fs from "fs";
+import path from "path";
 import { theme } from "@/styles/theme";
 import { ArrowLeft, Calendar, Folder } from "lucide-react";
 import { getNewsItemBySlug } from "@/lib/data";
+import Gallery from "@/components/Gallery";
 
-export default function SingleNewsPage() {
-  const params = useParams();
-  const slug = params.slug as string;
+export default async function SingleNewsPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
 
   const formatTitle = (str: string) => {
     if (!str) return "News Details";
@@ -23,8 +22,24 @@ export default function SingleNewsPage() {
     date: "TODAY",
     category: "NEWS",
     image: "/missionaries.webp",
-    excerpt: "This is a detailed update. You can expand on the specific details, add photo galleries, or provide the full text of the article right here."
+    excerpt: "This is a detailed update. You can expand on the specific details, add photo galleries, or provide the full text of the article right here.",
+    gallery: [] as string[],
   };
+
+  // Read gallery images from the public directory
+  const galleryDir = path.join(process.cwd(), "public", "images", "news", slug);
+  let galleryImages: string[] = [];
+
+  try {
+    if (fs.existsSync(galleryDir)) {
+      const files = fs.readdirSync(galleryDir);
+      galleryImages = files
+        .filter((file) => /\.(jpg|jpeg|png|webp|gif)$/i.test(file))
+        .map((file) => `/images/news/${slug}/${file}`);
+    }
+  } catch (error) {
+    console.error("Error reading gallery directory:", error);
+  }
 
   return (
     <div style={styles.pageWrapper}>
@@ -63,6 +78,9 @@ export default function SingleNewsPage() {
             </p>
           </div>
         )}
+
+        {/* Render the gallery if images were found in the directory, falling back to data */}
+        <Gallery images={galleryImages.length > 0 ? galleryImages : (newsItem.gallery || [])} title={newsItem.title} />
       </div>
     </div>
   );
