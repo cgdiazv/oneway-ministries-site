@@ -39,7 +39,7 @@ export default function Home() {
     {
       icon: <HomeIcon size={32} strokeWidth={1.5} />,
       title: "HOMELESS",
-      text: "Through our local hubs like Casa del Rey and Pan de Vida and Amor Inagotable, we offer shelter and basic necessities to those in need.",
+      text: "Through our local hubs like Casa del Rey and Amor Inagotable, we offer shelter and basic necessities to those in need.",
     },
     {
       icon: <BookOpen size={32} strokeWidth={1.5} />,
