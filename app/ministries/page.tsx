@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { theme } from "@/styles/theme";
@@ -8,15 +8,6 @@ import { Calendar, Folder, ArrowRight } from "lucide-react";
 import { ministriesData } from "@/lib/data";
 
 export default function MinistriesPage() {
-  const [filter, setFilter] = useState("ALL");
-
-  // Filtramos la data basada en la selección
-  const filteredMinistries = filter === "ALL" 
-    ? ministriesData 
-    : ministriesData.filter(m => m.category === filter);
-
-  const categories = ["ALL", "FOUNDATION", "MINISTRY"];
-
   return (
     <>
       <div style={styles.heroSection}>
@@ -29,25 +20,8 @@ export default function MinistriesPage() {
       <section style={styles.newsSection}>
         <div style={styles.newsContainer}>
           
-          {/* BARRA DE FILTROS */}
-          <div style={styles.filterBar}>
-            {categories.map((cat) => (
-              <button 
-                key={cat}
-                onClick={() => setFilter(cat)}
-                style={{
-                  ...styles.filterBtn,
-                  backgroundColor: filter === cat ? theme.colors.primary : "transparent",
-                  color: filter === cat ? "#fff" : theme.colors.primary,
-                }}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px] w-full">
-            {filteredMinistries.map((ministry, index) => (
+            {ministriesData.map((ministry, index) => (
               <div key={index} style={styles.newsCard}>
                 <div style={styles.projectImageContainer}>
                   <Image src={ministry.image} alt={ministry.title} fill style={{ objectFit: 'cover' }} />
@@ -74,24 +48,8 @@ export default function MinistriesPage() {
 
 const styles = {
   // ... (tus otros estilos se mantienen)
-  filterBar: {
-    display: "flex",
-    gap: "15px",
-    justifyContent: "center",
-    marginBottom: "50px",
-  },
-  filterBtn: {
-    padding: "10px 25px",
-    borderRadius: "30px",
-    border: `2px solid ${theme.colors.primary}`,
-    fontWeight: 700,
-    fontSize: "0.8rem",
-    cursor: "pointer",
-    textTransform: "uppercase" as const,
-    transition: "all 0.3s ease",
-  },
   // Reutiliza tus estilos de heroSection, newsSection y projectCard existentes...
-  heroSection: { backgroundColor: theme.colors.primary, padding: "100px 20px 60px", textAlign: "center" as const },
+  heroSection: { backgroundColor: theme.colors.primary, padding: "50px 20px 50px", textAlign: "center" as const },
   container: { maxWidth: "900px", margin: "0 auto" },
   headline: { color: theme.colors.text.inverse, fontSize: "3.5rem", fontWeight: 800, marginBottom: "20px" },
   subtext: { color: theme.colors.text.inverse, fontSize: "1.2rem", opacity: 0.9, fontWeight: 300 },

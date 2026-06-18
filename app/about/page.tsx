@@ -91,7 +91,7 @@ const styles = {
   // Hero Styles
   heroSection: {
     backgroundColor: theme.colors.primary,
-    padding: "100px 20px 60px",
+    padding: "50px 20px 50px",
     textAlign: "center" as const,
   },
   heroContainer: { maxWidth: "900px", margin: "0 auto" },

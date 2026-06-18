@@ -59,7 +59,7 @@ export default function NewsPage() {
 const styles = {
   heroSection: {
     backgroundColor: theme.colors.primary,
-    padding: "100px 20px 60px",
+    padding: "50px 20px 50px",
     textAlign: "center" as const,
     display: "flex",
     flexDirection: "column" as const,
