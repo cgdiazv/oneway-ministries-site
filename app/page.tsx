@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { theme } from "@/styles/theme";
 // 1. Importamos ministriesData junto con newsData
 import { newsData, ministriesData } from "@/lib/data";
-import { Baby, Home as HomeIcon, BookOpen, ArrowRight, Play, Calendar, Folder, Menu, X, ChevronDown } from "lucide-react";
+import { Baby, Home as HomeIcon, BookOpen, ArrowRight, Play, Calendar, Folder, Menu, X, ChevronDown, Earth } from "lucide-react";
 // Import useDonate hook
 import { useDonate } from "@/context/DonateContext";
 
@@ -44,11 +44,14 @@ export default function Home() {
     {
       icon: <BookOpen size={32} strokeWidth={1.5} />,
       title: "EDUCATION",
-      text: "Empowering the next generation through academic support and spiritual formation to help break the cycle of poverty in their communities.",
+      text: "Empowering the next generation through academic support and spiritual formation to help break the cycle of poverty and hunger in their communities.",
+    },
+    {
+      icon: <Earth size={32} strokeWidth={1.5} />,
+      title: "GOSPEL OUTREACH",
+      text: "All initiatives guided by our in-country partners are designed to reach the Colombian people with the Gospel.",
     },
   ];
-
-  // ELIMINAMOS projectsData DE AQUÍ
 
   const partnerLogos = [
     { name: "Temple of God", svgSrc: "/logos/temple_of_god.svg" }, 
