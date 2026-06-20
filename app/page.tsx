@@ -427,6 +427,7 @@ const styles = {
     backgroundColor: theme.colors.accent, color: theme.colors.text.inverse,
     padding: "12px 28px", borderRadius: "25px", textDecoration: "none",
     fontWeight: "bold", fontSize: "0.85rem", textTransform: "uppercase" as const, marginTop: "2rem",
+    cursor: "pointer",
   },
   container: {
     maxWidth: "950px", padding: "0 2rem", position: "relative" as const, zIndex: 10,
@@ -464,6 +465,7 @@ const styles = {
     transition: "all 0.3s ease",
     fontSize: "0.95rem",
     textTransform: "uppercase" as const,
+    cursor: "pointer",
   },
   aboutSection: { padding: "100px 20px", backgroundColor: "#ffffff", display: "flex", justifyContent: "center" },
   aboutGrid: { maxWidth: "1200px", width: "100%", display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: "60px", alignItems: "center" },

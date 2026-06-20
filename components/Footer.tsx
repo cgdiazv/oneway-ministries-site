@@ -76,13 +76,13 @@ const Footer = () => {
           <p style={styles.text}><br/><a href="tel:+18329087487" style={styles.link}>+1 832-908-7487</a><br/><a href="mailto:onewayministriescol@gmail.com" style={styles.link}>onewayministriescol@gmail.com</a></p>
           
           <div style={styles.socialRow}>
-            <a href="#" style={styles.socialIcon} aria-label="Facebook">
+            <a href="https://www.facebook.com/profile.php?id=100094571245519" target="_blank" rel="noopener noreferrer" style={styles.socialIcon} aria-label="Facebook">
               <FacebookIcon />
             </a>
-            <a href="#" style={styles.socialIcon} aria-label="Instagram">
+            <a href="https://www.instagram.com/onewayministries/" target="_blank" rel="noopener noreferrer" style={styles.socialIcon} aria-label="Instagram">
               <InstagramIcon />
             </a>
-            <a href="#" style={styles.socialIcon} aria-label="X (Twitter)">
+            <a href="https://twitter.com/onewayministries" target="_blank" rel="noopener noreferrer" style={styles.socialIcon} aria-label="X (Twitter)">
               <TwitterIcon />
             </a>
           </div>

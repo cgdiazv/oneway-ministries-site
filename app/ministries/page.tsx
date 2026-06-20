@@ -67,5 +67,5 @@ const styles = {
   projectCardMeta: { display: "flex", gap: "15px", color: "#777", fontSize: "0.75rem", marginBottom: "20px" },
   metaItem: { display: "flex", alignItems: "center" },
   projectCardExcerpt: { fontSize: "0.95rem", lineHeight: "1.6", color: "#666", marginBottom: "30px", flex: 1 },
-  projectReadMore: { alignSelf: "flex-start", display: "inline-flex", alignItems: "center", padding: "10px 20px", border: `2px solid ${theme.colors.primary}`, color: theme.colors.primary, borderRadius: "30px", fontSize: "0.75rem", fontWeight: 700, textDecoration: "none" },
+  projectReadMore: { alignSelf: "flex-start", display: "inline-flex", alignItems: "center", padding: "10px 20px", border: `2px solid ${theme.colors.accent}`, backgroundColor: theme.colors.accent, color: theme.colors.text.inverse, borderRadius: "30px", fontSize: "0.75rem", fontWeight: 700, textDecoration: "none" },
 };
