@@ -138,7 +138,7 @@ export const ministriesData: MinistryItem[] = [
     date: "2024",
     category: "MINISTRY",
     excerpt: "Medical outreach, humanitarian aid, and evangelism in Northern Colombia.",
-    fullDescription: "<p>Yulih Alarca began working with Flor in 2023 and One Way agreed to join them in 2024.</p><p>Funcifunac serves communities across Barranquilla, Santa Marta, and La Guajira through medical outreach events, humanitarian aid, evangelism, and support for vulnerable families. During these initiatives, practical needs are addressed while sharing the hope of the Gospel with children, youth, and adults.</p><p>The ministry depends heavily on volunteers and logistical support to carry out medical campaigns and seasonal outreach events. As it continues developing younger leaders and expanding operations, Flor Ministry remains committed to compassionate service that reflects Christ’s love in underserved regions.</p>",
+    fullDescription: "<p>Yulih Alarca began working with Flor in 2023 and One Way agreed to join them in 2024.</p><p>Funcifunac serves communities across Barranquilla, Santa Marta, and La Guajira through medical outreach events, humanitarian aid, evangelism, and support for vulnerable families. During these initiatives, practical needs are addressed while sharing the hope of the Gospel with children, youth, and adults.</p><p>The ministry depends heavily on volunteers and logistical support to carry out medical campaigns and seasonal outreach events. As it continues developing younger leaders and expanding operations, <strong>Flor Ministry</strong> remains committed to compassionate service that reflects Christ’s love in underserved regions.</p>",
     image: "/images/ministries/funcifunac.webp",
     link: "/ministries/funcifunac",
   },
