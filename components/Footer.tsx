@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { theme } from '../styles/theme'; // Adjust path if needed
 
 const FacebookIcon = () => (
@@ -26,6 +27,12 @@ const TwitterIcon = () => (
 );
 
 const Footer = () => {
+  const pathname = usePathname();
+
+  if (pathname === '/access') {
+    return null;
+  }
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -118,6 +125,10 @@ const Footer = () => {
         <div style={styles.bottomContainer}>
           <p style={styles.copyrightText}>
             Oneway Ministries © {new Date().getFullYear()} – All Rights Reserved
+            <span style={{ margin: '0 8px', opacity: 0.4 }}>•</span>
+            <Link href="/access" style={{ color: '#9CA3AF', textDecoration: 'none', fontSize: '0.8rem' }}>
+              Staff Access
+            </Link>
           </p>
           <button onClick={scrollToTop} style={styles.scrollTopBtn} aria-label="Scroll to top">
             ↑

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { theme } from "@/styles/theme";
@@ -15,6 +15,51 @@ export default function Home() {
   const { openDonateModal } = useDonate();
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Dynamic admin overrides from content store
+  const [heroContent, setHeroContent] = useState({
+    headline: "Sharing Hope in Colombia:\nOne Life at a Time",
+    subtext: "Partner with One Way Ministries to empower communities, support our\nlocal hubs like Casa del Rey and Morada de Gracia, and make a lasting impact.",
+    bgImage: "/header.webp",
+    aboutHeading: "Serving in Colombia - South America Christ Way",
+    aboutDesc: "We are dedicated to sharing Christ’s love throughout Colombia through strategic service and collaborative partnerships, working tirelessly to restore hope and dignity to every family via unwavering, Gospel-centered compassion.",
+    aboutImage: "/missionaries.webp",
+    quote: "We believe that faith is not only something to be practiced, but something to be lived daily, through acts of kindness, generosity, and understanding.",
+    guainiaTitle: "The Guainia Trans-cultural Mission",
+    guainiaDesc: "Supports Alfa & Omega church planting among indigenous communities in Colombia’s Amazon region, providing Gospel outreach, leadership training, Bible translation support, and practical resources to strengthen local churches and pastors serving diverse ethnic groups.",
+    newsletterTitle: "Stay connected, pray with us, and discover how God may be calling you to be part of this mission.",
+  });
+
+  useEffect(() => {
+    const saved = localStorage.getItem("oneway_page_content_/");
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        const heroSec = parsed.sections?.find((s: any) => s.id === "hero_section");
+        const whoSec = parsed.sections?.find((s: any) => s.id === "who_we_are");
+        const guainiaSec = parsed.sections?.find((s: any) => s.id === "guainia_mission");
+
+        const getVal = (sec: any, id: string, def: string) =>
+          sec?.fields?.find((f: any) => f.id === id)?.value || def;
+
+        setHeroContent((prev) => ({
+          ...prev,
+          headline: getVal(heroSec, "hero_headline", prev.headline),
+          subtext: getVal(heroSec, "hero_subtext", prev.subtext),
+          bgImage: getVal(heroSec, "hero_bg_image", prev.bgImage),
+          aboutHeading: getVal(whoSec, "about_heading", prev.aboutHeading),
+          aboutDesc: getVal(whoSec, "about_description", prev.aboutDesc),
+          aboutImage: getVal(whoSec, "about_image", prev.aboutImage),
+          quote: getVal(whoSec, "floating_box_quote", prev.quote),
+          guainiaTitle: getVal(guainiaSec, "guainia_title", prev.guainiaTitle),
+          guainiaDesc: getVal(guainiaSec, "guainia_desc", prev.guainiaDesc),
+          newsletterTitle: getVal(guainiaSec, "newsletter_callout_title", prev.newsletterTitle),
+        }));
+      } catch (err) {
+        console.error("Error loading home page customizations:", err);
+      }
+    }
+  }, []);
 
   const menuItems = [
     { 
@@ -71,7 +116,7 @@ export default function Home() {
   return (
     <>
       {/* --- HERO SECTION --- */}
-      <div style={styles.heroSection}>
+      <div style={{ ...styles.heroSection, backgroundImage: `url(${heroContent.bgImage})` }}>
         <div style={styles.heroOverlay}></div>
         <header style={styles.integratedNavbar}>
           <div className="nav-container" style={styles.navContainer}>
@@ -129,10 +174,20 @@ export default function Home() {
         </header>
 
         <div style={styles.container}>
-          <h1 className="hero-headline" style={styles.headline}>Sharing Hope in Colombia:<br/>One Life at a Time</h1>
+          <h1 className="hero-headline" style={styles.headline}>
+            {heroContent.headline.includes("\n") ? (
+              heroContent.headline.split("\n").map((line, idx, arr) => (
+                <React.Fragment key={idx}>
+                  {line}
+                  {idx < arr.length - 1 && <br />}
+                </React.Fragment>
+              ))
+            ) : (
+              heroContent.headline
+            )}
+          </h1>
           <p className="hero-subtext" style={styles.subtext}>
-            Partner with One Way Ministries to empower communities, support our<br/>
-            local hubs like Casa del Rey and Morada de Gracia, and make a lasting impact.
+            {heroContent.subtext}
           </p>
           <div className="button-group" style={styles.buttonGroup}>
             <a href="/about" className="hero-outline-btn" style={styles.primaryOutlineButton}>Learn More</a>
@@ -148,10 +203,9 @@ export default function Home() {
         <div className="about-grid" style={styles.aboutGrid}>
           <div style={styles.textContent}>
             <span style={styles.smallLabel}>WHO WE ARE</span>
-            <h2 className="section-heading" style={styles.sectionHeading}>Serving in Colombia - South America Christ Way</h2>
+            <h2 className="section-heading" style={styles.sectionHeading}>{heroContent.aboutHeading}</h2>
             <p style={styles.sectionDesc}>
-              We are dedicated to sharing Christ’s love throughout Colombia through strategic service and collaborative partnerships, 
-              working tirelessly to restore hope and dignity to every family via unwavering, Gospel-centered compassion.
+              {heroContent.aboutDesc}
             </p>
             <div style={styles.featuresList}>
               {features.map((f, i) => (
@@ -171,14 +225,14 @@ export default function Home() {
 
           <div className="about-image" style={styles.imageContainer}>
             <Image 
-              src="/missionaries.webp" 
+              src={heroContent.aboutImage} 
               alt="Community Worship" 
               fill 
               style={{ objectFit: 'cover', borderRadius: '8px' }} 
             />
             <div className="floating-box" style={styles.floatingBox}>
               <p style={styles.floatingText}>
-                We believe that faith is not only something to be practiced, but something to be lived daily, through acts of kindness, generosity, and understanding.
+                {heroContent.quote}
               </p>
             </div>
           </div>
@@ -193,10 +247,10 @@ export default function Home() {
             <div style={styles.ctaOverlay}></div>
             <div style={styles.ctaContent}>
               <p style={styles.ctaSub}>One of our ministries</p>
-              <h2 className="cta-heading" style={styles.ctaHeading}>The Guainia Trans-cultural Mission</h2>
+              <h2 className="cta-heading" style={styles.ctaHeading}>{heroContent.guainiaTitle}</h2>
               <div style={styles.ctaDivider}></div>
               <p style={styles.ctaDesc}>
-                Supports Alfa & Omega church planting among indigenous communities in Colombia’s Amazon region, providing Gospel outreach, leadership training, Bible translation support, and practical resources to strengthen local churches and pastors serving diverse ethnic groups.
+                {heroContent.guainiaDesc}
               </p>
             <button style={styles.playButton} className="play-btn-hover cta-play-btn" onClick={() => setIsVideoOpen(true)}>
                 <Play fill="#fff" size={24} style={{ marginLeft: '4px' }} />
@@ -207,7 +261,7 @@ export default function Home() {
           <div className="overlap-box" style={styles.overlapBox}>
             <div className="overlap-left" style={styles.overlapLeft}>
               <h3 className="overlap-text" style={styles.overlapText}>
-                Stay connected, pray with us, and discover how God may be calling you to be part of this mission.
+                {heroContent.newsletterTitle}
               </h3>
               <form className="cta-form-group" style={styles.formGroup} onSubmit={(e) => {
                 e.preventDefault();

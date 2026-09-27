@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { theme } from "@/styles/theme";
 
@@ -17,14 +17,49 @@ const boardMembers = [
 ];
 
 export default function AboutPage() {
+  const [content, setContent] = useState({
+    title: "About Us",
+    subtitle: "Restoring hope in Colombia through faith and action.",
+    intro: "We are a non-profit Ministry that seeks to help those most in need by giving them Love and quality of life as JESUS would do. With your donations we support Foundations that work hand in hand with us to fulfill our Vision.",
+    quote: "“And the King will answer and say to them: Truly I say to you, in as much as you did it to one of the least of these my brothers, you did it to me”. (Mt 25;40)",
+    faithTitle: "One Way Ministries International Statement of Faith and Purpose",
+    faithIntro: "The members of One Way Ministries International strive to follow Jesus and do what He did in these areas: sharing the Gospel and assisting our partner organizations as they do the same, aligning our lives with those outside of the Church, and providing assistance to orphans and the destitute.",
+  });
+
+  useEffect(() => {
+    const saved = localStorage.getItem("oneway_page_content_/about");
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        const bannerSec = parsed.sections?.find((s: any) => s.id === "banner");
+        const statementSec = parsed.sections?.find((s: any) => s.id === "statement");
+
+        const getVal = (sec: any, id: string, def: string) =>
+          sec?.fields?.find((f: any) => f.id === id)?.value || def;
+
+        setContent((prev) => ({
+          ...prev,
+          title: getVal(bannerSec, "banner_title", prev.title),
+          subtitle: getVal(bannerSec, "banner_subtitle", prev.subtitle),
+          intro: getVal(statementSec, "statement_intro", prev.intro),
+          quote: getVal(statementSec, "statement_quote", prev.quote),
+          faithTitle: getVal(statementSec, "faith_purpose_title", prev.faithTitle),
+          faithIntro: getVal(statementSec, "faith_purpose_p1", prev.faithIntro),
+        }));
+      } catch (err) {
+        console.error("Error loading about page customizations:", err);
+      }
+    }
+  }, []);
+
   return (
     <>
       {/* --- HERO SECTION --- */}
       <div style={styles.heroSection}>
         <div style={styles.heroContainer}>
-          <h1 style={styles.heroHeadline}>About Us</h1>
+          <h1 style={styles.heroHeadline}>{content.title}</h1>
           <p style={styles.heroSubtext}>
-            Restoring hope in Colombia through faith and action.
+            {content.subtitle}
           </p>
         </div>
       </div>
@@ -34,16 +69,16 @@ export default function AboutPage() {
         <div style={styles.container}>
           <section style={styles.statementSection}>
             <p style={styles.text}>
-              We are a non-profit Ministry that seeks to help those most in need by giving them Love and quality of life as JESUS would do. With your donations we support Foundations that work hand in hand with us to fulfill our Vision.
+              {content.intro}
             </p>
             <blockquote style={styles.quote}>
-              “And the King will answer and say to them: Truly I say to you, in as much as you did it to one of the least of these my brothers, you did it to me”. (Mt 25;40)
+              {content.quote}
             </blockquote>
 
-            <h2 style={styles.subTitle}>One Way Ministries International Statement of Faith and Purpose</h2>
+            <h2 style={styles.subTitle}>{content.faithTitle}</h2>
             <div style={styles.leftAlignText}>
               <p style={{...styles.text, marginBottom: "20px"}}>
-                The members of One Way Ministries International strive to follow Jesus and do what He did in these areas: sharing the Gospel and assisting our partner organizations as they do the same, aligning our lives with those outside of the Church, and providing assistance to orphans and the destitute.
+                {content.faithIntro}
               </p>
               <p style={{...styles.text, marginBottom: "30px"}}>
                 We also want to promote cooperation between partner organizations.

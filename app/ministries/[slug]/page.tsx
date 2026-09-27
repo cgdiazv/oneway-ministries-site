@@ -7,7 +7,7 @@ import { theme } from "@/styles/theme";
 import { ArrowLeft } from "lucide-react";
 import { getMinistryItemBySlug, ministriesData } from "@/lib/data";
 import MinistryDonateButton from "./MinistryDonateButton";
-import Gallery from "../../../components/Gallery";
+import SingleMinistryClient from "./SingleMinistryClient";
 
 export async function generateStaticParams() {
   return ministriesData.map((ministry) => ({
@@ -48,40 +48,11 @@ export default async function SingleProjectPage({ params }: { params: Promise<{ 
   }
 
   return (
-    <div style={styles.pageWrapper}>
-      <div style={styles.container}>
-        <Link href="/ministries" style={styles.backButton}>
-          <ArrowLeft size={16} style={{ marginRight: '8px' }} /> Back to Ministries
-        </Link>
-
-        <div style={styles.header}>
-          <span style={styles.overline}>{ministry.category}</span>
-          <h1 style={styles.title}>{ministry.title}</h1>
-        </div>
-
-        <div style={styles.imageBanner}>
-          <Image 
-            src={ministry.image} 
-            alt={`Banner for ${ministry.title}`} 
-            fill
-            style={{ objectFit: "cover" }}
-            priority 
-          />
-        </div>
-
-        <div style={styles.contentBody}>
-          <div 
-            className="ministry-content"
-            style={styles.paragraph} 
-            dangerouslySetInnerHTML={{ __html: ministry.fullDescription }} 
-          />
-
-          <Gallery images={galleryImages} title={ministry.title} />
-
-          <MinistryDonateButton title={ministry.title} />
-        </div>
-      </div>
-    </div>
+    <SingleMinistryClient
+      slug={slug}
+      initialMinistry={ministry}
+      initialGalleryImages={galleryImages}
+    />
   );
 }
 

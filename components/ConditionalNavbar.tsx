@@ -6,9 +6,8 @@ import Navbar from './Navbar'; // Your original solid navy navbar
 export default function ConditionalNavbar() {
   const pathname = usePathname();
 
-  // If we are on the homepage, return nothing (null)
-  // This effectively hides the solid navbar from the hero section
-  if (pathname === '/') {
+  // If we are on the homepage or on the admin access portal, return nothing (null)
+  if (pathname === '/' || pathname === '/access') {
     return null;
   }
 
