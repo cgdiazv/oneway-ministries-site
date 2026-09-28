@@ -12,7 +12,6 @@ import {
   ArrowRight,
   AlertCircle,
   KeyRound,
-  HelpCircle,
   LogOut,
   ExternalLink,
   Users,
@@ -121,7 +120,6 @@ export default function AdminAccessPage() {
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [showHelpModal, setShowHelpModal] = useState(false);
 
   // Password Change Modal state
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
@@ -1744,21 +1742,12 @@ export default function AdminAccessPage() {
 
             {/* Password Field */}
             <div>
-              <div className="flex items-center justify-between mb-1.5">
-                <label
-                  htmlFor="password"
-                  className="block text-xs font-bold uppercase tracking-wider text-slate-300"
-                >
-                  Password
-                </label>
-                <button
-                  type="button"
-                  onClick={() => setShowHelpModal(true)}
-                  className="text-xs text-red-400 hover:text-red-300 font-semibold hover:underline cursor-pointer"
-                >
-                  Need help?
-                </button>
-              </div>
+              <label
+                htmlFor="password"
+                className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5"
+              >
+                Password
+              </label>
               <div className="relative rounded-xl">
                 <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
                   <KeyRound className="h-4 w-4" />
@@ -1840,53 +1829,7 @@ export default function AdminAccessPage() {
         </div>
       </div>
 
-      {/* Help Modal */}
-      {showHelpModal && (
-        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl space-y-4 animate-in fade-in zoom-in-95">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-              <div className="flex items-center gap-2 text-white font-bold text-base">
-                <HelpCircle className="w-5 h-5 text-red-500" />
-                Administrative Access Assistance
-              </div>
-              <button
-                type="button"
-                onClick={() => setShowHelpModal(false)}
-                className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 cursor-pointer"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-            <div className="text-slate-400 text-xs space-y-3 leading-relaxed">
-              <p>
-                Access to this administration portal is strictly restricted to authorized One Way Ministries leadership and staff.
-              </p>
-              <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 text-xs space-y-2">
-                <p className="font-bold text-white">Authorized Administrator Account:</p>
-                <p>
-                  Username: <strong className="text-red-400 font-mono">admin@onewayministries.co</strong>
-                </p>
-                <p>
-                  Default Password: <strong className="text-slate-200 font-mono">oneway2026!</strong>
-                </p>
-                <p className="pt-1 text-[11px] text-slate-500">
-                  Headquarters: 2311 Oxford brook court, Katy Texas, 77493
-                  <br />Direct Phone: +1 832-908-7487
-                </p>
-              </div>
-            </div>
-            <div className="pt-2">
-              <button
-                type="button"
-                onClick={() => setShowHelpModal(false)}
-                className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold tracking-wide uppercase transition cursor-pointer"
-              >
-                Close Window
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+
     </div>
   );
 }
